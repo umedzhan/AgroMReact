@@ -28,14 +28,14 @@ const Header = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2 mr-8">
               <span className="text-4xl">🌱</span>
-              <span className="text-3xl font-bold text-gray-900 tracking-tight">Agrom</span>
+              <span className="text-3xl font-bold text-gray-900 tracking-tight">AgroM</span>
             </Link>
 
             {/* Location Widget (Hidden on mobile) */}
-            <div className="hidden xl:flex items-center border border-gray-200 rounded px-3 py-2 mr-4">
-              <FaMapMarkerAlt className="text-gray-500 mr-2" />
-              <span className="text-gray-500 text-sm">Find a store</span>
-            </div>
+            <Link to="/contact" className="hidden xl:flex items-center border border-gray-200 rounded px-3 py-2 mr-4 hover:border-brand transition-colors group">
+              <FaMapMarkerAlt className="text-gray-500 mr-2 group-hover:text-brand transition-colors" />
+              <span className="text-gray-500 text-sm group-hover:text-brand transition-colors">Find a store</span>
+            </Link>
 
             {/* Mobile Actions (Hamburger) */}
             <div className="lg:hidden flex items-center space-x-4">
@@ -50,10 +50,11 @@ const Header = () => {
           <div className="flex flex-grow w-full lg:w-auto items-center space-x-4">
 
             {/* Browse Dropdown (Hidden on mobile) */}
-            <div className="hidden lg:flex items-center bg-green-50 px-4 py-3 rounded border border-brand cursor-pointer min-w-[150px] justify-between">
+            {/* Browse Dropdown (Hidden on mobile) */}
+            <Link to="/shop" className="hidden lg:flex items-center bg-green-50 px-4 py-3 rounded border border-brand cursor-pointer min-w-[150px] justify-between hover:bg-green-100 transition-colors">
               <span className="text-gray-700 font-medium">Browse now</span>
               <FaChevronDown className="text-gray-500 text-xs ml-2" />
-            </div>
+            </Link>
 
             {/* Search Box - Centered */}
             <div className="flex-grow">
@@ -160,7 +161,7 @@ const Header = () => {
               {/* Phone Number */}
               <div className="flex items-center space-x-2 text-brand font-bold">
                 <FaPhoneAlt />
-                <span>Need help? Call Us: +998 93 375 05 15</span>
+                <span>Need help? Call Us: +998 (00) 000-00-00</span>
               </div>
             </div>
           </div>

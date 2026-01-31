@@ -15,3 +15,5 @@ export { default as OrderScreen } from './OrderScreen';
 export { default as OrderListScreen } from './OrderListScreen';
 export { default as ShopScreen } from './ShopScreen';
 export { default as AdminDashboardScreen } from './AdminDashboardScreen';
+export { default as ContactScreen } from './ContactScreen';
+export { default as AboutScreen } from './AboutScreen';

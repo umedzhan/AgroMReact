@@ -11,15 +11,19 @@ const Footer = () => {
                     <div>
                         <Link to="/" className="flex items-center space-x-2 mb-4">
                             <span className="text-3xl">🌱</span>
-                            <span className="text-3xl font-bold text-white tracking-tight">Ecobazar</span>
+                            <span className="text-3xl font-bold text-white tracking-tight">AgroM</span>
                         </Link>
                         <p className="text-gray-400 mb-6 leading-relaxed">
                             Morbi cursus porttitor enim lobortis molestie. Duis gravida turpis dui, eget bibendum magna congue nec.
                         </p>
-                        <div className="flex space-x-4">
-                            <span className="text-white hover:text-brand cursor-pointer text-lg font-bold border-b-2 border-brand pb-1">(219) 555-0114</span>
-                            <span className="text-gray-500">or</span>
-                            <span className="text-white hover:text-brand cursor-pointer text-lg font-bold border-b-2 border-brand pb-1">Proxy@gmail.com</span>
+                        <div className="flex flex-col space-y-2">
+                            <a href="tel:+00000000" className="text-white hover:text-brand transition-colors text-lg font-bold border-b-2 border-brand pb-1 w-max">
+                                (00) 000-00-00
+                            </a>
+                            <span className="text-gray-500 text-sm">or</span>
+                            <a href="mailto:agrom.contact@gmail.com" className="text-white hover:text-brand transition-colors text-lg font-bold border-b-2 border-brand pb-1 w-max">
+                                agrom.contact@gmail.com
+                            </a>
                         </div>
                     </div>
 
