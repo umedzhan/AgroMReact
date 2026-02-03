@@ -113,10 +113,10 @@ const AboutScreen = () => {
                 {/* Team Member 1 */}
                 <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
                     <div className="h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <img src="/images/ourteam/behruz_karimov.png" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>
                     <div className="p-6 text-center">
-                        <h3 className="text-lg font-bold text-gray-900">Jenny Wilson</h3>
+                        <h3 className="text-lg font-bold text-gray-900">Karimov Behruz</h3>
                         <p className="text-brand text-sm mb-3">CEO & Founder</p>
                     </div>
                 </div>
@@ -124,33 +124,33 @@ const AboutScreen = () => {
                 {/* Team Member 2 */}
                 <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
                     <div className="h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <img src="/images/ourteam/usmon_rakhimjonov.png" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>
                     <div className="p-6 text-center">
-                        <h3 className="text-lg font-bold text-gray-900">Jane Cooper</h3>
-                        <p className="text-brand text-sm mb-3">Worker</p>
+                        <h3 className="text-lg font-bold text-gray-900">Karimjonov Usmon</h3>
+                        <p className="text-brand text-sm mb-3">Rivojlanish va aloqlar bo‘yicha maslahatchi</p>
                     </div>
                 </div>
 
                 {/* Team Member 3 */}
                 <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
                     <div className="h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <img src="/images/ourteam/azizbek_jorayev.png" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>
                     <div className="p-6 text-center">
-                        <h3 className="text-lg font-bold text-gray-900">Cody Fisher</h3>
-                        <p className="text-brand text-sm mb-3">Security Guard</p>
+                        <h3 className="text-lg font-bold text-gray-900">Jo'rayev Azizbek</h3>
+                        <p className="text-brand text-sm mb-3">FullStack developer</p>
                     </div>
                 </div>
 
                 {/* Team Member 4 */}
                 <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
                     <div className="h-64 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        <img src="/images/ourteam/umedjon_karayev.png" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>
                     <div className="p-6 text-center">
-                        <h3 className="text-lg font-bold text-gray-900">Robert Fox</h3>
-                        <p className="text-brand text-sm mb-3">Senior Farmer</p>
+                        <h3 className="text-lg font-bold text-gray-900">Karayev Umedjon</h3>
+                        <p className="text-brand text-sm mb-3">Backend Developer</p>
                     </div>
                 </div>
             </div>

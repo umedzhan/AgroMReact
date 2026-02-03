@@ -161,7 +161,7 @@ const Header = () => {
               {/* Phone Number */}
               <div className="flex items-center space-x-2 text-brand font-bold">
                 <FaPhoneAlt />
-                <span>Need help? Call Us: +998 (00) 000-00-00</span>
+                <span>Need help? Call Us: +998 (99) 997-05-15</span>
               </div>
             </div>
           </div>
