@@ -13,8 +13,7 @@ const Footer = () => {
                     {/* Column 1: Brand & About */}
                     <div>
                         <Link to="/" className="flex items-center space-x-2 mb-4">
-                            <span className="text-3xl">🌱</span>
-                            <span className="text-3xl font-bold text-white tracking-tight">AgroM</span>
+                            <img src="/images/logo.png" alt="AgroM Logo" className="h-20 w-auto object-contain" />
                         </Link>
                         <p className="text-gray-400 mb-6 leading-relaxed">
                             Morbi cursus porttitor enim lobortis molestie. Duis gravida turpis dui, eget bibendum magna congue nec.

@@ -29,12 +29,11 @@ const Header = () => {
           <div className="flex w-full lg:w-auto justify-between items-center">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2 mr-8">
-              <span className="text-4xl">🌱</span>
-              <span className="text-3xl font-bold text-gray-900 tracking-tight">AgroM</span>
+              <img src="/images/logo.png" alt="AgroM Logo" className="h-16 w-auto object-contain" />
             </Link>
 
             {/* Location Widget (Hidden on mobile) */}
-            <Link to="/contact" className="hidden xl:flex items-center border border-gray-200 rounded px-3 py-2 mr-4 hover:border-brand transition-colors group">
+            <Link to="/contact" className="hidden xl:flex items-center border border-gray-200 rounded px-3 py-4 mr-4 hover:border-brand transition-colors group">
               <FaMapMarkerAlt className="text-gray-500 mr-2 group-hover:text-brand transition-colors" />
               <span className="text-gray-500 text-sm group-hover:text-brand transition-colors">{t('header.find_store')}</span>
             </Link>

@@ -153,6 +153,17 @@ const AboutScreen = () => {
                         <p className="text-brand text-sm mb-3">Backend Developer</p>
                     </div>
                 </div>
+
+                {/* Team Member 5 */}
+                <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+                    <div className="h-64 overflow-hidden">
+                        <img src="/images/ourteam/durdona_kattayeva.png" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    </div>
+                    <div className="p-6 text-center">
+                        <h3 className="text-lg font-bold text-gray-900">Kattayeva Durdona</h3>
+                        <p className="text-brand text-sm mb-3">FullStack Developer</p>
+                    </div>
+                </div>
             </div>
         </div>
     );
