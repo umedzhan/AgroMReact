@@ -1,0 +1,75 @@
+{
+    "common": {
+        "sign_in": "ورود",
+        "sign_up": "ثبت نام",
+        "logout": "خروج",
+        "profile": "پروفایل",
+        "dashboard": "داشبورد"
+    },
+    "topbar": {
+        "store_location": "آدرس فروشگاه: ترمذ، سرخان‌دریا، ازبکستان",
+        "hi": "سلام"
+    },
+    "header": {
+        "find_store": "یافتن فروشگاه",
+        "browse_now": "دسته‌بندی‌ها",
+        "signed_in_as": "وارد شده به عنوان:",
+        "admin_dashboard": "پنل مدیریت",
+        "wishlist": "علاقمندی‌ها",
+        "shopping_cart": "سبد خرید",
+        "cart_total": "جمع کل",
+        "need_help": "کمک می‌خواهید؟ با ما تماس بگیرید:",
+        "nav": {
+            "wheat": "گندم",
+            "cereal_crops": "محصولات غلات",
+            "beans": "لوبیا",
+            "legumes": "حبوبات",
+            "vegetables": "سبزیجات",
+            "fresh_fruits": "میوه‌های تازه",
+            "sunflower": "آفتابگردان",
+            "oil_crops": "دانه‌های روغنی"
+        }
+    },
+    "footer": {
+        "my_account": "حساب من",
+        "order_history": "تاریخچه سفارشات",
+        "shopping_cart": "سبد خرید",
+        "wishlist": "علاقمندی‌ها",
+        "helps": "راهنما",
+        "contact": "تماس با ما",
+        "faqs": "سوالات متداول",
+        "terms_condition": "شرایط و ضوابط",
+        "privacy_policy": "سیاست محرمانگی",
+        "proxy": "پروکسی",
+        "about": "درباره ما",
+        "shop": "فروشگاه",
+        "product": "محصول",
+        "track_order": "پیگیری سفارش",
+        "copyright": "AgroM &copy; 2024. تمامی حقوق محفوظ است",
+        "or": "یا"
+    },
+    "home": {
+        "popular_products": "محصولات محبوب",
+        "view_all": "مشاهده همه",
+        "reviews": "نظرات"
+    },
+    "hero": {
+        "welcome": "به AgroM خوش آمدید",
+        "delivery_text": "تحویل روز بعد از ساعت ۱۰:۰۰ تا ۲۰:۰۰",
+        "free_shipping_note": "* ارسال رایگان برای سفارشات بالای ۱۰۰ دلار",
+        "shop_now": "اکنون خرید کنید",
+        "summer_sale": "فروش تابستانی",
+        "off_75": "۷۵٪ تخفیف",
+        "only_fruit_veg": "فقط میوه و سبزیجات"
+    },
+    "info": {
+        "free_shipping": "ارسال رایگان",
+        "free_shipping_desc": "برای همه سفارشات",
+        "support": "پشتیبانی ۲۴/۷",
+        "support_desc": "دسترسی فوری به پشتیبانی",
+        "payment": "۱۰۰٪ پرداخت امن",
+        "payment_desc": "ما امنیت پول شما را تضمین می‌کنیم",
+        "guarantee": "ضمانت بازگشت وجه",
+        "guarantee_desc": "۳۰ رزو ضمانت بازگشت وجه"
+    }
+}

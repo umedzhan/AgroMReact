@@ -1,0 +1,75 @@
+{
+    "common": {
+        "sign_in": "Sign In",
+        "sign_up": "Sign Up",
+        "logout": "Logout",
+        "profile": "Profile",
+        "dashboard": "Dashboard"
+    },
+    "topbar": {
+        "store_location": "Store Location: Termez, Surkhandarya, Uzbekistan",
+        "hi": "Hi"
+    },
+    "header": {
+        "find_store": "Find a store",
+        "browse_now": "Browse now",
+        "signed_in_as": "Signed in as:",
+        "admin_dashboard": "Admin Dashboard",
+        "wishlist": "Wishlist",
+        "shopping_cart": "Shopping Cart",
+        "cart_total": "Total",
+        "need_help": "Need help? Call Us:",
+        "nav": {
+            "wheat": "Wheat",
+            "cereal_crops": "Cereal Crops",
+            "beans": "Beans",
+            "legumes": "Legumes",
+            "vegetables": "Vegetables",
+            "fresh_fruits": "Fresh Fruits",
+            "sunflower": "Sunflower",
+            "oil_crops": "Oil Crops"
+        }
+    },
+    "footer": {
+        "my_account": "My Account",
+        "order_history": "Order History",
+        "shopping_cart": "Shopping Cart",
+        "wishlist": "Wishlist",
+        "helps": "Helps",
+        "contact": "Contact",
+        "faqs": "Faqs",
+        "terms_condition": "Terms & Condition",
+        "privacy_policy": "Privacy Policy",
+        "proxy": "Proxy",
+        "about": "About",
+        "shop": "Shop",
+        "product": "Product",
+        "track_order": "Track Order",
+        "copyright": "AgroM &copy; 2024. All Rights Reserved",
+        "or": "or"
+    },
+    "home": {
+        "popular_products": "Popular Products",
+        "view_all": "View All",
+        "reviews": "reviews"
+    },
+    "hero": {
+        "welcome": "Welcome to AgroM",
+        "delivery_text": "We Delivery on Next Day from 10:00 AM to 08:00 PM",
+        "free_shipping_note": "* For free shipping orders starts from $100",
+        "shop_now": "Shop Now",
+        "summer_sale": "Summer Sale",
+        "off_75": "75% OFF",
+        "only_fruit_veg": "Only Fruit & Vegetable"
+    },
+    "info": {
+        "free_shipping": "Free Shipping",
+        "free_shipping_desc": "Free shipping on all your order",
+        "support": "Customer Support 24/7",
+        "support_desc": "Instant access to Support",
+        "payment": "100% Secure Payment",
+        "payment_desc": "We ensure your money is save",
+        "guarantee": "Money-Back Guarantee",
+        "guarantee_desc": "30 Days Money-Back Guarantee"
+    }
+}

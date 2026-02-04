@@ -1,27 +1,30 @@
 import React from 'react';
 import { FaTruck, FaHeadset, FaShoppingBag, FaBox } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 const InfoSection = () => {
+    const { t } = useTranslation();
+
     const items = [
         {
             icon: <FaTruck size={32} />,
-            title: 'Free Shipping',
-            subtitle: 'Free shipping on all your order'
+            title: t('info.free_shipping'),
+            subtitle: t('info.free_shipping_desc')
         },
         {
             icon: <FaHeadset size={32} />,
-            title: 'Customer Support 24/7',
-            subtitle: 'Instant access to Support'
+            title: t('info.support'),
+            subtitle: t('info.support_desc')
         },
         {
             icon: <FaShoppingBag size={32} />,
-            title: '100% Secure Payment',
-            subtitle: 'We ensure your money is save'
+            title: t('info.payment'),
+            subtitle: t('info.payment_desc')
         },
         {
             icon: <FaBox size={32} />,
-            title: 'Money-Back Guarantee',
-            subtitle: '30 Days Money-Back Guarantee'
+            title: t('info.guarantee'),
+            subtitle: t('info.guarantee_desc')
         }
     ];
 

@@ -48,10 +48,10 @@ const ContactScreen = () => {
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Phone Number</h3>
                     <p className="text-gray-500">
-                        <a href="tel:+000000000" className="hover:text-brand">(00) 000-00-00</a>
+                        <a href="tel:+998999970515" className="hover:text-brand">(99) 997-05-15</a>
                     </p>
                     <p className="text-gray-500">
-                        <a href="tel:+998000000000" className="hover:text-brand">+998 (00) 000-00-00</a>
+                        <a href="tel:+998999970515" className="hover:text-brand">+998 (99) 997-05-15</a>
                     </p>
                 </div>
             </div>

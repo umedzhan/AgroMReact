@@ -5,11 +5,13 @@ import AuthContext from '../context/AuthContext';
 import CartContext from '../context/CartContext';
 import TopBar from './TopBar';
 import SearchBox from './SearchBox';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
   const { cartItems } = useContext(CartContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   const cartItemCount = cartItems.reduce((acc, item) => acc + item.qty, 0);
   const cartTotal = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2);
@@ -34,7 +36,7 @@ const Header = () => {
             {/* Location Widget (Hidden on mobile) */}
             <Link to="/contact" className="hidden xl:flex items-center border border-gray-200 rounded px-3 py-2 mr-4 hover:border-brand transition-colors group">
               <FaMapMarkerAlt className="text-gray-500 mr-2 group-hover:text-brand transition-colors" />
-              <span className="text-gray-500 text-sm group-hover:text-brand transition-colors">Find a store</span>
+              <span className="text-gray-500 text-sm group-hover:text-brand transition-colors">{t('header.find_store')}</span>
             </Link>
 
             {/* Mobile Actions (Hamburger) */}
@@ -52,7 +54,7 @@ const Header = () => {
             {/* Browse Dropdown (Hidden on mobile) */}
             {/* Browse Dropdown (Hidden on mobile) */}
             <Link to="/shop" className="hidden lg:flex items-center bg-green-50 px-4 py-3 rounded border border-brand cursor-pointer min-w-[150px] justify-between hover:bg-green-100 transition-colors">
-              <span className="text-gray-700 font-medium">Browse now</span>
+              <span className="text-gray-700 font-medium">{t('header.browse_now')}</span>
               <FaChevronDown className="text-gray-500 text-xs ml-2" />
             </Link>
 
@@ -76,17 +78,17 @@ const Header = () => {
                 <div className="absolute right-0 top-full pt-2 w-48 z-50 hidden group-hover:block">
                   <div className="bg-white rounded-md shadow-lg py-2 border border-gray-100">
                     <div className="px-4 py-2 border-b border-gray-50">
-                      <p className="text-xs text-gray-500">Signed in as</p>
+                      <p className="text-xs text-gray-500">{t('header.signed_in_as')}</p>
                       <p className="text-sm font-bold truncate text-gray-900">{user.name}</p>
                     </div>
 
                     <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-brand transition-colors">
-                      Profile
+                      {t('common.profile')}
                     </Link>
 
                     {user.isAdmin && (
                       <Link to="/admin/dashboard" className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-brand transition-colors">
-                        Admin Dashboard
+                        {t('header.admin_dashboard')}
                       </Link>
                     )}
 
@@ -94,20 +96,20 @@ const Header = () => {
                       onClick={logout}
                       className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors border-t border-gray-50 mt-1 pt-2"
                     >
-                      Logout
+                      {t('common.logout')}
                     </button>
                   </div>
                 </div>
               </div>
             ) : (
               <Link to="/login" className="flex items-center space-x-2 text-gray-900 hover:text-brand font-bold">
-                <span className="hidden xl:inline">Sign In</span>
+                <span className="hidden xl:inline">{t('common.sign_in')}</span>
               </Link>
             )}
 
             <Link to="/wishlist" className="relative group hidden lg:flex items-center text-gray-900">
               <FaHeart className="text-3xl mr-2" />
-              <span className="hidden xl:inline text-sm">Wishlist</span>
+              <span className="hidden xl:inline text-sm">{t('header.wishlist')}</span>
             </Link>
 
             <div className="border-l border-gray-200 h-8 hidden lg:block"></div>
@@ -124,7 +126,7 @@ const Header = () => {
                 </Link>
               </div>
               <div className="hidden lg:block text-sm">
-                <p className="text-gray-500 text-xs">Shopping cart:</p>
+                <p className="text-gray-500 text-xs">{t('header.shopping_cart')}:</p>
                 <p className="font-bold text-gray-900">${cartTotal}</p>
               </div>
             </div>
@@ -138,30 +140,30 @@ const Header = () => {
               {/* Main Nav Links (Categories) */}
               <nav className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-8 text-gray-500 font-medium mb-4 lg:mb-0 text-sm">
                 <Link to="/shop?category=Wheat" className="hover:text-brand transition-colors flex items-center">
-                  <span className="text-brand font-bold mr-1">Wheat</span> Cereal Crops
+                  <span className="text-brand font-bold mr-1">{t('header.nav.wheat')}</span> {t('header.nav.cereal_crops')}
                 </Link>
                 <Link to="/shop?category=Beans" className="hover:text-brand transition-colors flex items-center">
-                  <span className="text-brand font-bold mr-1">Beans</span> Legumes
+                  <span className="text-brand font-bold mr-1">{t('header.nav.beans')}</span> {t('header.nav.legumes')}
                 </Link>
                 <div className="relative group">
                   <button className="hover:text-brand transition-colors flex items-center border border-gray-200 rounded px-3 py-1">
-                    Vegetables <FaChevronDown className="ml-2 text-xs" />
+                    {t('header.nav.vegetables')} <FaChevronDown className="ml-2 text-xs" />
                   </button>
                 </div>
                 <div className="relative group">
                   <button className="hover:text-brand transition-colors flex items-center border border-gray-200 rounded px-3 py-1">
-                    Fresh Fruits <FaChevronDown className="ml-2 text-xs" />
+                    {t('header.nav.fresh_fruits')} <FaChevronDown className="ml-2 text-xs" />
                   </button>
                 </div>
                 <Link to="/shop?category=Sunflower" className="hover:text-brand transition-colors flex items-center">
-                  <span className="text-brand font-bold mr-1">Sunflower</span> Oil Crops
+                  <span className="text-brand font-bold mr-1">{t('header.nav.sunflower')}</span> {t('header.nav.oil_crops')}
                 </Link>
               </nav>
 
               {/* Phone Number */}
               <div className="flex items-center space-x-2 text-brand font-bold">
                 <FaPhoneAlt />
-                <span>Need help? Call Us: +998 (99) 997-05-15</span>
+                <span>{t('header.need_help')} +998 (99) 997-05-15</span>
               </div>
             </div>
           </div>

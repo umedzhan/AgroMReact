@@ -1,0 +1,75 @@
+{
+    "common": {
+        "sign_in": "Kirish",
+        "sign_up": "Ro'yxatdan o'tish",
+        "logout": "Chiqish",
+        "profile": "Profil",
+        "dashboard": "Boshqaruv paneli"
+    },
+    "topbar": {
+        "store_location": "Do'kon manzili: Termiz, Surxondaryo, O'zbekiston",
+        "hi": "Salom"
+    },
+    "header": {
+        "find_store": "Do'konni topish",
+        "browse_now": "Kategoriyalar",
+        "signed_in_as": "Profil:",
+        "admin_dashboard": "Admin paneli",
+        "wishlist": "Sevimlilar",
+        "shopping_cart": "Savatcha",
+        "cart_total": "Jami",
+        "need_help": "Yordam kerakmi? Bizga qo'ng'iroq qiling:",
+        "nav": {
+            "wheat": "Bug'doy",
+            "cereal_crops": "Donli ekinlar",
+            "beans": "Loviya",
+            "legumes": "Dukkaklilar",
+            "vegetables": "Sabzavotlar",
+            "fresh_fruits": "Yangi mevalar",
+            "sunflower": "Kungaboqar",
+            "oil_crops": "Moyli ekinlar"
+        }
+    },
+    "footer": {
+        "my_account": "Mening hisobim",
+        "order_history": "Buyurtmalar tarixi",
+        "shopping_cart": "Savatcha",
+        "wishlist": "Sevimlilar",
+        "helps": "Yordam",
+        "contact": "Bog'lanish",
+        "faqs": "Savol-javoblar",
+        "terms_condition": "Foydalanish shartlari",
+        "privacy_policy": "Maxfiylik siyosati",
+        "proxy": "Proksi",
+        "about": "Biz haqimizda",
+        "shop": "Do'kon",
+        "product": "Mahsulot",
+        "track_order": "Buyurtmani kuzatish",
+        "copyright": "AgroM &copy; 2024. Barcha huquqlar himoyalangan",
+        "or": "yoki"
+    },
+    "home": {
+        "popular_products": "Ommabop mahsulotlar",
+        "view_all": "Barchasini ko'rish",
+        "reviews": "sharhlar"
+    },
+    "hero": {
+        "welcome": "AgroM ga xush kelibsiz",
+        "delivery_text": "Biz keyingi kuni soat 10:00 dan 20:00 gacha yetkazib beramiz",
+        "free_shipping_note": "* $100 dan yuqori buyurtmalar uchun yetkazib berish bepul",
+        "shop_now": "Xarid qilish",
+        "summer_sale": "Yozgi chegirma",
+        "off_75": "75% Chegirma",
+        "only_fruit_veg": "Faqat meva va sabzavotlar"
+    },
+    "info": {
+        "free_shipping": "Bepul yetkazib berish",
+        "free_shipping_desc": "Barcha buyurtmalaringiz uchun",
+        "support": "24/7 Mijozlarni qo'llab-quvvatlash",
+        "support_desc": "Yordamga tezkor ulanish",
+        "payment": "100% Xavfsiz to'lov",
+        "payment_desc": "Pulingiz xavfsizligini ta'minlaymiz",
+        "guarantee": "Pulni qaytarish kafolati",
+        "guarantee_desc": "30 kun ichida qaytarish kafolati"
+    }
+}

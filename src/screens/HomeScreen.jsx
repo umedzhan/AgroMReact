@@ -8,6 +8,7 @@ import Hero from '../components/Hero';
 import InfoSection from '../components/InfoSection';
 import { FaArrowRight, FaHeart, FaRegHeart } from 'react-icons/fa';
 import WishlistContext from '../context/WishlistContext';
+import { useTranslation } from 'react-i18next';
 
 const HomeScreen = () => {
     const { keyword, pageNumber } = useParams();
@@ -16,6 +17,7 @@ const HomeScreen = () => {
     const [error, setError] = useState('');
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState(1);
+    const { t } = useTranslation();
 
     const { addToWishlist, removeFromWishlist, isInWishlist } = useContext(WishlistContext);
 
@@ -52,9 +54,9 @@ const HomeScreen = () => {
 
             <div className="container mx-auto px-4 py-8">
                 <div className="flex justify-between items-end mb-8">
-                    <h2 className="text-3xl font-bold text-gray-900">Popular Products</h2>
+                    <h2 className="text-3xl font-bold text-gray-900">{t('home.popular_products')}</h2>
                     <Link to="/shop" className="text-brand font-medium hover:text-brand-dark flex items-center">
-                        View All <FaArrowRight className="ml-2" />
+                        {t('home.view_all')} <FaArrowRight className="ml-2" />
                     </Link>
                 </div>
 
@@ -89,7 +91,7 @@ const HomeScreen = () => {
                                             <h2 className="text-lg font-bold text-gray-800 hover:text-green-600 transition-colors truncate mb-2">{product.name}</h2>
                                         </Link>
                                         <div className="flex items-center mb-3">
-                                            <Rating value={product.rating} text={`${product.numReviews} reviews`} color="#FBBF24" />
+                                            <Rating value={product.rating} text={`${product.numReviews} ${t('home.reviews')}`} color="#FBBF24" />
                                         </div>
                                         <div className="mt-auto flex items-center justify-between">
                                             <p className="text-2xl font-bold text-gray-900">${product.price}</p>
