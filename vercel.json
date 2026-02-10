@@ -1,6 +1,14 @@
 {
     "rewrites": [
         {
+            "source": "/uploads/(.*)",
+            "destination": "https://api.agrom24.uz/uploads/$1"
+        },
+        {
+            "source": "/api/(.*)",
+            "destination": "https://api.agrom24.uz/api/$1"
+        },
+        {
             "source": "/(.*)",
             "destination": "/"
         }
