@@ -65,11 +65,11 @@ const HomeScreen = () => {
                     <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">{error}</div>
                 ) : (
                     <>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
                             {products?.map((product) => (
-                                <div key={product._id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
+                                <div key={product._id} className="bg-white rounded-lg md:rounded-xl shadow-sm md:shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
                                     <Link to={`/product/${product._id}`}>
-                                        <div className="h-48 overflow-hidden bg-gray-100 flex items-center justify-center relative">
+                                        <div className="h-32 md:h-48 overflow-hidden bg-gray-100 flex items-center justify-center relative">
                                             <img
                                                 src={product.image}
                                                 alt={product.name}
@@ -77,27 +77,28 @@ const HomeScreen = () => {
                                             />
                                             <button
                                                 onClick={(e) => toggleWishlist(e, product)}
-                                                className="absolute top-2 right-2 bg-white/80 p-2 rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors z-10"
+                                                className="absolute top-2 right-2 bg-white/80 p-1.5 md:p-2 rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors z-10 shadow-sm"
                                             >
                                                 {isInWishlist(product._id) ? (
-                                                    <FaHeart className="text-red-500 w-5 h-5" />
+                                                    <FaHeart className="text-red-500 w-4 h-4 md:w-5 md:h-5" />
                                                 ) : (
-                                                    <FaRegHeart className="w-5 h-5" />
+                                                    <FaRegHeart className="w-4 h-4 md:w-5 md:h-5" />
                                                 )}
                                             </button>
                                         </div>
                                     </Link>
-                                    <div className="p-5 flex-grow flex flex-col">
+                                    <div className="p-3 md:p-5 flex-grow flex flex-col">
                                         <Link to={`/product/${product._id}`}>
-                                            <h2 className="text-lg font-bold text-gray-800 hover:text-green-600 transition-colors truncate mb-2">{product.name}</h2>
+                                            <h2 className="text-sm md:text-lg font-bold text-gray-800 hover:text-green-600 transition-colors line-clamp-2 mb-1 md:mb-2 min-h-[40px] md:min-h-0">{product.name}</h2>
                                         </Link>
-                                        <div className="flex items-center mb-3">
-                                            <Rating value={product.rating} text={`${product.numReviews} ${t('home.reviews')}`} color="#FBBF24" />
+                                        <div className="flex items-center mb-2 md:mb-3">
+                                            <Rating value={product.rating} text={`${product.numReviews}`} color="#FBBF24" />
+                                            <span className="text-xs text-gray-400 ml-1">{t('home.reviews')}</span>
                                         </div>
                                         <div className="mt-auto flex items-center justify-between">
-                                            <p className="text-2xl font-bold text-gray-900">${product.price}</p>
-                                            <Link to={`/product/${product._id}`} className="text-green-600 hover:bg-green-50 p-2 rounded-full transition-colors">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                            <p className="text-lg md:text-2xl font-bold text-gray-900">${product.price}</p>
+                                            <Link to={`/product/${product._id}`} className="text-green-600 hover:bg-green-50 p-1.5 md:p-2 rounded-full transition-colors bg-green-50 md:bg-transparent">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6">
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                                 </svg>
                                             </Link>
