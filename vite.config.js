@@ -7,12 +7,12 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://api.agrom24.uz',
+        target: 'https://api.agrom24.uz',
         changeOrigin: true,
         secure: false,
       },
       '/uploads': {
-        target: 'http://api.agrom24.uz:5000',
+        target: 'https://api.agrom24.uz',
         changeOrigin: true,
         secure: false,
       },
