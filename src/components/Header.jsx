@@ -37,7 +37,7 @@ const Header = () => {
 
               {/* Logo */}
               <Link to="/" className="flex items-center">
-                <img src="/images/logo.png" alt="AgroM Logo" className="h-10 lg:h-16 w-auto object-contain" />
+                <img src="/images/logo.png" alt="AgroM Logo" className="h-12 lg:h-28 w-auto object-contain" />
               </Link>
 
               {/* Mobile Cart Icon */}
