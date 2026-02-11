@@ -37,7 +37,7 @@ const Header = () => {
 
               {/* Logo */}
               <Link to="/" className="flex items-center">
-                <img src="/images/logo.png" alt="AgroM Logo" className="h-12 lg:h-28 w-auto object-contain" />
+                <img src="/images/logo.png" alt="AgroM Logo" className="min-w-16 min-h-16 lg:h-36 w-auto object-contain" />
               </Link>
 
               {/* Mobile Cart Icon */}
@@ -51,7 +51,7 @@ const Header = () => {
               </Link>
 
               {/* Location Widget (Desktop Only) */}
-              <Link to="/contact" className="hidden xl:flex items-center border border-gray-200 rounded px-3 py-4 mr-4 hover:border-brand transition-colors group ml-8">
+              <Link to="/contact" className="hidden xl:flex items-center border border-gray-200 rounded h-12 px-4 mr-4 hover:border-brand transition-colors group ml-8 min-w-[150px]">
                 <FaMapMarkerAlt className="text-gray-500 mr-2 group-hover:text-brand transition-colors" />
                 <span className="text-gray-500 text-sm group-hover:text-brand transition-colors">{t('header.find_store')}</span>
               </Link>
@@ -60,9 +60,9 @@ const Header = () => {
 
             {/* Search Section */}
             <div className="w-full lg:flex-grow lg:mx-8">
-              <div className="flex items-center">
+              <div className="flex items-center h-12 gap-4">
                 {/* Browse Dropdown (Desktop Only) */}
-                <Link to="/shop" className="hidden lg:flex items-center bg-green-50 px-4 py-3 rounded-l border border-brand border-r-0 cursor-pointer min-w-[150px] justify-between hover:bg-green-100 transition-colors whitespace-nowrap">
+                <Link to="/shop" className="hidden lg:flex items-center h-full bg-green-50 px-6 rounded border border-brand border-r-0 cursor-pointer min-w-[160px] justify-between hover:bg-green-100 transition-colors whitespace-nowrap">
                   <span className="text-gray-700 font-medium">{t('header.browse_now')}</span>
                   <FaChevronDown className="text-gray-500 text-xs ml-2" />
                 </Link>

@@ -17,8 +17,8 @@ const SearchBox = () => {
     };
 
     return (
-        <form onSubmit={submitHandler} className="flex w-full items-center bg-gray-100 rounded overflow-hidden">
-            <div className="px-4 text-gray-500">
+        <form onSubmit={submitHandler} className="flex w-full items-center bg-gray-100 rounded overflow-hidden h-12">
+            <div className="px-4 text-gray-500 flex items-center h-full">
                 <FaSearch />
             </div>
             <input
@@ -27,9 +27,9 @@ const SearchBox = () => {
                 onChange={(e) => setKeyword(e.target.value)}
                 value={keyword}
                 placeholder="Search products"
-                className="w-full py-3 bg-transparent outline-none text-gray-700 placeholder-gray-400"
+                className="w-full h-full bg-transparent outline-none text-gray-700 placeholder-gray-400"
             />
-            <button type="submit" className="px-6 py-3 bg-brand text-white hover:bg-brand-dark transition-colors font-semibold">
+            <button type="submit" className="px-6 h-full bg-brand text-white hover:bg-brand-dark transition-colors font-semibold">
                 Search
             </button>
         </form>
