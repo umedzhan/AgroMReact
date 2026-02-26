@@ -136,7 +136,7 @@ const Header = () => {
                 </div>
                 <div className="text-sm">
                   <p className="text-gray-500 text-xs">{t('header.shopping_cart')}:</p>
-                  <p className="font-bold text-gray-900">${cartTotal}</p>
+                  <p className="font-bold text-gray-900">{cartTotal} UZS</p>
                 </div>
               </div>
             </div>

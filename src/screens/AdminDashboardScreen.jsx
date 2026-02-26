@@ -5,7 +5,7 @@ import AdminLayout from '../components/AdminLayout';
 const AdminDashboardScreen = () => {
     // Mock data for now - could be fetched from a new /api/dashboard/stats endpoint later
     const stats = [
-        { title: 'Total Sales', value: '$12,340', icon: <FaMoneyBillWave />, color: 'bg-green-100 text-green-600' },
+        { title: 'Total Sales', value: '12,340 UZS', icon: <FaMoneyBillWave />, color: 'bg-green-100 text-green-600' },
         { title: 'Total Orders', value: '45', icon: <FaShoppingCart />, color: 'bg-blue-100 text-blue-600' },
         { title: 'Total Products', value: '8', icon: <FaBoxOpen />, color: 'bg-orange-100 text-orange-600' },
         { title: 'Total Users', value: '12', icon: <FaUserPlus />, color: 'bg-purple-100 text-purple-600' },

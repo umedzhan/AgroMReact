@@ -61,7 +61,7 @@ const ProductScreen = () => {
                     <Rating value={product.rating} text={`${product.numReviews} reviews`} />
                 </div>
 
-                <p className="text-2xl font-bold text-gray-900 mb-4">${product.price}</p>
+                <p className="text-2xl font-bold text-gray-900 mb-4">{product.price} UZS</p>
 
                 <p className="text-gray-700 mb-6 leading-relaxed">
                     {product.description}
@@ -71,7 +71,7 @@ const ProductScreen = () => {
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 shadow-sm">
                     <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">
                         <span className="text-gray-600">Price:</span>
-                        <span className="font-semibold text-lg">${product.price}</span>
+                        <span className="font-semibold text-lg">{product.price} UZS</span>
                     </div>
 
                     <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">

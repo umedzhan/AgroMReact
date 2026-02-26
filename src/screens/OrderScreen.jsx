@@ -122,7 +122,7 @@ const OrderScreen = () => {
                                         </Link>
                                     </div>
                                     <div className="text-gray-600">
-                                        {item.qty} x ${item.price} = ${(item.qty * item.price).toFixed(2)}
+                                        {item.qty} x {item.price} UZS = {(item.qty * item.price).toFixed(2)} UZS
                                     </div>
                                 </div>
                             ))}
@@ -136,15 +136,15 @@ const OrderScreen = () => {
                         <div className="space-y-4">
                             <div className="flex justify-between text-gray-600">
                                 <span>Items</span>
-                                <span>${order.itemsPrice ? order.itemsPrice.toFixed(2) : 0}</span>
+                                <span>{order.itemsPrice ? order.itemsPrice.toFixed(2) : 0} UZS</span>
                             </div>
                             <div className="flex justify-between text-gray-600">
                                 <span>Shipping</span>
-                                <span>${order.shippingPrice ? order.shippingPrice.toFixed(2) : 0}</span>
+                                <span>{order.shippingPrice ? order.shippingPrice.toFixed(2) : 0} UZS</span>
                             </div>
                             <div className="flex justify-between text-gray-600">
                                 <span>Tax</span>
-                                <span>${order.taxPrice ? order.taxPrice.toFixed(2) : 0}</span>
+                                <span>{order.taxPrice ? order.taxPrice.toFixed(2) : 0} UZS</span>
                             </div>
                             <div className="border-t pt-4 flex justify-between font-bold text-lg text-gray-800">
                                 <span>Total</span>

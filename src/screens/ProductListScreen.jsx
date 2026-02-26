@@ -134,7 +134,7 @@ const ProductListScreen = () => {
                                             <p className="text-gray-900 whitespace-no-wrap font-semibold">{product.name}</p>
                                         </td>
                                         <td className="px-5 py-5 border-b border-gray-200 text-sm">
-                                            <p className="text-gray-900 whitespace-no-wrap">${product.price}</p>
+                                            <p className="text-gray-900 whitespace-no-wrap">{product.price} UZS</p>
                                         </td>
                                         <td className="px-5 py-5 border-b border-gray-200 text-sm">
                                             <p className="text-gray-900 whitespace-no-wrap">{product.category}</p>

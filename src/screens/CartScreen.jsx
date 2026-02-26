@@ -33,7 +33,7 @@ const CartScreen = () => {
                                     </Link>
                                 </div>
 
-                                <div className="w-1/6 text-lg font-bold text-gray-800">${item.price}</div>
+                                <div className="w-1/6 text-lg font-bold text-gray-800">{item.price} UZS</div>
 
                                 <div className="w-1/6">
                                     <select
@@ -67,7 +67,7 @@ const CartScreen = () => {
                                 Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items
                             </h2>
                             <p className="text-xl font-bold text-gray-900 mb-6">
-                                ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)}
+                                {cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)} UZS
                             </p>
 
                             <button

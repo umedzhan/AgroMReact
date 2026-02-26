@@ -96,7 +96,7 @@ const HomeScreen = () => {
                                             <span className="text-xs text-gray-400 ml-1">{t('home.reviews')}</span>
                                         </div>
                                         <div className="mt-auto flex items-center justify-between">
-                                            <p className="text-lg md:text-2xl font-bold text-gray-900">${product.price}</p>
+                                            <p className="text-lg md:text-2xl font-bold text-gray-900">{product.price} UZS</p>
                                             <Link to={`/product/${product._id}`} className="text-green-600 hover:bg-green-50 p-1.5 md:p-2 rounded-full transition-colors bg-green-50 md:bg-transparent">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 md:w-6 md:h-6">
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />

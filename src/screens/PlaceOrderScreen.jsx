@@ -124,7 +124,7 @@ const PlaceOrderScreen = () => {
                                             </Link>
                                         </div>
                                         <div className="text-gray-600">
-                                            {item.qty} x ${item.price} = ${(item.qty * item.price).toFixed(2)}
+                                            {item.qty} x {item.price} UZS = {(item.qty * item.price).toFixed(2)} UZS
                                         </div>
                                     </div>
                                 ))}
@@ -140,19 +140,19 @@ const PlaceOrderScreen = () => {
                         <div className="space-y-4">
                             <div className="flex justify-between text-gray-600">
                                 <span>Items</span>
-                                <span>${itemsPrice}</span>
+                                <span>{itemsPrice} UZS</span>
                             </div>
                             <div className="flex justify-between text-gray-600">
                                 <span>Shipping</span>
-                                <span>${shippingPrice}</span>
+                                <span>{shippingPrice} UZS</span>
                             </div>
                             <div className="flex justify-between text-gray-600">
                                 <span>Tax</span>
-                                <span>${taxPrice}</span>
+                                <span>{taxPrice} UZS</span>
                             </div>
                             <div className="border-t pt-4 flex justify-between font-bold text-lg text-gray-800">
                                 <span>Total</span>
-                                <span>${totalPrice}</span>
+                                <span>{totalPrice} UZS</span>
                             </div>
                         </div>
 
