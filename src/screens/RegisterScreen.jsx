@@ -3,8 +3,11 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import Loader from '../components/Loader';
 import { toast } from 'react-hot-toast';
+import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 
 const RegisterScreen = () => {
+    useTranslation();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -27,8 +30,8 @@ const RegisterScreen = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         if (password !== confirmPassword) {
-            setMessage('Passwords do not match');
-            toast.error('Passwords do not match');
+            setMessage(tUZ('Parollar mos kelmadi'));
+            toast.error(tUZ('Parollar mos kelmadi'));
         } else {
             setMessage(null);
             await register(name, email, password);
@@ -38,7 +41,7 @@ const RegisterScreen = () => {
     return (
         <div className="min-h-[calc(100vh-200px)] flex items-center justify-center">
             <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-                <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">Sign Up</h1>
+                <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">{tUZ("Ro'yxatdan o'tish")}</h1>
 
                 {message && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">{message}</div>}
                 {loading && <div className="mb-4 text-center"><Loader /></div>}
@@ -46,12 +49,12 @@ const RegisterScreen = () => {
                 <form onSubmit={submitHandler}>
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                            Name
+                            {tUZ("Ism")}
                         </label>
                         <input
                             type="text"
                             id="name"
-                            placeholder="Enter name"
+                            placeholder={tUZ("Ismni kiriting")}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -61,12 +64,12 @@ const RegisterScreen = () => {
 
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                            Email Address
+                            {tUZ("Elektron pochta manzili")}
                         </label>
                         <input
                             type="email"
                             id="email"
-                            placeholder="Enter email"
+                            placeholder={tUZ("Elektron pochtani kiriting")}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -76,12 +79,12 @@ const RegisterScreen = () => {
 
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                            Password
+                            {tUZ("Parol")}
                         </label>
                         <input
                             type="password"
                             id="password"
-                            placeholder="Enter password"
+                            placeholder={tUZ("Parolni kiriting")}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -91,12 +94,12 @@ const RegisterScreen = () => {
 
                     <div className="mb-6">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirmPassword">
-                            Confirm Password
+                            {tUZ("Parolni tasdiqlash")}
                         </label>
                         <input
                             type="password"
                             id="confirmPassword"
-                            placeholder="Confirm password"
+                            placeholder={tUZ("Parolni tasdiqlang")}
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -108,15 +111,15 @@ const RegisterScreen = () => {
                         type="submit"
                         className="w-full bg-green-600 text-white font-bold py-2 px-4 rounded hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 shadow-md"
                     >
-                        Register
+                        {tUZ("Ro'yxatdan o'tish")}
                     </button>
                 </form>
 
                 <div className="mt-4 text-center">
                     <p className="text-gray-600 text-sm">
-                        Have an Account?{' '}
+                        {tUZ("Hisobingiz bormi?")}{' '}
                         <Link to={redirect ? `/login?redirect=${redirect}` : '/login'} className="text-green-600 hover:text-green-800 font-semibold">
-                            Login
+                            {tUZ("Kirish")}
                         </Link>
                     </p>
                 </div>

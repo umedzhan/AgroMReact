@@ -6,8 +6,11 @@ import Rating from '../components/Rating';
 import Paginate from '../components/Paginate';
 import { FaFilter, FaHeart, FaRegHeart } from 'react-icons/fa';
 import WishlistContext from '../context/WishlistContext';
+import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 
 const ShopScreen = () => {
+    useTranslation();
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const categoryQuery = queryParams.get('category') || '';
@@ -58,15 +61,15 @@ const ShopScreen = () => {
             {/* Breadcrumb or Header */}
             <div className="bg-green-50 p-8 rounded-lg mb-8 text-center bg-[url('/images/breadcrumb.jpg')] bg-cover bg-center relative">
                 <div className="relative z-10">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">Shop</h1>
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2">{tUZ("Shop")}</h1>
                     <div className="flex justify-center space-x-2 text-sm text-gray-500">
-                        <Link to="/" className="hover:text-brand">Home</Link>
+                        <Link to="/" className="hover:text-brand">{tUZ("Bosh sahifa")}</Link>
                         <span>/</span>
-                        <span className="text-brand font-medium">Shop</span>
+                        <span className="text-brand font-medium">{tUZ("Shop")}</span>
                         {categoryQuery && (
                             <>
                                 <span>/</span>
-                                <span className="text-gray-900 capitalize">{categoryQuery}</span>
+                                <span className="text-gray-900 capitalize">{tUZ(categoryQuery)}</span>
                             </>
                         )}
                     </div>
@@ -79,26 +82,26 @@ const ShopScreen = () => {
                     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
                         <div className="flex items-center space-x-2 mb-6 pb-4 border-b border-gray-100">
                             <FaFilter className="text-brand" />
-                            <h3 className="font-bold text-gray-900 text-lg">Filter</h3>
+                            <h3 className="font-bold text-gray-900 text-lg">{tUZ("Filter")}</h3>
                         </div>
 
                         <div className="mb-6">
-                            <h4 className="font-semibold text-gray-900 mb-3">Categories</h4>
+                            <h4 className="font-semibold text-gray-900 mb-3">{tUZ("Categories")}</h4>
                             <ul className="space-y-2 text-gray-600 text-sm">
                                 <li>
-                                    <Link to="/shop" className={`hover:text-brand ${!categoryQuery ? 'text-brand font-bold' : ''}`}>All Categories</Link>
+                                    <Link to="/shop" className={`hover:text-brand ${!categoryQuery ? 'text-brand font-bold' : ''}`}>{tUZ("All Categories")}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/shop?category=Vegetables" className={`hover:text-brand ${categoryQuery === 'Vegetables' ? 'text-brand font-bold' : ''}`}>Vegetables</Link>
+                                    <Link to="/shop?category=Vegetables" className={`hover:text-brand ${categoryQuery === 'Vegetables' ? 'text-brand font-bold' : ''}`}>{tUZ("Vegetables")}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/shop?category=Fruits" className={`hover:text-brand ${categoryQuery === 'Fruits' ? 'text-brand font-bold' : ''}`}>Fresh Fruits</Link>
+                                    <Link to="/shop?category=Fruits" className={`hover:text-brand ${categoryQuery === 'Fruits' ? 'text-brand font-bold' : ''}`}>{tUZ("Fresh Fruits")}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/shop?category=Wheat" className={`hover:text-brand ${categoryQuery === 'Wheat' ? 'text-brand font-bold' : ''}`}>Wheat & Grains</Link>
+                                    <Link to="/shop?category=Wheat" className={`hover:text-brand ${categoryQuery === 'Wheat' ? 'text-brand font-bold' : ''}`}>{tUZ("Wheat & Grains")}</Link>
                                 </li>
                                 <li>
-                                    <Link to="/shop?category=Beans" className={`hover:text-brand ${categoryQuery === 'Beans' ? 'text-brand font-bold' : ''}`}>Beans & Legumes</Link>
+                                    <Link to="/shop?category=Beans" className={`hover:text-brand ${categoryQuery === 'Beans' ? 'text-brand font-bold' : ''}`}>{tUZ("Beans & Legumes")}</Link>
                                 </li>
                             </ul>
                         </div>
@@ -108,7 +111,7 @@ const ShopScreen = () => {
                 {/* Product Grid */}
                 <div className="w-full md:w-3/4">
                     <div className="flex justify-between items-center mb-6">
-                        <p className="text-gray-500 text-sm"><span className="font-bold text-gray-900">{products.length}</span> Results Found</p>
+                        <p className="text-gray-500 text-sm"><span className="font-bold text-gray-900">{products.length}</span> {tUZ("Natijalar topildi")}</p>
                     </div>
 
                     {loading ? <Loader /> : error ? (
@@ -117,8 +120,8 @@ const ShopScreen = () => {
                         <>
                             {products.length === 0 && (
                                 <div className="text-center py-10 bg-gray-50 rounded-lg">
-                                    <p className="text-gray-500">No products found in this category.</p>
-                                    <Link to="/shop" className="text-brand font-bold mt-2 inline-block">Clear Filters</Link>
+                                    <p className="text-gray-500">{tUZ("No products found in this category.")}</p>
+                                    <Link to="/shop" className="text-brand font-bold mt-2 inline-block">{tUZ("Clear Filters")}</Link>
                                 </div>
                             )}
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

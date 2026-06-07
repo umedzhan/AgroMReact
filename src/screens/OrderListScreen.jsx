@@ -6,6 +6,7 @@ import { toast } from 'react-hot-toast';
 import Loader from '../components/Loader';
 import AuthContext from '../context/AuthContext';
 import AdminLayout from '../components/AdminLayout';
+import { tUZ } from '../utils/translateHelper';
 
 const OrderListScreen = () => {
     const [orders, setOrders] = useState([]);
@@ -36,13 +37,13 @@ const OrderListScreen = () => {
         } catch (err) {
             setError(err.response?.data?.message || err.message);
             setLoading(false);
-            toast.error('Failed to load orders');
+            toast.error(tUZ('Buyurtmalarni yuklab bo\'lmadi'));
         }
     };
 
     return (
         <AdminLayout>
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">Orders</h1>
+            <h1 className="text-3xl font-bold text-gray-800 mb-6">{tUZ("Buyurtmalar")}</h1>
             {loading ? (
                 <Loader />
             ) : error ? (
@@ -53,25 +54,25 @@ const OrderListScreen = () => {
                         <thead>
                             <tr>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    ID
+                                    {tUZ("ID")}
                                 </th>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    User
+                                    {tUZ("Foydalanuvchi")}
                                 </th>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Date
+                                    {tUZ("Sana")}
                                 </th>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Total
+                                    {tUZ("Jami")}
                                 </th>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Paid
+                                    {tUZ("To'langan")}
                                 </th>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Delivered
+                                    {tUZ("Yetkazilgan")}
                                 </th>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Actions
+                                    {tUZ("Harakatlar")}
                                 </th>
                             </tr>
                         </thead>
@@ -88,7 +89,7 @@ const OrderListScreen = () => {
                                         <p className="text-gray-900 whitespace-no-wrap">{order.createdAt.substring(0, 10)}</p>
                                     </td>
                                     <td className="px-5 py-5 border-b border-gray-200 text-sm">
-                                        <p className="text-gray-900 whitespace-no-wrap">${order.totalPrice}</p>
+                                        <p className="text-gray-900 whitespace-no-wrap">{order.totalPrice} UZS</p>
                                     </td>
                                     <td className="px-5 py-5 border-b border-gray-200 text-sm">
                                         {order.isPaid ? (
@@ -106,7 +107,7 @@ const OrderListScreen = () => {
                                     </td>
                                     <td className="px-5 py-5 border-b border-gray-200 text-sm">
                                         <Link to={`/order/${order._id}`} className="bg-green-100 text-green-800 px-3 py-1 rounded text-sm font-semibold hover:bg-green-200">
-                                            Details
+                                            {tUZ("Batafsil")}
                                         </Link>
                                     </td>
                                 </tr>

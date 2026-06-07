@@ -5,6 +5,7 @@ import axios from 'axios';
 import CartContext from '../context/CartContext';
 import AuthContext from '../context/AuthContext';
 import Loader from '../components/Loader';
+import { tUZ } from '../utils/translateHelper';
 
 const PlaceOrderScreen = () => {
     const navigate = useNavigate();
@@ -70,7 +71,7 @@ const PlaceOrderScreen = () => {
 
             clearCart();
             setLoading(false);
-            toast.success('Order Placed Successfully');
+            toast.success(tUZ('Buyurtma muvaffaqiyatli joylashtirildi'));
             navigate(`/order/${data._id}`);
         } catch (error) {
             setLoading(false);
@@ -80,16 +81,16 @@ const PlaceOrderScreen = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">Order Summary</h1>
+            <h1 className="text-3xl font-bold text-gray-800 mb-6">{tUZ("Buyurtma hisobi")}</h1>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Order Details */}
                 <div className="md:col-span-2 space-y-6">
                     {/* Shipping */}
                     <div className="bg-white p-6 rounded-lg shadow-md">
-                        <h2 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2">Shipping</h2>
+                        <h2 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2">{tUZ("Yetkazib berish")}</h2>
                         <p>
-                            <strong>Address: </strong>
+                            <strong>{tUZ("Manzil")}: </strong>
                             {shippingAddress.address}, {shippingAddress.city},{' '}
                             {shippingAddress.postalCode}, {shippingAddress.country}
                         </p>
@@ -97,18 +98,18 @@ const PlaceOrderScreen = () => {
 
                     {/* Payment Method */}
                     <div className="bg-white p-6 rounded-lg shadow-md">
-                        <h2 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2">Payment Method</h2>
+                        <h2 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2">{tUZ("To'lov usuli")}</h2>
                         <p>
-                            <strong>Method: </strong>
+                            <strong>{tUZ("Usul: ")}</strong>
                             {paymentMethod}
                         </p>
                     </div>
 
                     {/* Order Items */}
                     <div className="bg-white p-6 rounded-lg shadow-md">
-                        <h2 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2">Order Items</h2>
+                        <h2 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2">{tUZ("Buyurtma mahsulotlari")}</h2>
                         {cartItems.length === 0 ? (
-                            <p>Your cart is empty</p>
+                            <p>{tUZ("Savat bo'sh")}</p>
                         ) : (
                             <div className="divide-y divide-gray-200">
                                 {cartItems.map((item, index) => (
@@ -136,22 +137,22 @@ const PlaceOrderScreen = () => {
                 {/* Order Summary Card */}
                 <div className="md:col-span-1">
                     <div className="bg-white p-6 rounded-lg shadow-md sticky top-24">
-                        <h2 className="text-xl font-bold mb-6 text-gray-700 border-b pb-2">Order Summary</h2>
+                        <h2 className="text-xl font-bold mb-6 text-gray-700 border-b pb-2">{tUZ("Buyurtma hisobi")}</h2>
                         <div className="space-y-4">
                             <div className="flex justify-between text-gray-600">
-                                <span>Items</span>
+                                <span>{tUZ("Mahsulotlar")}</span>
                                 <span>{itemsPrice} UZS</span>
                             </div>
                             <div className="flex justify-between text-gray-600">
-                                <span>Shipping</span>
+                                <span>{tUZ("Yetkazib berish")}</span>
                                 <span>{shippingPrice} UZS</span>
                             </div>
                             <div className="flex justify-between text-gray-600">
-                                <span>Tax</span>
+                                <span>{tUZ("Soliq")}</span>
                                 <span>{taxPrice} UZS</span>
                             </div>
                             <div className="border-t pt-4 flex justify-between font-bold text-lg text-gray-800">
-                                <span>Total</span>
+                                <span>{tUZ("Jami")}</span>
                                 <span>{totalPrice} UZS</span>
                             </div>
                         </div>
@@ -159,10 +160,10 @@ const PlaceOrderScreen = () => {
                         <button
                             type="button"
                             className="w-full bg-green-600 text-white font-bold py-3 mt-8 rounded hover:bg-green-700 transition-colors shadow-md disabled:bg-green-300"
-                            disabled={cartItems === 0 || loading}
+                            disabled={cartItems.length === 0 || loading}
                             onClick={placeOrderHandler}
                         >
-                            {loading ? 'Placing Order...' : 'Place Order'}
+                            {loading ? tUZ('Buyurtma joylashtirilmoqda...') : tUZ('Buyurtma berish')}
                         </button>
                     </div>
                 </div>

@@ -6,8 +6,11 @@ import Loader from '../components/Loader';
 import CartContext from '../context/CartContext';
 import WishlistContext from '../context/WishlistContext';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 
 const ProductScreen = () => {
+    useTranslation();
     const { id } = useParams();
     const navigate = useNavigate();
     const [product, setProduct] = useState(null);
@@ -40,7 +43,7 @@ const ProductScreen = () => {
 
     if (loading) return <Loader />;
     if (error) return <div className="text-red-500 text-center mt-10">{error}</div>;
-    if (!product) return <div className="text-center mt-10">Product not found</div>;
+    if (!product) return <div className="text-center mt-10">{tUZ("Mahsulot topilmadi")}</div>;
 
     return (
         <div className="md:flex md:space-x-8">
@@ -58,7 +61,7 @@ const ProductScreen = () => {
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
 
                 <div className="flex items-center mb-4">
-                    <Rating value={product.rating} text={`${product.numReviews} reviews`} />
+                    <Rating value={product.rating} text={`${product.numReviews} ${tUZ("sharhlar")}`} />
                 </div>
 
                 <p className="text-2xl font-bold text-gray-900 mb-4">{product.price} UZS</p>
@@ -70,20 +73,20 @@ const ProductScreen = () => {
                 {/* Add to Cart Card */}
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 shadow-sm">
                     <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">
-                        <span className="text-gray-600">Price:</span>
+                        <span className="text-gray-600">{tUZ("Narxi:")}</span>
                         <span className="font-semibold text-lg">{product.price} UZS</span>
                     </div>
 
                     <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">
-                        <span className="text-gray-600">Status:</span>
+                        <span className="text-gray-600">{tUZ("Holat:")}</span>
                         <span className={`font-semibold ${product.countInStock > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                            {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
+                            {product.countInStock > 0 ? tUZ('Sotuvda bor') : tUZ('Sotuvda yo\'q')}
                         </span>
                     </div>
 
                     {product.countInStock > 0 && (
                         <div className="flex justify-between items-center mb-6">
-                            <span className="text-gray-600">Qty:</span>
+                            <span className="text-gray-600">{tUZ("Soni:")}</span>
                             <select
                                 value={qty}
                                 onChange={(e) => setQty(e.target.value)}
@@ -106,7 +109,7 @@ const ProductScreen = () => {
                             : 'bg-gray-400 cursor-not-allowed'
                             }`}
                     >
-                        {product.countInStock > 0 ? 'Add to Cart' : 'Out of Stock'}
+                        {product.countInStock > 0 ? tUZ('Savatga qo\'shish') : tUZ('Sotuvda yo\'q')}
                     </button>
 
                     <button
@@ -115,11 +118,11 @@ const ProductScreen = () => {
                     >
                         {isInWishlist(product._id) ? (
                             <>
-                                <FaHeart className="text-red-500 mr-2" /> Remove from Wishlist
+                                <FaHeart className="text-red-500 mr-2" /> {tUZ("Sevimlilardan o'chirish")}
                             </>
                         ) : (
                             <>
-                                <FaRegHeart className="mr-2" /> Add to Wishlist
+                                <FaRegHeart className="mr-2" /> {tUZ("Sevimlilarga qo'shish")}
                             </>
                         )}
                     </button>

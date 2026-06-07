@@ -1,21 +1,22 @@
 import React from 'react';
 import { FaMoneyBillWave, FaShoppingCart, FaUserPlus, FaBoxOpen } from 'react-icons/fa';
 import AdminLayout from '../components/AdminLayout';
+import { tUZ } from '../utils/translateHelper';
 
 const AdminDashboardScreen = () => {
     // Mock data for now - could be fetched from a new /api/dashboard/stats endpoint later
     const stats = [
-        { title: 'Total Sales', value: '12,340 UZS', icon: <FaMoneyBillWave />, color: 'bg-green-100 text-green-600' },
-        { title: 'Total Orders', value: '45', icon: <FaShoppingCart />, color: 'bg-blue-100 text-blue-600' },
-        { title: 'Total Products', value: '8', icon: <FaBoxOpen />, color: 'bg-orange-100 text-orange-600' },
-        { title: 'Total Users', value: '12', icon: <FaUserPlus />, color: 'bg-purple-100 text-purple-600' },
+        { title: tUZ('Umumiy savdo'), value: '12,340 UZS', icon: <FaMoneyBillWave />, color: 'bg-green-100 text-green-600' },
+        { title: tUZ('Umumiy buyurtmalar'), value: '45', icon: <FaShoppingCart />, color: 'bg-blue-100 text-blue-600' },
+        { title: tUZ('Umumiy mahsulotlar'), value: '8', icon: <FaBoxOpen />, color: 'bg-orange-100 text-orange-600' },
+        { title: tUZ('Umumiy foydalanuvchilar'), value: '12', icon: <FaUserPlus />, color: 'bg-purple-100 text-purple-600' },
     ];
 
     return (
         <AdminLayout>
             <div className="mb-8">
-                <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
-                <p className="text-gray-500">Welcome back to your admin panel.</p>
+                <h1 className="text-2xl font-bold text-gray-800">{tUZ("Boshqaruv paneli")}</h1>
+                <p className="text-gray-500">{tUZ("Admin paneliga xush kelibsiz.")}</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -34,27 +35,27 @@ const AdminDashboardScreen = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="font-bold text-gray-800 mb-4">Recent Activity</h3>
+                    <h3 className="font-bold text-gray-800 mb-4">{tUZ("Oxirgi harakatlar")}</h3>
                     <div className="space-y-4">
                         <div className="flex items-center justify-between border-b border-gray-50 pb-2">
-                            <p className="text-gray-600">New order #9348</p>
+                            <p className="text-gray-600">{tUZ("Yangi buyurtma #9348")}</p>
                             <span className="text-sm text-gray-400">2 mins ago</span>
                         </div>
                         <div className="flex items-center justify-between border-b border-gray-50 pb-2">
-                            <p className="text-gray-600">User registered</p>
+                            <p className="text-gray-600">{tUZ("Foydalanuvchi ro'yxatdan o'tdi")}</p>
                             <span className="text-sm text-gray-400">1 hour ago</span>
                         </div>
                         <div className="flex items-center justify-between border-b border-gray-50 pb-2">
-                            <p className="text-gray-600">Product updated</p>
+                            <p className="text-gray-600">{tUZ("Mahsulot yangilandi")}</p>
                             <span className="text-sm text-gray-400">3 hours ago</span>
                         </div>
                     </div>
                 </div>
                 <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                    <h3 className="font-bold text-gray-800 mb-4">Quick Actions</h3>
+                    <h3 className="font-bold text-gray-800 mb-4">{tUZ("Tezkor harakatlar")}</h3>
                     <div className="space-y-3">
-                        <button className="w-full bg-brand text-white py-2 rounded hover:bg-brand-dark transition-colors">Add New Product</button>
-                        <button className="w-full border border-gray-200 text-gray-700 py-2 rounded hover:bg-gray-50 transition-colors">View All Orders</button>
+                        <button className="w-full bg-brand text-white py-2 rounded hover:bg-brand-dark transition-colors">{tUZ("Yangi mahsulot qo'shish")}</button>
+                        <button className="w-full border border-gray-200 text-gray-700 py-2 rounded hover:bg-gray-50 transition-colors">{tUZ("Barcha buyurtmalarni ko'rish")}</button>
                     </div>
                 </div>
             </div>

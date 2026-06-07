@@ -7,6 +7,7 @@ import Loader from '../components/Loader';
 import Paginate from '../components/Paginate';
 import AuthContext from '../context/AuthContext';
 import AdminLayout from '../components/AdminLayout';
+import { tUZ } from '../utils/translateHelper';
 
 const ProductListScreen = () => {
     const { pageNumber } = useParams();
@@ -32,14 +33,11 @@ const ProductListScreen = () => {
             let url = `/api/products?pageNumber=${pageNumber || 1}`;
             // If user is a Farmer (and NOT Admin), only fetch their own products
             if (user.isFarmer && !user.isAdmin) {
-                // Must pass token for backend to identify user
                 const config = {
                     headers: {
                         Authorization: `Bearer ${user.token}`,
                     },
                 };
-                // Backend needs to support ?myproducts=true logic or auto-filter based on token
-                // We added 'myproducts' query param support in backend controller
                 url = `/api/products?pageNumber=${pageNumber || 1}&myproducts=true`;
                 const { data } = await axios.get(url, config);
                 setProducts(data.products);
@@ -57,12 +55,12 @@ const ProductListScreen = () => {
         } catch (err) {
             setError(err.response?.data?.message || err.message);
             setLoading(false);
-            toast.error('Failed to load products');
+            toast.error(tUZ('Mahsulotlarni yuklab bo\'lmadi'));
         }
     };
 
     const deleteHandler = async (id) => {
-        if (window.confirm('Are you sure you want to delete this product?')) {
+        if (window.confirm(tUZ('Ushbu mahsulotni o\'chirishni xohlaysizmi?'))) {
             try {
                 const config = {
                     headers: {
@@ -70,7 +68,7 @@ const ProductListScreen = () => {
                     },
                 };
                 await axios.delete(`/api/products/${id}`, config);
-                toast.success('Product deleted successfully');
+                toast.success(tUZ('Mahsulot muvaffaqiyatli o\'chirildi'));
                 fetchProducts();
             } catch (err) {
                 toast.error(err.response?.data?.message || err.message);
@@ -85,12 +83,12 @@ const ProductListScreen = () => {
     return (
         <AdminLayout>
             <div className="flex justify-between items-center mb-6">
-                <h1 className="text-3xl font-bold text-gray-800">Products</h1>
+                <h1 className="text-3xl font-bold text-gray-800">{tUZ("Mahsulotlar")}</h1>
                 <button
                     onClick={createProductHandler}
                     className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 flex items-center"
                 >
-                    <FaPlus className="mr-2" /> Create Product
+                    <FaPlus className="mr-2" /> {tUZ("Mahsulot yaratish")}
                 </button>
             </div>
 
@@ -105,22 +103,22 @@ const ProductListScreen = () => {
                             <thead>
                                 <tr>
                                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        ID
+                                        {tUZ("ID")}
                                     </th>
                                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Name
+                                        {tUZ("Nomi")}
                                     </th>
                                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Price
+                                        {tUZ("Narxi")}
                                     </th>
                                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Category
+                                        {tUZ("Kategoriya")}
                                     </th>
                                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Brand
+                                        {tUZ("Brend")}
                                     </th>
                                     <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Actions
+                                        {tUZ("Harakatlar")}
                                     </th>
                                 </tr>
                             </thead>
@@ -137,7 +135,7 @@ const ProductListScreen = () => {
                                             <p className="text-gray-900 whitespace-no-wrap">{product.price} UZS</p>
                                         </td>
                                         <td className="px-5 py-5 border-b border-gray-200 text-sm">
-                                            <p className="text-gray-900 whitespace-no-wrap">{product.category}</p>
+                                            <p className="text-gray-900 whitespace-no-wrap">{tUZ(product.category)}</p>
                                         </td>
                                         <td className="px-5 py-5 border-b border-gray-200 text-sm">
                                             <p className="text-gray-900 whitespace-no-wrap">{product.brand}</p>

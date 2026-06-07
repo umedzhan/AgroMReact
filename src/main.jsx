@@ -4,8 +4,9 @@ import './index.css';
 import './i18n'; // Import i18n config
 import App from './App.jsx';
 
-// axios.defaults.baseURL is not needed as we use Vite proxy locally and Vercel rewrites in production
-// effectively making requests to /api/... relative to the domain.'https://api.agrom24.uz';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://api.agrom24.uz';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

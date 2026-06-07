@@ -6,6 +6,7 @@ import { toast } from 'react-hot-toast';
 import Loader from '../components/Loader';
 import AuthContext from '../context/AuthContext';
 import AdminLayout from '../components/AdminLayout';
+import { tUZ } from '../utils/translateHelper';
 
 const UserListScreen = () => {
     const [users, setUsers] = useState([]);
@@ -36,12 +37,12 @@ const UserListScreen = () => {
         } catch (err) {
             setError(err.response?.data?.message || err.message);
             setLoading(false);
-            toast.error('Failed to load users');
+            toast.error(tUZ('Foydalanuvchilarni yuklab bo\'lmadi'));
         }
     };
 
     const deleteHandler = async (id) => {
-        if (window.confirm('Are you sure you want to delete this user?')) {
+        if (window.confirm(tUZ('Ushbu foydalanuvchini o\'chirishni xohlaysizmi?'))) {
             try {
                 const config = {
                     headers: {
@@ -49,7 +50,7 @@ const UserListScreen = () => {
                     },
                 };
                 await axios.delete(`/api/auth/${id}`, config);
-                toast.success('User deleted');
+                toast.success(tUZ('Foydalanuvchi o\'chirildi'));
                 fetchUsers();
             } catch (err) {
                 toast.error(err.response?.data?.message || err.message);
@@ -66,7 +67,7 @@ const UserListScreen = () => {
                 },
             };
             await axios.put(`/api/auth/${id}`, { isFarmer: !currentStatus }, config);
-            toast.success(`User is ${!currentStatus ? 'now' : 'no longer'} a Farmer`);
+            toast.success(!currentStatus ? tUZ('Foydalanuvchi endi dehqon') : tUZ('Foydalanuvchi endi dehqon emas'));
             fetchUsers();
         } catch (err) {
             toast.error(err.response?.data?.message || err.message);
@@ -75,7 +76,7 @@ const UserListScreen = () => {
 
     return (
         <AdminLayout>
-            <h1 className="text-3xl font-bold text-gray-800 mb-6">Users</h1>
+            <h1 className="text-3xl font-bold text-gray-800 mb-6">{tUZ("Foydalanuvchilar")}</h1>
             {loading ? (
                 <Loader />
             ) : error ? (
@@ -86,22 +87,22 @@ const UserListScreen = () => {
                         <thead>
                             <tr>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    ID
+                                    {tUZ("ID")}
                                 </th>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Name
+                                    {tUZ("Ism")}
                                 </th>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Email
+                                    {tUZ("Pochta")}
                                 </th>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Admin
+                                    {tUZ("Admin")}
                                 </th>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Farmer
+                                    {tUZ("Dehqon")}
                                 </th>
                                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Actions
+                                    {tUZ("Harakatlar")}
                                 </th>
                             </tr>
                         </thead>
@@ -135,14 +136,14 @@ const UserListScreen = () => {
                                         <button
                                             onClick={() => toggleFarmerHandler(u._id, u.isFarmer)}
                                             className="text-white bg-yellow-500 hover:bg-yellow-600 p-2 rounded transition-colors"
-                                            title="Toggle Farmer Status"
+                                            title={tUZ("Dehqon maqomini o'zgartirish")}
                                         >
                                             <FaUserTag />
                                         </button>
                                         <button
                                             onClick={() => deleteHandler(u._id)}
                                             className="text-white bg-red-500 hover:bg-red-600 p-2 rounded transition-colors"
-                                            title="Delete User"
+                                            title={tUZ("Foydalanuvchini o'chirish")}
                                         >
                                             <FaTrash />
                                         </button>

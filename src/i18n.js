@@ -32,7 +32,7 @@ i18n
     .init({
         resources,
         fallbackLng: 'uz', // Default language
-        debug: true,
+        debug: false,
 
         interpolation: {
             escapeValue: false, // React already safe from XSS

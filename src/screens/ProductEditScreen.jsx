@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import Loader from '../components/Loader';
 import AuthContext from '../context/AuthContext';
+import { tUZ } from '../utils/translateHelper';
 
 const ProductEditScreen = () => {
     const { id: productId } = useParams();
@@ -44,7 +45,7 @@ const ProductEditScreen = () => {
                     setLoading(false);
                 } catch (error) {
                     setLoading(false);
-                    toast.error('Failed to fetch product details');
+                    toast.error(tUZ('Mahsulot tafsilotlarini yuklab bo\'lmadi'));
                 }
             };
             fetchProduct();
@@ -69,7 +70,7 @@ const ProductEditScreen = () => {
         } catch (error) {
             console.error(error);
             setUploading(false);
-            toast.error('Image upload failed');
+            toast.error(tUZ('Rasm yuklash bajarilmadi'));
         }
     };
 
@@ -98,7 +99,7 @@ const ProductEditScreen = () => {
                     },
                     config
                 );
-                toast.success('Product Updated Successfully');
+                toast.success(tUZ('Mahsulot muvaffaqiyatli yangilandi'));
             } else {
                 await axios.post(
                     '/api/products',
@@ -113,7 +114,7 @@ const ProductEditScreen = () => {
                     },
                     config
                 );
-                toast.success('Product Created Successfully');
+                toast.success(tUZ('Mahsulot muvaffaqiyatli yaratildi'));
             }
             setLoadingUpdate(false);
             navigate('/admin/productlist');
@@ -127,12 +128,12 @@ const ProductEditScreen = () => {
     return (
         <div className="max-w-2xl mx-auto mt-10">
             <Link to="/admin/productlist" className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 mb-6 inline-block">
-                Go Back
+                {tUZ("Orqaga")}
             </Link>
 
             <div className="bg-white shadow-md rounded-lg p-8">
                 <h1 className="text-2xl font-bold mb-6 text-gray-800">
-                    {isEditMode ? 'Edit Product' : 'Create Product'}
+                    {isEditMode ? tUZ('Mahsulotni tahrirlash') : tUZ('Mahsulot yaratish')}
                 </h1>
 
                 {loading ? (
@@ -140,10 +141,10 @@ const ProductEditScreen = () => {
                 ) : (
                     <form onSubmit={submitHandler}>
                         <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">Name</label>
+                            <label className="block text-gray-700 font-bold mb-2">{tUZ("Nomi")}</label>
                             <input
                                 type="text"
-                                placeholder="Enter name"
+                                placeholder={tUZ("Nomini kiriting")}
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
@@ -151,10 +152,10 @@ const ProductEditScreen = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">Price</label>
+                            <label className="block text-gray-700 font-bold mb-2">{tUZ("Narxi")}</label>
                             <input
                                 type="number"
-                                placeholder="Enter price"
+                                placeholder={tUZ("Narxini kiriting")}
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
                                 className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
@@ -162,10 +163,10 @@ const ProductEditScreen = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">Image</label>
+                            <label className="block text-gray-700 font-bold mb-2">{tUZ("Rasm")}</label>
                             <input
                                 type="text"
-                                placeholder="Enter image url"
+                                placeholder={tUZ("Rasm URL manzilini kiriting")}
                                 value={image}
                                 onChange={(e) => setImage(e.target.value)}
                                 className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none mb-2"
@@ -176,14 +177,14 @@ const ProductEditScreen = () => {
                                 onChange={uploadFileHandler}
                                 className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
                             />
-                            {uploading && <div className="text-sm text-gray-500 mt-1">Uploading...</div>}
+                            {uploading && <div className="text-sm text-gray-500 mt-1">{tUZ("Yuklanmoqda...")}</div>}
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">Brand</label>
+                            <label className="block text-gray-700 font-bold mb-2">{tUZ("Brend")}</label>
                             <input
                                 type="text"
-                                placeholder="Enter brand"
+                                placeholder={tUZ("Brendni kiriting")}
                                 value={brand}
                                 onChange={(e) => setBrand(e.target.value)}
                                 className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
@@ -191,10 +192,10 @@ const ProductEditScreen = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">Count In Stock</label>
+                            <label className="block text-gray-700 font-bold mb-2">{tUZ("Ombordagi soni")}</label>
                             <input
                                 type="number"
-                                placeholder="Enter count in stock"
+                                placeholder={tUZ("Ombordagi sonini kiriting")}
                                 value={countInStock}
                                 onChange={(e) => setCountInStock(e.target.value)}
                                 className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
@@ -202,10 +203,10 @@ const ProductEditScreen = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">Category</label>
+                            <label className="block text-gray-700 font-bold mb-2">{tUZ("Kategoriya")}</label>
                             <input
                                 type="text"
-                                placeholder="Enter category"
+                                placeholder={tUZ("Kategoriyani kiriting")}
                                 value={category}
                                 onChange={(e) => setCategory(e.target.value)}
                                 className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
@@ -213,9 +214,9 @@ const ProductEditScreen = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">Description</label>
+                            <label className="block text-gray-700 font-bold mb-2">{tUZ("Tavsif")}</label>
                             <textarea
-                                placeholder="Enter description"
+                                placeholder={tUZ("Tavsifni kiriting")}
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 rows="4"
@@ -228,7 +229,7 @@ const ProductEditScreen = () => {
                             disabled={loadingUpdate}
                             className="bg-green-600 text-white font-bold py-2 px-6 rounded hover:bg-green-700 transition-colors w-full"
                         >
-                            {loadingUpdate ? 'Processing...' : (isEditMode ? 'Update' : 'Create')}
+                            {loadingUpdate ? tUZ('Bajarilmoqda...') : (isEditMode ? tUZ('Yangilash') : tUZ('Yaratish'))}
                         </button>
                     </form>
                 )}

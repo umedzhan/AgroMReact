@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { tUZ } from '../utils/translateHelper';
 import { FaShoppingCart, FaHeart, FaSearch, FaPhoneAlt, FaBars, FaTimes, FaMapMarkerAlt, FaChevronDown } from 'react-icons/fa';
 import AuthContext from '../context/AuthContext';
 import CartContext from '../context/CartContext';
@@ -25,46 +26,46 @@ const Header = () => {
       <TopBar />
       <header className="bg-white sticky top-0 z-50 shadow-sm">
         {/* Main Header Middle Section */}
-        <div className="container mx-auto px-4 py-4 lg:py-8">
+        <div className="container mx-auto px-4 py-2.5 lg:py-3.5">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
 
             {/* Top Row: Logo & Mobile Toggle & Cart (Mobile) */}
             <div className="flex w-full lg:w-auto justify-between items-center">
               {/* Mobile Menu Button */}
               <button onClick={toggleMobileMenu} className="lg:hidden text-gray-900 focus:outline-none p-2">
-                {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+                {isMobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
               </button>
 
               {/* Logo */}
               <Link to="/" className="flex items-center">
-                <img src="/images/logo.png" alt="AgroM Logo" className="lg:min-w-16 lg:min-h-16 max-w-16 lg:h-36 w-auto object-contain" />
+                <img src="/images/logo.png" alt="AgroM Logo" className="h-8 lg:h-10 w-auto object-contain" />
               </Link>
 
               {/* Mobile Cart Icon */}
               <Link to="/cart" className="lg:hidden relative text-gray-900 p-2">
-                <FaShoppingCart className="text-2xl" />
+                <FaShoppingCart className="text-xl" />
                 {cartItemCount > 0 && (
-                  <span className="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center border border-white">
+                  <span className="absolute top-0 right-0 bg-brand text-white text-[9px] font-bold rounded-full h-4 w-4 flex items-center justify-center border border-white">
                     {cartItemCount}
                   </span>
                 )}
               </Link>
 
               {/* Location Widget (Desktop Only) */}
-              <Link to="/contact" className="hidden xl:flex items-center border border-gray-200 rounded h-12 px-4 mr-4 hover:border-brand transition-colors group ml-8 min-w-[150px]">
-                <FaMapMarkerAlt className="text-gray-500 mr-2 group-hover:text-brand transition-colors" />
-                <span className="text-gray-500 text-sm group-hover:text-brand transition-colors">{t('header.find_store')}</span>
+              <Link to="/contact" className="hidden xl:flex items-center border border-gray-200 rounded h-10 px-4 mr-4 hover:border-brand transition-colors group ml-8 min-w-[150px]">
+                <FaMapMarkerAlt className="text-gray-400 mr-2 group-hover:text-brand transition-colors text-sm" />
+                <span className="text-gray-500 text-xs font-semibold group-hover:text-brand transition-colors">{t('header.find_store')}</span>
               </Link>
             </div>
 
 
             {/* Search Section */}
             <div className="w-full lg:flex-grow lg:mx-8">
-              <div className="flex items-center h-12 gap-4">
+              <div className="flex items-center h-10 gap-4">
                 {/* Browse Dropdown (Desktop Only) */}
-                <Link to="/shop" className="hidden lg:flex items-center h-full bg-green-50 px-6 rounded border border-brand border-r-0 cursor-pointer min-w-[160px] justify-between hover:bg-green-100 transition-colors whitespace-nowrap">
-                  <span className="text-gray-700 font-medium">{t('header.browse_now')}</span>
-                  <FaChevronDown className="text-gray-500 text-xs ml-2" />
+                <Link to="/shop" className="hidden lg:flex items-center h-full bg-green-50 px-4 rounded border border-brand cursor-pointer min-w-[150px] justify-between hover:bg-green-100 transition-colors whitespace-nowrap">
+                  <span className="text-gray-700 text-xs font-semibold">{t('header.browse_now')}</span>
+                  <FaChevronDown className="text-gray-400 text-[10px] ml-2" />
                 </Link>
 
                 <div className="flex-grow">
@@ -79,31 +80,31 @@ const Header = () => {
               {/* User/Sign In */}
               {user ? (
                 <div className="relative group z-50">
-                  <button className="flex items-center space-x-1 text-gray-900 hover:text-brand font-bold focus:outline-none">
+                  <button className="flex items-center space-x-1 text-gray-700 hover:text-brand font-semibold text-sm focus:outline-none">
                     <span>{user.name}</span>
-                    <FaChevronDown className="text-xs text-gray-500" />
+                    <FaChevronDown className="text-[10px] text-gray-400" />
                   </button>
                   {/* Dropdown Menu */}
-                  <div className="absolute right-0 top-full pt-2 w-48 z-50 hidden group-hover:block">
-                    <div className="bg-white rounded-md shadow-lg py-2 border border-gray-100">
+                  <div className="absolute right-0 top-full pt-2 w-44 z-50 hidden group-hover:block">
+                    <div className="bg-white rounded-xl shadow-xl py-1.5 border border-gray-100">
                       <div className="px-4 py-2 border-b border-gray-50">
-                        <p className="text-xs text-gray-500">{t('header.signed_in_as')}</p>
-                        <p className="text-sm font-bold truncate text-gray-900">{user.name}</p>
+                        <p className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">{t('header.signed_in_as')}</p>
+                        <p className="text-xs font-black truncate text-gray-900 mt-0.5">{user.name}</p>
                       </div>
 
-                      <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-brand transition-colors">
+                      <Link to="/profile" className="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-green-50 hover:text-brand transition-colors">
                         {t('common.profile')}
                       </Link>
 
                       {user.isAdmin && (
-                        <Link to="/admin/dashboard" className="block px-4 py-2 text-sm text-gray-700 hover:bg-green-50 hover:text-brand transition-colors">
+                        <Link to="/admin/dashboard" className="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-green-50 hover:text-brand transition-colors">
                           {t('header.admin_dashboard')}
                         </Link>
                       )}
 
                       <button
                         onClick={logout}
-                        className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors border-t border-gray-50 mt-1 pt-2"
+                        className="block w-full text-left px-4 py-2 text-xs font-bold text-red-600 hover:bg-red-50 transition-colors border-t border-gray-50 mt-1 pt-2"
                       >
                         {t('common.logout')}
                       </button>
@@ -111,32 +112,32 @@ const Header = () => {
                   </div>
                 </div>
               ) : (
-                <Link to="/login" className="flex items-center space-x-2 text-gray-900 hover:text-brand font-bold">
+                <Link to="/login" className="flex items-center space-x-2 text-gray-700 hover:text-brand font-semibold text-sm">
                   <span className="hidden xl:inline">{t('common.sign_in')}</span>
                 </Link>
               )}
 
-              <Link to="/wishlist" className="relative group flex items-center text-gray-900">
-                <FaHeart className="text-3xl mr-2" />
-                <span className="hidden xl:inline text-sm">{t('header.wishlist')}</span>
+              <Link to="/wishlist" className="relative group flex items-center text-gray-700 hover:text-brand transition-colors">
+                <FaHeart className="text-lg mr-2 text-gray-400 group-hover:text-brand transition-colors" />
+                <span className="hidden xl:inline text-sm font-semibold">{t('header.wishlist')}</span>
               </Link>
 
-              <div className="border-l border-gray-200 h-8"></div>
+              <div className="border-l border-gray-250 h-6"></div>
 
               <div className="flex items-center space-x-3 group">
                 <div className="relative">
-                  <Link to="/cart">
-                    <FaShoppingCart className="text-3xl text-gray-900 group-hover:text-brand transition-colors" />
+                  <Link to="/cart" className="flex items-center">
+                    <FaShoppingCart className="text-lg text-gray-700 group-hover:text-brand transition-colors" />
                     {cartItemCount > 0 && (
-                      <span className="absolute -top-1 -right-2 bg-brand text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white">
+                      <span className="absolute -top-2 -right-2 bg-brand text-white text-[9px] font-bold rounded-full h-4.5 w-4.5 flex items-center justify-center border border-white">
                         {cartItemCount}
                       </span>
                     )}
                   </Link>
                 </div>
                 <div className="text-sm">
-                  <p className="text-gray-500 text-xs">{t('header.shopping_cart')}:</p>
-                  <p className="font-bold text-gray-900">{cartTotal} UZS</p>
+                  <p className="text-gray-400 text-[9px] uppercase font-bold tracking-wider leading-none">{t('header.shopping_cart')}</p>
+                  <p className="font-black text-gray-900 mt-0.5 text-xs">{cartTotal} UZS</p>
                 </div>
               </div>
             </div>
@@ -144,34 +145,32 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation Link Bar */}
-        <div className="hidden lg:block bg-white border-t border-gray-100">
+        <div className="hidden lg:block bg-white border-t border-gray-100 shadow-sm">
           <div className="container mx-auto px-4">
-            <div className="flex justify-between items-center py-3">
-              <nav className="flex space-x-8 text-gray-500 font-medium text-sm">
-                <Link to="/shop?category=Wheat" className="hover:text-brand transition-colors flex items-center">
-                  <span className="text-brand font-bold mr-1">{t('header.nav.wheat')}</span> {t('header.nav.cereal_crops')}
+            <div className="flex justify-between items-center py-2">
+               <nav className="flex space-x-6 text-gray-600 font-semibold text-sm">
+                <Link to="/" className="hover:text-brand transition-colors">
+                  {tUZ("Bosh sahifa")}
                 </Link>
-                <Link to="/shop?category=Beans" className="hover:text-brand transition-colors flex items-center">
-                  <span className="text-brand font-bold mr-1">{t('header.nav.beans')}</span> {t('header.nav.legumes')}
+                <Link to="/shop" className="hover:text-brand transition-colors">
+                  {tUZ("Mahsulotlar")}
                 </Link>
-                <div className="relative group">
-                  <button className="hover:text-brand transition-colors flex items-center border border-gray-200 rounded px-3 py-1">
-                    {t('header.nav.vegetables')} <FaChevronDown className="ml-2 text-xs" />
-                  </button>
-                </div>
-                <div className="relative group">
-                  <button className="hover:text-brand transition-colors flex items-center border border-gray-200 rounded px-3 py-1">
-                    {t('header.nav.fresh_fruits')} <FaChevronDown className="ml-2 text-xs" />
-                  </button>
-                </div>
-                <Link to="/shop?category=Sunflower" className="hover:text-brand transition-colors flex items-center">
-                  <span className="text-brand font-bold mr-1">{t('header.nav.sunflower')}</span> {t('header.nav.oil_crops')}
+                <div className="h-4 w-[1px] bg-gray-200 align-middle my-auto"></div>
+                <Link to="/certification" className="hover:text-brand transition-colors flex items-center gap-1.5 py-1 px-2.5 rounded bg-green-50 text-brand">
+                  <span className="h-2 w-2 rounded-full bg-brand animate-pulse"></span>
+                  {tUZ("Sertifikatlash (Halal/Organic)")}
+                </Link>
+                <Link to="/export" className="hover:text-brand transition-colors flex items-center gap-1.5 py-1 px-2.5 rounded bg-blue-50 text-blue-600">
+                  {tUZ("Logistika & Eksport")}
+                </Link>
+                <Link to="/contracts" className="hover:text-brand transition-colors flex items-center gap-1.5 py-1 px-2.5 rounded bg-amber-50 text-amber-700">
+                  {tUZ("ERI Shartnomalar")}
                 </Link>
               </nav>
 
-              <div className="flex items-center space-x-2 text-brand font-bold">
-                <FaPhoneAlt />
-                <span>{t('header.need_help')} +998 (99) 997-05-15</span>
+              <div className="flex items-center space-x-2 text-brand font-bold text-sm">
+                <FaPhoneAlt size={12} />
+                <span>{tUZ("Yordam: +998 (99) 997-05-15")}</span>
               </div>
             </div>
           </div>

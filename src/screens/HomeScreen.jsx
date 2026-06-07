@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { tUZ } from '../utils/translateHelper';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
@@ -20,6 +21,31 @@ const HomeScreen = () => {
     const { t } = useTranslation();
 
     const { addToWishlist, removeFromWishlist, isInWishlist } = useContext(WishlistContext);
+
+    const [timeLeft, setTimeLeft] = useState({ days: 3, hours: 12, minutes: 45, seconds: 30 });
+
+    useEffect(() => {
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 3);
+
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const difference = targetDate.getTime() - now;
+
+            if (difference <= 0) {
+                clearInterval(timer);
+                setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+            } else {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                setTimeLeft({ days, hours, minutes, seconds });
+            }
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, []);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -53,7 +79,47 @@ const HomeScreen = () => {
             <Hero />
             <InfoSection />
 
-            <div className="container mx-auto px-4 py-8">
+            {/* Premium Discount Banner with Countdown Timer */}
+            <div className="container mx-auto px-4 mb-12">
+                <div className="bg-gradient-to-r from-emerald-800 to-green-600 rounded-2xl p-6 md:p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-md border border-emerald-700 relative overflow-hidden">
+                    <div className="absolute right-0 top-0 opacity-10 pointer-events-none transform translate-x-12 -translate-y-12">
+                        <svg width="300" height="300" fill="currentColor" viewBox="0 0 100 100">
+                            <path d="M10 80 Q 52.5 10, 95 80" stroke="white" strokeWidth="5" fill="none" />
+                        </svg>
+                    </div>
+                    <div className="relative z-10">
+                        <span className="bg-brand-dark/30 border border-brand/50 text-white text-xs font-semibold uppercase tracking-wider py-1 px-3 rounded-full mb-3 inline-block">
+                            {tUZ("Cheklangan Taklif")}
+                        </span>
+                        <h2 className="text-2xl md:text-3xl font-extrabold mb-2 leading-tight">{tUZ("Yozgi Aksiyada 30% gacha Chegirma!")}</h2>
+                        <p className="text-emerald-100 text-sm max-w-xl">{tUZ("Barcha yangi sabzavotlar va poliz ekinlariga ajoyib chegirmalar. Hoziroq xarid qiling va sifatga baho bering!")}</p>
+                    </div>
+                    {/* Timer blocks */}
+                    <div className="flex items-center gap-2 md:gap-3 relative z-10 shrink-0">
+                        <div className="bg-black/30 backdrop-blur-md rounded-xl p-3 w-16 md:w-20 text-center border border-white/10">
+                            <span className="block text-xl md:text-2xl font-bold">{String(timeLeft.days).padStart(2, '0')}</span>
+                            <span className="text-[9px] uppercase text-emerald-200 font-semibold">{tUZ("Kun")}</span>
+                        </div>
+                        <div className="text-xl font-bold animate-pulse text-emerald-300">:</div>
+                        <div className="bg-black/30 backdrop-blur-md rounded-xl p-3 w-16 md:w-20 text-center border border-white/10">
+                            <span className="block text-xl md:text-2xl font-bold">{String(timeLeft.hours).padStart(2, '0')}</span>
+                            <span className="text-[9px] uppercase text-emerald-200 font-semibold">{tUZ("Soat")}</span>
+                        </div>
+                        <div className="text-xl font-bold animate-pulse text-emerald-300">:</div>
+                        <div className="bg-black/30 backdrop-blur-md rounded-xl p-3 w-16 md:w-20 text-center border border-white/10">
+                            <span className="block text-xl md:text-2xl font-bold">{String(timeLeft.minutes).padStart(2, '0')}</span>
+                            <span className="text-[9px] uppercase text-emerald-200 font-semibold">{tUZ("Daqiqa")}</span>
+                        </div>
+                        <div className="text-xl font-bold animate-pulse text-emerald-300">:</div>
+                        <div className="bg-black/30 backdrop-blur-md rounded-xl p-3 w-16 md:w-20 text-center border border-white/10">
+                            <span className="block text-xl md:text-2xl font-bold">{String(timeLeft.seconds).padStart(2, '0')}</span>
+                            <span className="text-[9px] uppercase text-emerald-200 font-semibold">{tUZ("Soniya")}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="container mx-auto px-4 py-4">
                 <div className="flex justify-between items-end mb-8">
                     <h2 className="text-3xl font-bold text-gray-900">{t('home.popular_products')}</h2>
                     <Link to="/shop" className="text-brand font-medium hover:text-brand-dark flex items-center">
