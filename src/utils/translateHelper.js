@@ -3635,6 +3635,138 @@ const dictionary = {
         ru: "Меню админа",
         tg: "Менюи админ",
         fa: "منوی مدیریت"
+    },
+    "To'lov kutilayotgan": {
+        en: "Pending Payment",
+        ru: "Ожидает оплаты",
+        tg: "Мунтазири пардохт",
+        fa: "در انتظار پرداخت"
+    },
+    "Yetkazish kutilayotgan": {
+        en: "Pending Delivery",
+        ru: "Ожидает доставки",
+        tg: "Мунтазири интиқол",
+        fa: "در انتظار ارسال"
+    },
+    "Tugallangan": {
+        en: "Completed",
+        ru: "Завершено",
+        tg: "Анҷомёфта",
+        fa: "تکمیل شده"
+    },
+    "Barchasi": {
+        en: "All",
+        ru: "Все",
+        tg: "Ҳама",
+        fa: "همه"
+    },
+    "Qidiruv...": {
+        en: "Search...",
+        ru: "Поиск...",
+        tg: "Ҷустуҷӯ...",
+        fa: "جستجو..."
+    },
+    "To'langan": {
+        en: "Paid",
+        ru: "Оплачено",
+        tg: "Пардохтшуда",
+        fa: "پرداخت شده"
+    },
+    "Yetkazilgan": {
+        en: "Delivered",
+        ru: "Доставлено",
+        tg: "Интиқолшуда",
+        fa: "تحویل داده شده"
+    },
+    "Kutilmoqda": {
+        en: "Pending",
+        ru: "Ожидается",
+        tg: "Мунтазир",
+        fa: "در انتظار"
+    },
+    "Ko'rish": {
+        en: "View",
+        ru: "Просмотр",
+        tg: "Дидан",
+        fa: "مشاهده"
+    },
+    "Buyurtma topilmadi": {
+        en: "No orders found",
+        ru: "Заказы не найдены",
+        tg: "Фармоиш ёфт нашуд",
+        fa: "سفارشی پیدا نشد"
+    },
+    "To'lov holati": {
+        en: "Payment Status",
+        ru: "Статус оплаты",
+        tg: "Ҳолати пардохт",
+        fa: "وضعیت پرداخت"
+    },
+    "Yetkazib berish holati": {
+        en: "Delivery Status",
+        ru: "Статус доставки",
+        tg: "Ҳолати интиқол",
+        fa: "وضعیت ارسال"
+    },
+    "Tushum": {
+        en: "Revenue",
+        ru: "Выручка",
+        tg: "Даромад",
+        fa: "درآمد"
+    },
+    "Oxirgi buyurtmalar": {
+        en: "Recent Orders",
+        ru: "Последние заказы",
+        tg: "Фармоишҳои охирин",
+        fa: "سفارشات اخیر"
+    },
+    "Savdo dinamikasi": {
+        en: "Sales Dynamics",
+        ru: "Динамика продаж",
+        tg: "Динамикаи фурӯш",
+        fa: "روند فروش"
+    },
+    "Haftalik savdo tahlili": {
+        en: "Weekly Sales Analysis",
+        ru: "Еженедельный анализ продаж",
+        tg: "Таҳлили фурӯши ҳафтаина",
+        fa: "تحلیل فروش هفتگی"
+    },
+    "Kategoriyalar taqsimoti": {
+        en: "Category Distribution",
+        ru: "Распределение по категориям",
+        tg: "Тақсимоти категорияҳо",
+        fa: "توزیع دسته‌بندی‌ها"
+    },
+    "Mahsulot toifalari ulushi": {
+        en: "Product Categories Share",
+        ru: "Доля категорий товаров",
+        tg: "Ҳиссаи категорияҳои маҳсулот",
+        fa: "سهم دسته‌بندی محصولات"
+    },
+    "Tezkor amallar": {
+        en: "Quick Actions",
+        ru: "Быстрые действия",
+        tg: "Амалҳои фаврӣ",
+        fa: "اقدامات سریع"
+    },
+    "Do'konni ko'rish": {
+        en: "View Shop",
+        ru: "Посмотреть магазин",
+        tg: "Дидани мағоза",
+        fa: "مشاهده فروشگاه"
+    },
+    "Foydalanuvchilarni boshqarish": {
+        en: "Manage Users",
+        ru: "Управление пользователями",
+        tg: "Идоракунии корбарон",
+        fa: "مدیریت کاربران"
+    },
+    "Mahsulotlar ro'yxati": {
+        en: "Products List",
+        ru: "Список товаров",
+        tg: "Рӯйхати маҳсулот",
+        fa: "لیست محصولات"
     }
 };
 
