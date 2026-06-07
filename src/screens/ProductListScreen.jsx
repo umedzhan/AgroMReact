@@ -8,8 +8,10 @@ import Paginate from '../components/Paginate';
 import AuthContext from '../context/AuthContext';
 import AdminLayout from '../components/AdminLayout';
 import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 
 const ProductListScreen = () => {
+    useTranslation();
     const { pageNumber } = useParams();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);

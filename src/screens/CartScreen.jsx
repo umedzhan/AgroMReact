@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 import { FaTrash, FaPlus, FaMinus, FaLock, FaTruck } from 'react-icons/fa';
 import CartContext from '../context/CartContext';
 import AuthContext from '../context/AuthContext';
 import { toast } from 'react-hot-toast';
 
 const CartScreen = () => {
+    useTranslation();
     const navigate = useNavigate();
     const { cartItems, removeFromCart, addToCart } = useContext(CartContext);
     const { user } = useContext(AuthContext);

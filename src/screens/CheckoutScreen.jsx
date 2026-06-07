@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 import { FaMapMarkerAlt, FaTruck, FaCreditCard, FaCheckCircle, FaSpinner } from 'react-icons/fa';
 import CartContext from '../context/CartContext';
 import AuthContext from '../context/AuthContext';
@@ -8,6 +9,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
 const CheckoutScreen = () => {
+    useTranslation();
     const navigate = useNavigate();
     const { cartItems, clearCart } = useContext(CartContext);
     const { user } = useContext(AuthContext);

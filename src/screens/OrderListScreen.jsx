@@ -7,8 +7,10 @@ import Loader from '../components/Loader';
 import AuthContext from '../context/AuthContext';
 import AdminLayout from '../components/AdminLayout';
 import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 
 const OrderListScreen = () => {
+    useTranslation();
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');

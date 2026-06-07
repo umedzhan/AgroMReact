@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { FaAward, FaExclamationTriangle, FaDownload, FaUpload, FaCheckCircle, FaSpinner } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 
 const CertificationScreen = () => {
+    useTranslation();
     const [certificates, setCertificates] = useState([
         {
             id: 'CERT-HA109',

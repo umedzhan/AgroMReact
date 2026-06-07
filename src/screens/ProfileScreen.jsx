@@ -5,8 +5,10 @@ import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import { FaUserCircle, FaAward, FaShoppingBag, FaHeart, FaTruck, FaFileContract, FaUserEdit, FaChevronRight, FaPlus, FaChartLine, FaBoxOpen } from 'react-icons/fa';
 import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 
 const ProfileScreen = () => {
+    useTranslation();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

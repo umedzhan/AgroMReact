@@ -5,8 +5,10 @@ import { toast } from 'react-hot-toast';
 import Loader from '../components/Loader';
 import AuthContext from '../context/AuthContext';
 import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 
 const ProductEditScreen = () => {
+    useTranslation();
     const { id: productId } = useParams();
     const isEditMode = productId !== undefined; // If ID exists, we are editing
 

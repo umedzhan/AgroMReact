@@ -6,8 +6,10 @@ import axios from 'axios';
 import AuthContext from '../context/AuthContext';
 import Loader from '../components/Loader';
 import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 
 const OrdersScreen = () => {
+    useTranslation();
     const { user } = useContext(AuthContext);
     const [searchTerm, setSearchTerm] = useState('');
     const [activeTab, setActiveTab] = useState('all');

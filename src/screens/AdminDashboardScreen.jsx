@@ -2,8 +2,10 @@ import React from 'react';
 import { FaMoneyBillWave, FaShoppingCart, FaUserPlus, FaBoxOpen } from 'react-icons/fa';
 import AdminLayout from '../components/AdminLayout';
 import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 
 const AdminDashboardScreen = () => {
+    useTranslation();
     // Mock data for now - could be fetched from a new /api/dashboard/stats endpoint later
     const stats = [
         { title: tUZ('Umumiy savdo'), value: '12,340 UZS', icon: <FaMoneyBillWave />, color: 'bg-green-100 text-green-600' },

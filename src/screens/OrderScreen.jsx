@@ -5,8 +5,10 @@ import Loader from '../components/Loader';
 import AuthContext from '../context/AuthContext';
 import { toast } from 'react-hot-toast';
 import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 
 const OrderScreen = () => {
+    useTranslation();
     const { id: orderId } = useParams();
     const [order, setOrder] = useState(null);
     const [loading, setLoading] = useState(true);

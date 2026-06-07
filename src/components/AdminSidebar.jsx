@@ -3,8 +3,10 @@ import { Link, useLocation } from 'react-router-dom';
 import { FaTachometerAlt, FaBox, FaUsers, FaClipboardList } from 'react-icons/fa';
 import AuthContext from '../context/AuthContext';
 import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 
 const AdminSidebar = () => {
+    useTranslation();
     const location = useLocation();
     const { user } = useContext(AuthContext);
 

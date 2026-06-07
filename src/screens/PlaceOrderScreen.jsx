@@ -6,8 +6,10 @@ import CartContext from '../context/CartContext';
 import AuthContext from '../context/AuthContext';
 import Loader from '../components/Loader';
 import { tUZ } from '../utils/translateHelper';
+import { useTranslation } from 'react-i18next';
 
 const PlaceOrderScreen = () => {
+    useTranslation();
     const navigate = useNavigate();
     const { cartItems, shippingAddress, paymentMethod, clearCart } = useContext(CartContext);
     const { user } = useContext(AuthContext);
