@@ -8,6 +8,7 @@ import { FaFilter, FaHeart, FaRegHeart } from 'react-icons/fa';
 import WishlistContext from '../context/WishlistContext';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
+import { getImageUrl } from '../utils/getImageUrl';
 
 const ShopScreen = () => {
     useTranslation();
@@ -130,7 +131,7 @@ const ShopScreen = () => {
                                         <Link to={`/product/${product._id}`}>
                                             <div className="h-48 overflow-hidden bg-gray-100 flex items-center justify-center relative">
                                                 <img
-                                                    src={product.image}
+                                                    src={getImageUrl(product.image)}
                                                     alt={product.name}
                                                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
                                                 />

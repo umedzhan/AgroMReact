@@ -6,6 +6,7 @@ import { FaTrash, FaPlus, FaMinus, FaLock, FaTruck } from 'react-icons/fa';
 import CartContext from '../context/CartContext';
 import AuthContext from '../context/AuthContext';
 import { toast } from 'react-hot-toast';
+import { getImageUrl } from '../utils/getImageUrl';
 
 const CartScreen = () => {
     useTranslation();
@@ -82,7 +83,7 @@ const CartScreen = () => {
                             {cartItems.map((item) => (
                                 <div key={item._id} className="p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                                     <div className="flex items-center space-x-4 flex-1">
-                                        <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded-xl border border-gray-100" />
+                                        <img src={getImageUrl(item.image)} alt={item.name} className="w-20 h-20 object-cover rounded-xl border border-gray-100" />
                                         <div>
                                             <Link to={`/product/${item._id}`} className="text-gray-900 font-bold hover:text-brand transition-colors text-base md:text-lg">
                                                 {item.name}
@@ -176,7 +177,7 @@ const CartScreen = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {recommendations.map((prod) => (
                         <div key={prod._id} className="bg-white rounded-2xl border border-gray-150 p-4 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4">
-                            <img src={prod.image} alt={prod.name} className="w-20 h-20 object-cover rounded-xl" />
+                            <img src={getImageUrl(prod.image)} alt={prod.name} className="w-20 h-20 object-cover rounded-xl" />
                             <div className="flex-1">
                                 <h4 className="font-bold text-gray-900 text-sm md:text-base">{prod.name}</h4>
                                 <p className="text-brand font-extrabold text-sm mt-1">{prod.price.toLocaleString()} UZS / kg</p>

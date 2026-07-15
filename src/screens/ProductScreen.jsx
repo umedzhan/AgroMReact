@@ -8,6 +8,7 @@ import WishlistContext from '../context/WishlistContext';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
+import { getImageUrl } from '../utils/getImageUrl';
 
 const ProductScreen = () => {
     useTranslation();
@@ -50,7 +51,7 @@ const ProductScreen = () => {
             {/* Product Image */}
             <div className="md:w-1/2">
                 <img
-                    src={product.image}
+                    src={getImageUrl(product.image)}
                     alt={product.name}
                     className="w-full h-auto rounded-lg shadow-lg"
                 />

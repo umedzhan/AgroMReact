@@ -6,7 +6,7 @@ import App from './App.jsx';
 
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://api.agrom24.uz';
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

@@ -6,6 +6,7 @@ import AuthContext from '../context/AuthContext';
 import { toast } from 'react-hot-toast';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
+import { getImageUrl } from '../utils/getImageUrl';
 
 const OrderScreen = () => {
     useTranslation();
@@ -135,7 +136,7 @@ const OrderScreen = () => {
                             {order.orderItems.map((item, index) => (
                                 <div key={index} className="py-4 flex items-center justify-between">
                                     <div className="flex items-center">
-                                        <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded mr-4" />
+                                        <img src={getImageUrl(item.image)} alt={item.name} className="w-16 h-16 object-cover rounded mr-4" />
                                         <Link to={`/product/${item._id}`} className="text-green-600 hover:text-green-800 font-semibold">
                                             {item.name}
                                         </Link>

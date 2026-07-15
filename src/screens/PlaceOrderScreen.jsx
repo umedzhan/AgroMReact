@@ -7,6 +7,7 @@ import AuthContext from '../context/AuthContext';
 import Loader from '../components/Loader';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
+import { getImageUrl } from '../utils/getImageUrl';
 
 const PlaceOrderScreen = () => {
     useTranslation();
@@ -118,7 +119,7 @@ const PlaceOrderScreen = () => {
                                     <div key={index} className="py-4 flex items-center justify-between">
                                         <div className="flex items-center">
                                             <img
-                                                src={item.image}
+                                                src={getImageUrl(item.image)}
                                                 alt={item.name}
                                                 className="w-16 h-16 object-cover rounded mr-4"
                                             />
