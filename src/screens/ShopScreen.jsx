@@ -9,6 +9,7 @@ import WishlistContext from '../context/WishlistContext';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
 import { getImageUrl } from '../utils/getImageUrl';
+import { PRODUCT_CATEGORIES } from '../utils/categories';
 
 const ShopScreen = () => {
     useTranslation();
@@ -92,18 +93,16 @@ const ShopScreen = () => {
                                 <li>
                                     <Link to="/shop" className={`hover:text-brand ${!categoryQuery ? 'text-brand font-bold' : ''}`}>{tUZ("All Categories")}</Link>
                                 </li>
-                                <li>
-                                    <Link to="/shop?category=Vegetables" className={`hover:text-brand ${categoryQuery === 'Vegetables' ? 'text-brand font-bold' : ''}`}>{tUZ("Vegetables")}</Link>
-                                </li>
-                                <li>
-                                    <Link to="/shop?category=Fruits" className={`hover:text-brand ${categoryQuery === 'Fruits' ? 'text-brand font-bold' : ''}`}>{tUZ("Fresh Fruits")}</Link>
-                                </li>
-                                <li>
-                                    <Link to="/shop?category=Wheat" className={`hover:text-brand ${categoryQuery === 'Wheat' ? 'text-brand font-bold' : ''}`}>{tUZ("Wheat & Grains")}</Link>
-                                </li>
-                                <li>
-                                    <Link to="/shop?category=Beans" className={`hover:text-brand ${categoryQuery === 'Beans' ? 'text-brand font-bold' : ''}`}>{tUZ("Beans & Legumes")}</Link>
-                                </li>
+                                {PRODUCT_CATEGORIES.map((c) => (
+                                    <li key={c.value}>
+                                        <Link
+                                            to={`/shop?category=${c.value}`}
+                                            className={`hover:text-brand ${categoryQuery === c.value ? 'text-brand font-bold' : ''}`}
+                                        >
+                                            {tUZ(c.label)}
+                                        </Link>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>

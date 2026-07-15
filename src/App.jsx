@@ -54,13 +54,15 @@ function App() {
                     <Route path="/order-history" element={<OrdersScreen />} />
                     <Route path="/track-order" element={<HomeScreen />} />
 
-                    {/* Admin Routes */}
+                    {/* Any logged-in user can list/create/edit their own products */}
+                    <Route path="/admin/productlist" element={<ProductListScreen />} />
+                    <Route path="/admin/productlist/:pageNumber" element={<ProductListScreen />} />
+                    <Route path="/admin/product/create" element={<ProductEditScreen />} />
+                    <Route path="/admin/product/:id/edit" element={<ProductEditScreen />} />
+
+                    {/* Admin/Farmer-only Routes */}
                     <Route path="/admin" element={<AdminRoute />}>
                       <Route path="dashboard" element={<AdminDashboardScreen />} />
-                      <Route path="productlist" element={<ProductListScreen />} />
-                      <Route path="productlist/:pageNumber" element={<ProductListScreen />} />
-                      <Route path="product/create" element={<ProductEditScreen />} />
-                      <Route path="product/:id/edit" element={<ProductEditScreen />} />
                       <Route path="userlist" element={<UserListScreen />} />
                       <Route path="orderlist" element={<OrderListScreen />} />
                     </Route>

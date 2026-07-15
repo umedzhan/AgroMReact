@@ -20,6 +20,7 @@ import Loader from '../components/Loader';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
 import AuthContext from '../context/AuthContext';
+import { getCategoryLabel } from '../utils/categories';
 
 const AdminDashboardScreen = () => {
     useTranslation();
@@ -251,7 +252,7 @@ const AdminDashboardScreen = () => {
                                     categoryShareData.map((cat, index) => (
                                         <div key={index} className="space-y-1">
                                             <div className="flex justify-between text-xs font-bold text-gray-700">
-                                                <span className="capitalize">{tUZ(cat.categoryName)}</span>
+                                                <span className="capitalize">{tUZ(getCategoryLabel(cat.categoryName))}</span>
                                                 <span>{cat.count} {tUZ("ta")} ({Math.round(cat.percent)}%)</span>
                                             </div>
                                             <div className="w-full bg-gray-100 rounded-full h-2">

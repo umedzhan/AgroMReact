@@ -2814,6 +2814,18 @@ const dictionary = {
         tg: "Лӯбиё ва лӯбиёгиҳо",
         fa: "لوبیا و حبوبات"
     },
+    "Sunflower": {
+        en: "Sunflower",
+        ru: "Подсолнечник",
+        tg: "Офтобпараст",
+        fa: "آفتابگردان"
+    },
+    "Dairy": {
+        en: "Dairy",
+        ru: "Молочные продукты",
+        tg: "Маҳсулоти ширӣ",
+        fa: "لبنیات"
+    },
     "Natijalar topildi": {
         en: "Results Found",
         ru: "Результатов найдено",

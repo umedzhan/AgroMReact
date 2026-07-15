@@ -9,6 +9,7 @@ import AuthContext from '../context/AuthContext';
 import AdminLayout from '../components/AdminLayout';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
+import { getCategoryLabel } from '../utils/categories';
 
 const ProductListScreen = () => {
     useTranslation();
@@ -23,7 +24,7 @@ const ProductListScreen = () => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        if (!user || (!user.isAdmin && !user.isFarmer)) {
+        if (!user) {
             navigate('/login');
         } else {
             fetchProducts();
@@ -33,8 +34,8 @@ const ProductListScreen = () => {
     const fetchProducts = async () => {
         try {
             let url = `/api/products?pageNumber=${pageNumber || 1}`;
-            // If user is a Farmer (and NOT Admin), only fetch their own products
-            if (user.isFarmer && !user.isAdmin) {
+            // Non-admins (farmers and regular users) only see their own products
+            if (!user.isAdmin) {
                 const config = {
                     headers: {
                         Authorization: `Bearer ${user.token}`,
@@ -137,7 +138,7 @@ const ProductListScreen = () => {
                                             <p className="text-gray-900 whitespace-no-wrap">{product.price} UZS</p>
                                         </td>
                                         <td className="px-5 py-5 border-b border-gray-200 text-sm">
-                                            <p className="text-gray-900 whitespace-no-wrap">{tUZ(product.category)}</p>
+                                            <p className="text-gray-900 whitespace-no-wrap">{tUZ(getCategoryLabel(product.category))}</p>
                                         </td>
                                         <td className="px-5 py-5 border-b border-gray-200 text-sm">
                                             <p className="text-gray-900 whitespace-no-wrap">{product.brand}</p>

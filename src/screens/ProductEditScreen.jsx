@@ -6,6 +6,7 @@ import Loader from '../components/Loader';
 import AuthContext from '../context/AuthContext';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
+import { PRODUCT_CATEGORIES } from '../utils/categories';
 
 const ProductEditScreen = () => {
     useTranslation();
@@ -27,7 +28,7 @@ const ProductEditScreen = () => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        if (!user || !user.isAdmin) {
+        if (!user) {
             navigate('/login');
             return;
         }
@@ -207,13 +208,17 @@ const ProductEditScreen = () => {
 
                         <div className="mb-4">
                             <label className="block text-gray-700 font-bold mb-2">{tUZ("Kategoriya")}</label>
-                            <input
-                                type="text"
-                                placeholder={tUZ("Kategoriyani kiriting")}
+                            <select
                                 value={category}
                                 onChange={(e) => setCategory(e.target.value)}
-                                className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
-                            />
+                                required
+                                className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none bg-white"
+                            >
+                                <option value="">{tUZ("Kategoriyani tanlang")}</option>
+                                {PRODUCT_CATEGORIES.map((c) => (
+                                    <option key={c.value} value={c.value}>{tUZ(c.label)}</option>
+                                ))}
+                            </select>
                         </div>
 
                         <div className="mb-4">

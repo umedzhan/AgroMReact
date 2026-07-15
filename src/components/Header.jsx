@@ -7,6 +7,7 @@ import CartContext from '../context/CartContext';
 import TopBar from './TopBar';
 import SearchBox from './SearchBox';
 import { useTranslation } from 'react-i18next';
+import { PRODUCT_CATEGORIES } from '../utils/categories';
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -101,6 +102,10 @@ const Header = () => {
                           {t('header.admin_dashboard')}
                         </Link>
                       )}
+
+                      <Link to="/admin/productlist" className="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-green-50 hover:text-brand transition-colors">
+                        {tUZ('Mahsulotlarim')}
+                      </Link>
 
                       <button
                         onClick={logout}
@@ -216,6 +221,9 @@ const Header = () => {
                         {t('header.admin_dashboard')}
                       </Link>
                     )}
+                    <Link to="/admin/productlist" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2 rounded text-gray-700 block border border-gray-100">
+                      {tUZ('Mahsulotlarim')}
+                    </Link>
                     <Link to="/wishlist" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2 rounded text-gray-700 block border border-gray-100 flex justify-between items-center">
                       <span>{t('header.wishlist')}</span>
                       <FaHeart className="text-red-400" />
@@ -244,15 +252,16 @@ const Header = () => {
                 <Link to="/shop" onClick={toggleMobileMenu} className="block px-2 py-2 text-gray-700 font-medium hover:bg-green-50 hover:text-brand rounded transition-colors">
                   {t('header.browse_now')} (All)
                 </Link>
-                <Link to="/shop?category=Wheat" onClick={toggleMobileMenu} className="block px-2 py-2 text-gray-700 font-medium hover:bg-green-50 hover:text-brand rounded transition-colors">
-                  {t('header.nav.wheat')}
-                </Link>
-                <Link to="/shop?category=Beans" onClick={toggleMobileMenu} className="block px-2 py-2 text-gray-700 font-medium hover:bg-green-50 hover:text-brand rounded transition-colors">
-                  {t('header.nav.beans')}
-                </Link>
-                <Link to="/shop?category=Sunflower" onClick={toggleMobileMenu} className="block px-2 py-2 text-gray-700 font-medium hover:bg-green-50 hover:text-brand rounded transition-colors">
-                  {t('header.nav.sunflower')}
-                </Link>
+                {PRODUCT_CATEGORIES.map((c) => (
+                  <Link
+                    key={c.value}
+                    to={`/shop?category=${c.value}`}
+                    onClick={toggleMobileMenu}
+                    className="block px-2 py-2 text-gray-700 font-medium hover:bg-green-50 hover:text-brand rounded transition-colors"
+                  >
+                    {t(`header.nav.${c.navKey}`)}
+                  </Link>
+                ))}
               </div>
 
               <div className="mt-8 pt-6 border-t border-gray-100">

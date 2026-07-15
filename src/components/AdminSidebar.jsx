@@ -18,14 +18,20 @@ const AdminSidebar = () => {
         <div className="w-64 bg-white shadow-md rounded-lg hidden md:block h-full min-h-[500px]">
             <div className="p-6 border-b border-gray-100">
                 <h2 className="text-xl font-bold text-gray-800">
-                    {user && user.isFarmer && !user.isAdmin ? tUZ('Dehqon menyusi') : tUZ('Admin menyusi')}
+                    {user && user.isAdmin
+                        ? tUZ('Admin menyusi')
+                        : user && user.isFarmer
+                            ? tUZ('Dehqon menyusi')
+                            : tUZ('Mening mahsulotlarim')}
                 </h2>
             </div>
             <nav className="p-4 space-y-2">
-                <Link to="/admin/dashboard" className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${isActive('/admin/dashboard')}`}>
-                    <FaTachometerAlt />
-                    <span className="font-medium">{tUZ("Boshqaruv paneli")}</span>
-                </Link>
+                {user && (user.isAdmin || user.isFarmer) && (
+                    <Link to="/admin/dashboard" className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${isActive('/admin/dashboard')}`}>
+                        <FaTachometerAlt />
+                        <span className="font-medium">{tUZ("Boshqaruv paneli")}</span>
+                    </Link>
+                )}
                 <Link to="/admin/productlist" className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${isActive('/admin/productlist')}`}>
                     <FaBox />
                     <span className="font-medium">{tUZ("Mahsulotlar")}</span>
