@@ -64,10 +64,11 @@ const ProductEditScreen = () => {
             const config = {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${user.token}`,
                 },
             };
             const { data } = await axios.post('/api/upload', formData, config);
-            setImage(data);
+            setImage(data.path);
             setUploading(false);
         } catch (error) {
             console.error(error);
