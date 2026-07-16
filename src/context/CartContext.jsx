@@ -3,28 +3,23 @@ import { toast } from 'react-hot-toast';
 
 const CartContext = createContext();
 
+// Read once, synchronously, on first render so there's no window where
+// cartItems is briefly [] and the "save" effect below clobbers a real
+// saved cart with an empty one (this happened on every full page load,
+// e.g. visiting /cart directly or refreshing).
+const readFromStorage = (key, fallback) => {
+    try {
+        const stored = localStorage.getItem(key);
+        return stored ? JSON.parse(stored) : fallback;
+    } catch {
+        return fallback;
+    }
+};
+
 export const CartProvider = ({ children }) => {
-    const [cartItems, setCartItems] = useState([]);
-    const [shippingAddress, setShippingAddress] = useState({});
-    const [paymentMethod, setPaymentMethod] = useState('PayPal');
-
-    // Load cart and shipping from local storage
-    useEffect(() => {
-        const cartItemsFromStorage = localStorage.getItem('cartItems')
-            ? JSON.parse(localStorage.getItem('cartItems'))
-            : [];
-        setCartItems(cartItemsFromStorage);
-
-        const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
-            ? JSON.parse(localStorage.getItem('shippingAddress'))
-            : {};
-        setShippingAddress(shippingAddressFromStorage);
-
-        const paymentMethodFromStorage = localStorage.getItem('paymentMethod')
-            ? JSON.parse(localStorage.getItem('paymentMethod'))
-            : 'PayPal';
-        setPaymentMethod(paymentMethodFromStorage);
-    }, []);
+    const [cartItems, setCartItems] = useState(() => readFromStorage('cartItems', []));
+    const [shippingAddress, setShippingAddress] = useState(() => readFromStorage('shippingAddress', {}));
+    const [paymentMethod, setPaymentMethod] = useState(() => readFromStorage('paymentMethod', 'PayPal'));
 
     // Update local storage whenever cart changes
     useEffect(() => {

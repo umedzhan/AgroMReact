@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
 import { FaTrash, FaPlus, FaMinus, FaLock, FaTruck } from 'react-icons/fa';
@@ -13,6 +14,7 @@ const CartScreen = () => {
     const navigate = useNavigate();
     const { cartItems, removeFromCart, addToCart } = useContext(CartContext);
     const { user } = useContext(AuthContext);
+    const [recommendations, setRecommendations] = useState([]);
 
     const totalAmount = cartItems.reduce((acc, item) => acc + item.qty * item.price, 0);
     const freeDeliveryThreshold = 200000;
@@ -28,12 +30,19 @@ const CartScreen = () => {
         }
     };
 
-    // Recommended products mock data
-    const recommendations = [
-        { _id: 'rec1', name: 'Organik Kartoshka', price: 8000, image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3' },
-        { _id: 'rec2', name: 'Shirin Piyoz', price: 6000, image: 'https://images.unsplash.com/photo-1508747703725-719777637510?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3' },
-        { _id: 'rec3', name: 'Qizil Pomidor', price: 12000, image: 'https://images.unsplash.com/photo-1595855759920-86582396756a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3' }
-    ];
+    useEffect(() => {
+        const fetchRecommendations = async () => {
+            try {
+                const { data } = await axios.get('/api/products?pageNumber=1');
+                const cartIds = new Set(cartItems.map((item) => item._id));
+                setRecommendations(data.products.filter((p) => !cartIds.has(p._id)).slice(0, 3));
+            } catch (error) {
+                setRecommendations([]);
+            }
+        };
+        fetchRecommendations();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <div className="container mx-auto px-2 lg:px-4 py-6">
@@ -172,26 +181,29 @@ const CartScreen = () => {
             )}
 
             {/* Recommendations Section */}
-            <div className="mt-16">
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-6">{tUZ("Siz uchun tavsiyalar")}</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {recommendations.map((prod) => (
-                        <div key={prod._id} className="bg-white rounded-2xl border border-gray-150 p-4 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4">
-                            <img src={getImageUrl(prod.image)} alt={prod.name} className="w-20 h-20 object-cover rounded-xl" />
-                            <div className="flex-1">
-                                <h4 className="font-bold text-gray-900 text-sm md:text-base">{prod.name}</h4>
-                                <p className="text-brand font-extrabold text-sm mt-1">{prod.price.toLocaleString()} UZS / kg</p>
-                                <Link 
-                                    to="/"
-                                    className="text-xs text-brand font-semibold hover:underline mt-2 inline-block"
-                                >
-                                    {tUZ("Batafsil ko'rish")}
-                                </Link>
-                            </div>
-                        </div>
-                    ))}
+            {recommendations.length > 0 && (
+                <div className="mt-16">
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-6">{tUZ("Siz uchun tavsiyalar")}</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {recommendations.map((prod) => (
+                            <Link
+                                to={`/product/${prod._id}`}
+                                key={prod._id}
+                                className="bg-white rounded-2xl border border-gray-150 p-4 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4"
+                            >
+                                <img src={getImageUrl(prod.image)} alt={prod.name} className="w-20 h-20 object-cover rounded-xl" />
+                                <div className="flex-1">
+                                    <h4 className="font-bold text-gray-900 text-sm md:text-base">{prod.name}</h4>
+                                    <p className="text-brand font-extrabold text-sm mt-1">{prod.price.toLocaleString()} UZS / kg</p>
+                                    <span className="text-xs text-brand font-semibold hover:underline mt-2 inline-block">
+                                        {tUZ("Batafsil ko'rish")}
+                                    </span>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };

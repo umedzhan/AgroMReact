@@ -9,6 +9,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
 import { getImageUrl } from '../utils/getImageUrl';
+import { getCategoryLabel } from '../utils/categories';
 
 const ProductScreen = () => {
     useTranslation();
@@ -61,8 +62,11 @@ const ProductScreen = () => {
             <div className="md:w-1/2 mt-8 md:mt-0">
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
 
-                <div className="flex items-center mb-4">
+                <div className="flex items-center gap-3 mb-4">
                     <Rating value={product.rating} text={`${product.numReviews} ${tUZ("sharhlar")}`} />
+                    {product.brand && (
+                        <span className="text-sm text-gray-400 border-l border-gray-200 pl-3">{product.brand}</span>
+                    )}
                 </div>
 
                 <p className="text-2xl font-bold text-gray-900 mb-4">{product.price} UZS</p>
@@ -74,8 +78,8 @@ const ProductScreen = () => {
                 {/* Add to Cart Card */}
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 shadow-sm">
                     <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">
-                        <span className="text-gray-600">{tUZ("Narxi:")}</span>
-                        <span className="font-semibold text-lg">{product.price} UZS</span>
+                        <span className="text-gray-600">{tUZ("Kategoriya:")}</span>
+                        <span className="font-semibold text-gray-800">{tUZ(getCategoryLabel(product.category))}</span>
                     </div>
 
                     <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { FaTrash, FaShoppingCart } from 'react-icons/fa';
+import { FaTrash, FaShoppingCart, FaRegHeart } from 'react-icons/fa';
 import WishlistContext from '../context/WishlistContext';
 import Loader from '../components/Loader';
 import Rating from '../components/Rating';
@@ -19,8 +19,15 @@ const WishlistScreen = () => {
             {loading ? (
                 <Loader />
             ) : wishlist.length === 0 ? (
-                <div className="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-3 rounded">
-                    {tUZ("Sizning tanlanganlar ro'yxatingiz bo'sh.")} <Link to="/shop" className="underline font-bold">{tUZ("Xarid qilishga o'tish")}</Link>
+                <div className="bg-emerald-50 border-l-4 border-brand text-emerald-800 p-6 rounded-r-xl shadow-sm flex items-start gap-4" role="alert">
+                    <FaRegHeart className="text-brand text-2xl mt-1 flex-shrink-0" />
+                    <div>
+                        <p className="font-bold text-lg mb-1">{tUZ("Sizning tanlanganlar ro'yxatingiz bo'sh.")}</p>
+                        <p className="text-emerald-700 text-sm mb-4">{tUZ("Yoqtirgan mahsulotlaringizni saqlab qo'yish uchun ularni sevimlilarga qo'shing.")}</p>
+                        <Link to="/shop" className="inline-block bg-brand hover:bg-brand-dark text-white font-semibold px-6 py-2 rounded-lg transition-colors shadow-sm">
+                            {tUZ("Xarid qilishga o'tish")}
+                        </Link>
+                    </div>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">

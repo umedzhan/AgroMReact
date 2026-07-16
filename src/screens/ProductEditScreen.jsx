@@ -130,7 +130,7 @@ const ProductEditScreen = () => {
     };
 
     return (
-        <div className="max-w-2xl mx-auto mt-10">
+        <div className="max-w-3xl mx-auto mt-10">
             <Link to="/admin/productlist" className="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 mb-6 inline-block">
                 {tUZ("Orqaga")}
             </Link>
@@ -144,26 +144,28 @@ const ProductEditScreen = () => {
                     <Loader />
                 ) : (
                     <form onSubmit={submitHandler}>
-                        <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">{tUZ("Nomi")}</label>
-                            <input
-                                type="text"
-                                placeholder={tUZ("Nomini kiriting")}
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
-                            />
-                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="mb-4">
+                                <label className="block text-gray-700 font-bold mb-2">{tUZ("Nomi")}</label>
+                                <input
+                                    type="text"
+                                    placeholder={tUZ("Nomini kiriting")}
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
+                                />
+                            </div>
 
-                        <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">{tUZ("Narxi")}</label>
-                            <input
-                                type="number"
-                                placeholder={tUZ("Narxini kiriting")}
-                                value={price}
-                                onChange={(e) => setPrice(e.target.value)}
-                                className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
-                            />
+                            <div className="mb-4">
+                                <label className="block text-gray-700 font-bold mb-2">{tUZ("Narxi")}</label>
+                                <input
+                                    type="number"
+                                    placeholder={tUZ("Narxini kiriting")}
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                    className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
+                                />
+                            </div>
                         </div>
 
                         <div className="mb-4">
@@ -184,26 +186,28 @@ const ProductEditScreen = () => {
                             {uploading && <div className="text-sm text-gray-500 mt-1">{tUZ("Yuklanmoqda...")}</div>}
                         </div>
 
-                        <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">{tUZ("Brend")}</label>
-                            <input
-                                type="text"
-                                placeholder={tUZ("Brendni kiriting")}
-                                value={brand}
-                                onChange={(e) => setBrand(e.target.value)}
-                                className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
-                            />
-                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="mb-4">
+                                <label className="block text-gray-700 font-bold mb-2">{tUZ("Brend")}</label>
+                                <input
+                                    type="text"
+                                    placeholder={tUZ("Brendni kiriting")}
+                                    value={brand}
+                                    onChange={(e) => setBrand(e.target.value)}
+                                    className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
+                                />
+                            </div>
 
-                        <div className="mb-4">
-                            <label className="block text-gray-700 font-bold mb-2">{tUZ("Ombordagi soni")}</label>
-                            <input
-                                type="number"
-                                placeholder={tUZ("Ombordagi sonini kiriting")}
-                                value={countInStock}
-                                onChange={(e) => setCountInStock(e.target.value)}
-                                className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
-                            />
+                            <div className="mb-4">
+                                <label className="block text-gray-700 font-bold mb-2">{tUZ("Ombordagi soni")}</label>
+                                <input
+                                    type="number"
+                                    placeholder={tUZ("Ombordagi sonini kiriting")}
+                                    value={countInStock}
+                                    onChange={(e) => setCountInStock(e.target.value)}
+                                    className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
+                                />
+                            </div>
                         </div>
 
                         <div className="mb-4">

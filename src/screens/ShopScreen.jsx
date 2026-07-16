@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Loader from '../components/Loader';
 import Rating from '../components/Rating';
 import Paginate from '../components/Paginate';
-import { FaFilter, FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaFilter, FaHeart, FaRegHeart, FaChevronDown } from 'react-icons/fa';
 import WishlistContext from '../context/WishlistContext';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
@@ -24,6 +24,7 @@ const ShopScreen = () => {
     const [error, setError] = useState('');
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState(1);
+    const [filterOpen, setFilterOpen] = useState(false);
 
     const { addToWishlist, removeFromWishlist, isInWishlist } = useContext(WishlistContext);
 
@@ -81,29 +82,38 @@ const ShopScreen = () => {
             <div className="flex flex-col md:flex-row gap-8">
                 {/* Filters Sidebar (Mock for now, scalable later) */}
                 <div className="w-full md:w-1/4">
-                    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                        <div className="flex items-center space-x-2 mb-6 pb-4 border-b border-gray-100">
-                            <FaFilter className="text-brand" />
-                            <h3 className="font-bold text-gray-900 text-lg">{tUZ("Filter")}</h3>
-                        </div>
+                    <div className="bg-white rounded-lg shadow-sm border border-gray-100 md:p-6">
+                        <button
+                            type="button"
+                            onClick={() => setFilterOpen((open) => !open)}
+                            className="w-full flex items-center justify-between p-6 md:p-0 md:mb-6 md:pb-4 md:border-b md:border-gray-100 md:pointer-events-none"
+                        >
+                            <span className="flex items-center space-x-2">
+                                <FaFilter className="text-brand" />
+                                <h3 className="font-bold text-gray-900 text-lg">{tUZ("Filter")}</h3>
+                            </span>
+                            <FaChevronDown className={`text-gray-400 transition-transform md:hidden ${filterOpen ? 'rotate-180' : ''}`} />
+                        </button>
 
-                        <div className="mb-6">
-                            <h4 className="font-semibold text-gray-900 mb-3">{tUZ("Categories")}</h4>
-                            <ul className="space-y-2 text-gray-600 text-sm">
-                                <li>
-                                    <Link to="/shop" className={`hover:text-brand ${!categoryQuery ? 'text-brand font-bold' : ''}`}>{tUZ("All Categories")}</Link>
-                                </li>
-                                {PRODUCT_CATEGORIES.map((c) => (
-                                    <li key={c.value}>
-                                        <Link
-                                            to={`/shop?category=${c.value}`}
-                                            className={`hover:text-brand ${categoryQuery === c.value ? 'text-brand font-bold' : ''}`}
-                                        >
-                                            {tUZ(c.label)}
-                                        </Link>
+                        <div className={`${filterOpen ? 'block' : 'hidden'} md:block px-6 pb-6 md:p-0`}>
+                            <div className="md:mb-6">
+                                <h4 className="font-semibold text-gray-900 mb-3">{tUZ("Categories")}</h4>
+                                <ul className="space-y-2 text-gray-600 text-sm">
+                                    <li>
+                                        <Link to="/shop" className={`hover:text-brand ${!categoryQuery ? 'text-brand font-bold' : ''}`}>{tUZ("All Categories")}</Link>
                                     </li>
-                                ))}
-                            </ul>
+                                    {PRODUCT_CATEGORIES.map((c) => (
+                                        <li key={c.value}>
+                                            <Link
+                                                to={`/shop?category=${c.value}`}
+                                                className={`hover:text-brand ${categoryQuery === c.value ? 'text-brand font-bold' : ''}`}
+                                            >
+                                                {tUZ(c.label)}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
