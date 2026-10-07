@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import Loader from '../components/Loader';
+import VerifyEmailForm from '../components/VerifyEmailForm';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
 
@@ -9,6 +10,7 @@ const LoginScreen = () => {
     useTranslation();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [pendingEmail, setPendingEmail] = useState(null);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -25,8 +27,17 @@ const LoginScreen = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        await login(email, password);
+        const pending = await login(email, password);
+        if (pending) setPendingEmail(pending.email);
     };
+
+    if (pendingEmail) {
+        return (
+            <div className="min-h-[calc(100vh-200px)] flex items-center justify-center">
+                <VerifyEmailForm email={pendingEmail} onBack={() => setPendingEmail(null)} />
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-[calc(100vh-200px)] flex items-center justify-center">

@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import Loader from '../components/Loader';
 import { toast } from 'react-hot-toast';
+import VerifyEmailForm from '../components/VerifyEmailForm';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
 
@@ -13,6 +14,7 @@ const RegisterScreen = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [message, setMessage] = useState(null);
+    const [pendingEmail, setPendingEmail] = useState(null);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -34,9 +36,18 @@ const RegisterScreen = () => {
             toast.error(tUZ('Parollar mos kelmadi'));
         } else {
             setMessage(null);
-            await register(name, email, password);
+            const sentTo = await register(name, email, password);
+            if (sentTo) setPendingEmail(sentTo);
         }
     };
+
+    if (pendingEmail) {
+        return (
+            <div className="min-h-[calc(100vh-200px)] flex items-center justify-center">
+                <VerifyEmailForm email={pendingEmail} onBack={() => setPendingEmail(null)} />
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-[calc(100vh-200px)] flex items-center justify-center">
