@@ -205,7 +205,7 @@ const Header = () => {
                 <div className="mb-6 bg-green-50 rounded-lg p-4">
                   <div className="flex items-center space-x-3 mb-3">
                     <div className="bg-brand text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">
-                      {user.name.charAt(0).toUpperCase()}
+                      {user.name?.charAt(0).toUpperCase() || '?'}
                     </div>
                     <div>
                       <p className="text-xs text-gray-500">{t('header.signed_in_as')}</p>
