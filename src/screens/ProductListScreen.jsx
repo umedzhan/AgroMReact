@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { getCategoryLabel } from '../utils/categories';
 
 const ProductListScreen = () => {
-    useTranslation();
+    const { t } = useTranslation();
     const { pageNumber } = useParams();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -138,7 +138,7 @@ const ProductListScreen = () => {
                                             <p className="text-gray-900 whitespace-no-wrap">{product.price} UZS</p>
                                         </td>
                                         <td className="px-5 py-5 border-b border-gray-200 text-sm">
-                                            <p className="text-gray-900 whitespace-no-wrap">{tUZ(getCategoryLabel(product.category))}</p>
+                                            <p className="text-gray-900 whitespace-no-wrap">{getCategoryLabel(product.category, t)}</p>
                                         </td>
                                         <td className="px-5 py-5 border-b border-gray-200 text-sm">
                                             <p className="text-gray-900 whitespace-no-wrap">{product.brand}</p>

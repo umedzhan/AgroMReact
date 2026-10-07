@@ -82,7 +82,7 @@ const CertificationScreen = () => {
                 issueDate: new Date().toISOString().split('T')[0],
                 expiryDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
                 status: 'pending',
-                issuer: tUZ('Tekshirilmoqda...')
+                issuer: 'Tekshirilmoqda...'
             };
 
             setCertificates([newCert, ...certificates]);

@@ -3779,6 +3779,338 @@ const dictionary = {
         ru: "Список товаров",
         tg: "Рӯйхати маҳсулот",
         fa: "لیست محصولات"
+    },
+
+    // Added: strings used via tUZ() that had no dictionary entry yet
+    "Mening mahsulotlarim": {
+        en: "My Products",
+        ru: "Мои товары",
+        tg: "Маҳсулотҳои ман",
+        fa: "محصولات من"
+    },
+    "Foydalanuvchilar": {
+        en: "Users",
+        ru: "Пользователи",
+        tg: "Корбарон",
+        fa: "کاربران"
+    },
+    "Mahsulotlarim": {
+        en: "My Products",
+        ru: "Мои товары",
+        tg: "Маҳсулотҳои ман",
+        fa: "محصولات من"
+    },
+    "Emailni tasdiqlang": {
+        en: "Confirm your email",
+        ru: "Подтвердите email",
+        tg: "Email-ро тасдиқ кунед",
+        fa: "ایمیل خود را تایید کنید"
+    },
+    "manziliga 6 xonali kod yuborildi. Kodni quyiga kiriting.": {
+        en: "a 6-digit code has been sent. Enter it below.",
+        ru: "отправлен 6-значный код. Введите его ниже.",
+        tg: "рамзи 6-рақама фиристода шуд. Онро дар поён ворид кунед.",
+        fa: "یک کد ۶ رقمی ارسال شد. آن را در زیر وارد کنید."
+    },
+    "Tasdiqlash kodi": {
+        en: "Verification code",
+        ru: "Код подтверждения",
+        tg: "Рамзи тасдиқ",
+        fa: "کد تایید"
+    },
+    "Tekshirilmoqda...": {
+        en: "Checking...",
+        ru: "Проверка...",
+        tg: "Санҷида шуда истодааст...",
+        fa: "در حال بررسی..."
+    },
+    "Kodni qayta yuborish": {
+        en: "Resend code",
+        ru: "Отправить код повторно",
+        tg: "Рамзро аз нав фиристодан",
+        fa: "ارسال مجدد کد"
+    },
+    "Boshqa": {
+        en: "Other",
+        ru: "Другое",
+        tg: "Дигар",
+        fa: "دیگر"
+    },
+    "Mavjud emas": {
+        en: "Not available",
+        ru: "Недоступно",
+        tg: "Мавҷуд нест",
+        fa: "موجود نیست"
+    },
+    "ta": {
+        en: "pcs",
+        ru: "шт",
+        tg: "дона",
+        fa: "عدد"
+    },
+    "Sana": {
+        en: "Date",
+        ru: "Дата",
+        tg: "Сана",
+        fa: "تاریخ"
+    },
+    "Holat": {
+        en: "Status",
+        ru: "Статус",
+        tg: "Ҳолат",
+        fa: "وضعیت"
+    },
+    "Harakatlar": {
+        en: "Actions",
+        ru: "Действия",
+        tg: "Амалҳо",
+        fa: "اقدامات"
+    },
+    "Yangi mahsulot": {
+        en: "New Product",
+        ru: "Новый товар",
+        tg: "Маҳсулоти нав",
+        fa: "محصول جدید"
+    },
+    "PDF fayli yuklab olindi.": {
+        en: "PDF file downloaded.",
+        ru: "PDF-файл загружен.",
+        tg: "Файли PDF боргирӣ шуд.",
+        fa: "فایل PDF دانلود شد."
+    },
+    "Sertifikatlar va Standartlar": {
+        en: "Certificates and Standards",
+        ru: "Сертификаты и стандарты",
+        tg: "Сертификатҳо ва стандартҳо",
+        fa: "گواهینامه‌ها و استانداردها"
+    },
+    "Xalqaro savdo va eksport talablariga mos keluvchi faol sertifikatlaringizni boshqaring.": {
+        en: "Manage your active certificates that meet international trade and export requirements.",
+        ru: "Управляйте активными сертификатами, соответствующими требованиям международной торговли и экспорта.",
+        tg: "Сертификатҳои фаъоли худро, ки ба талаботи тиҷорати байналмилалӣ ва содирот ҷавобгӯ мебошанд, идора кунед.",
+        fa: "گواهینامه‌های فعال خود را که با الزامات تجارت بین‌المللی و صادرات مطابقت دارند مدیریت کنید."
+    },
+    "Verifikatsiya kutilmoqda": {
+        en: "Verification pending",
+        ru: "Ожидается верификация",
+        tg: "Тасдиқ дар интизор",
+        fa: "در انتظار تایید"
+    },
+    "Turi": {
+        en: "Type",
+        ru: "Тип",
+        tg: "Намуд",
+        fa: "نوع"
+    },
+    "Manzil": {
+        en: "Address",
+        ru: "Адрес",
+        tg: "Суроға",
+        fa: "آدرس"
+    },
+    "To'lov": {
+        en: "Payment",
+        ru: "Оплата",
+        tg: "Пардохт",
+        fa: "پرداخت"
+    },
+    "Kuryer Status": {
+        en: "Courier Status",
+        ru: "Статус курьера",
+        tg: "Ҳолати курьер",
+        fa: "وضعیت پیک"
+    },
+    "Yetkazib berish haqi": {
+        en: "Delivery fee",
+        ru: "Стоимость доставки",
+        tg: "Ҳаққи интиқол",
+        fa: "هزینه ارسال"
+    },
+    "Tezkor": {
+        en: "Express",
+        ru: "Экспресс",
+        tg: "Фаврӣ",
+        fa: "اکسپرس"
+    },
+    "Oddiy": {
+        en: "Standard",
+        ru: "Стандартный",
+        tg: "Оддӣ",
+        fa: "استاندارد"
+    },
+    "ID": {
+        en: "ID",
+        ru: "ID",
+        tg: "ID",
+        fa: "شناسه"
+    },
+    "Buyurtmalar paneli": {
+        en: "Orders Panel",
+        ru: "Панель заказов",
+        tg: "Девони фармоишҳо",
+        fa: "پنل سفارشات"
+    },
+    "Hamma buyurtmalarni filtrlash va boshqarish tizimi.": {
+        en: "System for filtering and managing all orders.",
+        ru: "Система для фильтрации и управления всеми заказами.",
+        tg: "Системаи филтр ва идоракунии ҳамаи фармоишҳо.",
+        fa: "سیستم فیلتر و مدیریت همه سفارشات."
+    },
+    "Foydalanuvchi": {
+        en: "User",
+        ru: "Пользователь",
+        tg: "Корбар",
+        fa: "کاربر"
+    },
+    "Umumiy summa:": {
+        en: "Total amount:",
+        ru: "Общая сумма:",
+        tg: "Маблағи умумӣ:",
+        fa: "مبلغ کل:"
+    },
+    "Stripe": {
+        en: "Stripe",
+        ru: "Stripe",
+        tg: "Stripe",
+        fa: "استرایپ"
+    },
+    "Nomi": {
+        en: "Name",
+        ru: "Название",
+        tg: "Ном",
+        fa: "نام"
+    },
+    "Nomini kiriting": {
+        en: "Enter the name",
+        ru: "Введите название",
+        tg: "Номро ворид кунед",
+        fa: "نام را وارد کنید"
+    },
+    "Narxi": {
+        en: "Price",
+        ru: "Цена",
+        tg: "Нарх",
+        fa: "قیمت"
+    },
+    "Narxini kiriting": {
+        en: "Enter the price",
+        ru: "Введите цену",
+        tg: "Нархро ворид кунед",
+        fa: "قیمت را وارد کنید"
+    },
+    "Rasm": {
+        en: "Image",
+        ru: "Изображение",
+        tg: "Расм",
+        fa: "تصویر"
+    },
+    "Brend": {
+        en: "Brand",
+        ru: "Бренд",
+        tg: "Бренд",
+        fa: "برند"
+    },
+    "Brendni kiriting": {
+        en: "Enter the brand",
+        ru: "Введите бренд",
+        tg: "Брендро ворид кунед",
+        fa: "برند را وارد کنید"
+    },
+    "Kategoriya": {
+        en: "Category",
+        ru: "Категория",
+        tg: "Категория",
+        fa: "دسته‌بندی"
+    },
+    "Kategoriyani tanlang": {
+        en: "Select category",
+        ru: "Выберите категорию",
+        tg: "Категорияро интихоб кунед",
+        fa: "دسته‌بندی را انتخاب کنید"
+    },
+    "Yaratish": {
+        en: "Create",
+        ru: "Создать",
+        tg: "Сохтан",
+        fa: "ایجاد"
+    },
+    "Kategoriya:": {
+        en: "Category:",
+        ru: "Категория:",
+        tg: "Категория:",
+        fa: "دسته‌بندی:"
+    },
+    "Profil muvaffaqiyatli yangilandi": {
+        en: "Profile updated successfully",
+        ru: "Профиль успешно обновлён",
+        tg: "Профил бомуваффақият навсозӣ шуд",
+        fa: "پروفایل با موفقیت به‌روزرسانی شد"
+    },
+    "ta mahsulot": {
+        en: "products",
+        ru: "товаров",
+        tg: "маҳсулот",
+        fa: "محصول"
+    },
+    "ta faol kelishuv": {
+        en: "active deals",
+        ru: "активных сделок",
+        tg: "созишномаи фаъол",
+        fa: "توافق فعال"
+    },
+    "Bug'doy yetkazib berish (10 tonna)": {
+        en: "Wheat delivery (10 tons)",
+        ru: "Поставка пшеницы (10 тонн)",
+        tg: "Интиқоли гандум (10 тонна)",
+        fa: "تحویل گندم (۱۰ تن)"
+    },
+    "Organik Kartoshka (5 tonna)": {
+        en: "Organic Potato (5 tons)",
+        ru: "Органический картофель (5 тонн)",
+        tg: "Картошкаи органикӣ (5 тонна)",
+        fa: "سیب‌زمینی ارگانیک (۵ تن)"
+    },
+    "Email manzilingiz": {
+        en: "Your email address",
+        ru: "Ваш email адрес",
+        tg: "Суроғаи email-и шумо",
+        fa: "آدرس ایمیل شما"
+    },
+    "Pochta": {
+        en: "Mail",
+        ru: "Почта",
+        tg: "Почта",
+        fa: "ایمیل"
+    },
+    "Admin": {
+        en: "Admin",
+        ru: "Админ",
+        tg: "Админ",
+        fa: "ادمین"
+    },
+    "Dehqon": {
+        en: "Farmer",
+        ru: "Фермер",
+        tg: "Деҳқон",
+        fa: "کشاورز"
+    },
+    "Yoqtirgan mahsulotlaringizni saqlab qo'yish uchun ularni sevimlilarga qo'shing.": {
+        en: "Add the products you like to your favorites to save them.",
+        ru: "Добавляйте понравившиеся товары в избранное, чтобы сохранить их.",
+        tg: "Маҳсулоти писандидаи худро ба дӯстдоштаҳо илова кунед, то онҳоро нигоҳ доред.",
+        fa: "محصولات مورد علاقه خود را برای ذخیره به علاقه‌مندی‌ها اضافه کنید."
+    },
+    "O'zbekiston Standartlashtirish Markazi": {
+        en: "Uzbekistan Standardization Center",
+        ru: "Центр стандартизации Узбекистана",
+        tg: "Маркази стандартикунонии Узбекистон",
+        fa: "مرکز استانداردسازی ازبکستان"
+    },
+    "Tashqi Iqtisodiy Aloqalar Vazirligi": {
+        en: "Ministry of Foreign Economic Relations",
+        ru: "Министерство внешних экономических связей",
+        tg: "Вазорати робитаҳои иқтисодии хориҷӣ",
+        fa: "وزارت روابط اقتصادی خارجی"
     }
 };
 

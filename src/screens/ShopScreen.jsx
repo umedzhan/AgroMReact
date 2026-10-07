@@ -9,10 +9,10 @@ import WishlistContext from '../context/WishlistContext';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
 import { getImageUrl } from '../utils/getImageUrl';
-import { PRODUCT_CATEGORIES } from '../utils/categories';
+import { PRODUCT_CATEGORIES, getCategoryLabel } from '../utils/categories';
 
 const ShopScreen = () => {
-    useTranslation();
+    const { t } = useTranslation();
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const categoryQuery = queryParams.get('category') || '';
@@ -64,15 +64,15 @@ const ShopScreen = () => {
             {/* Breadcrumb or Header */}
             <div className="bg-green-50 p-8 rounded-lg mb-8 text-center bg-[url('/images/breadcrumb.jpg')] bg-cover bg-center relative">
                 <div className="relative z-10">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">{tUZ("Shop")}</h1>
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2">{tUZ("Do'kon")}</h1>
                     <div className="flex justify-center space-x-2 text-sm text-gray-500">
                         <Link to="/" className="hover:text-brand">{tUZ("Bosh sahifa")}</Link>
                         <span>/</span>
-                        <span className="text-brand font-medium">{tUZ("Shop")}</span>
+                        <span className="text-brand font-medium">{tUZ("Do'kon")}</span>
                         {categoryQuery && (
                             <>
                                 <span>/</span>
-                                <span className="text-gray-900 capitalize">{tUZ(categoryQuery)}</span>
+                                <span className="text-gray-900 capitalize">{getCategoryLabel(categoryQuery, t)}</span>
                             </>
                         )}
                     </div>
@@ -90,17 +90,17 @@ const ShopScreen = () => {
                         >
                             <span className="flex items-center space-x-2">
                                 <FaFilter className="text-brand" />
-                                <h3 className="font-bold text-gray-900 text-lg">{tUZ("Filter")}</h3>
+                                <h3 className="font-bold text-gray-900 text-lg">{tUZ("Filtr")}</h3>
                             </span>
                             <FaChevronDown className={`text-gray-400 transition-transform md:hidden ${filterOpen ? 'rotate-180' : ''}`} />
                         </button>
 
                         <div className={`${filterOpen ? 'block' : 'hidden'} md:block px-6 pb-6 md:p-0`}>
                             <div className="md:mb-6">
-                                <h4 className="font-semibold text-gray-900 mb-3">{tUZ("Categories")}</h4>
+                                <h4 className="font-semibold text-gray-900 mb-3">{tUZ("Kategoriyalar")}</h4>
                                 <ul className="space-y-2 text-gray-600 text-sm">
                                     <li>
-                                        <Link to="/shop" className={`hover:text-brand ${!categoryQuery ? 'text-brand font-bold' : ''}`}>{tUZ("All Categories")}</Link>
+                                        <Link to="/shop" className={`hover:text-brand ${!categoryQuery ? 'text-brand font-bold' : ''}`}>{tUZ("Barcha kategoriyalar")}</Link>
                                     </li>
                                     {PRODUCT_CATEGORIES.map((c) => (
                                         <li key={c.value}>
@@ -108,7 +108,7 @@ const ShopScreen = () => {
                                                 to={`/shop?category=${c.value}`}
                                                 className={`hover:text-brand ${categoryQuery === c.value ? 'text-brand font-bold' : ''}`}
                                             >
-                                                {tUZ(c.label)}
+                                                {t(`header.nav.${c.navKey}`)}
                                             </Link>
                                         </li>
                                     ))}
@@ -130,8 +130,8 @@ const ShopScreen = () => {
                         <>
                             {products.length === 0 && (
                                 <div className="text-center py-10 bg-gray-50 rounded-lg">
-                                    <p className="text-gray-500">{tUZ("No products found in this category.")}</p>
-                                    <Link to="/shop" className="text-brand font-bold mt-2 inline-block">{tUZ("Clear Filters")}</Link>
+                                    <p className="text-gray-500">{tUZ("Kategoriyada mahsulotlar topilmadi.")}</p>
+                                    <Link to="/shop" className="text-brand font-bold mt-2 inline-block">{tUZ("Filtrlarni tozalash")}</Link>
                                 </div>
                             )}
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

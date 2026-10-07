@@ -10,10 +10,10 @@ const ContractsScreen = () => {
         {
             id: 'CON-2026-001',
             partnerName: 'AgroEksport MCHJ',
-            cropType: tUZ('Bug\'doy (Elite)'),
+            cropType: 'Bug\'doy (Elite)',
             volume: 20, // tons
             pricePerKg: 3500, // UZS
-            paymentTerms: tUZ('50% oldindan to\'lov, 50% yetkazilgach'),
+            paymentTerms: '50% oldindan to\'lov, 50% yetkazilgach',
             status: 'active',
             dateCreated: '2026-05-15',
             signedDate: '2026-05-16'
@@ -21,10 +21,10 @@ const ContractsScreen = () => {
         {
             id: 'CON-2026-002',
             partnerName: 'Zamin Dehqonlari Klasteri',
-            cropType: tUZ('Organik Kartoshka'),
+            cropType: 'Organik Kartoshka',
             volume: 8,
             pricePerKg: 6500,
-            paymentTerms: tUZ('100% to\'liq oldindan to\'lov'),
+            paymentTerms: '100% to\'liq oldindan to\'lov',
             status: 'draft',
             dateCreated: '2026-06-02',
             signedDate: null
@@ -32,10 +32,10 @@ const ContractsScreen = () => {
         {
             id: 'CON-2026-003',
             partnerName: 'Navoiy Agrosanoat XK',
-            cropType: tUZ('Sariq Piyoz'),
+            cropType: 'Sariq Piyoz',
             volume: 15,
             pricePerKg: 4200,
-            paymentTerms: tUZ('100% yetkazib berilgach 5 kun ichida'),
+            paymentTerms: '100% yetkazib berilgach 5 kun ichida',
             status: 'completed',
             dateCreated: '2026-03-10',
             signedDate: '2026-03-12'
@@ -47,7 +47,7 @@ const ContractsScreen = () => {
     const [cropType, setCropType] = useState('Bug\'doy (Sifatli)');
     const [volume, setVolume] = useState('');
     const [pricePerKg, setPricePerKg] = useState('');
-    const [paymentTerms, setPaymentTerms] = useState(tUZ('50% oldindan to\'lov, 50% yetkazilgach'));
+    const [paymentTerms, setPaymentTerms] = useState('50% oldindan to\'lov, 50% yetkazilgach');
 
     // ERI modal states
     const [signingContract, setSigningContract] = useState(null);

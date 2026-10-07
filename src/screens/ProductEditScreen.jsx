@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { PRODUCT_CATEGORIES } from '../utils/categories';
 
 const ProductEditScreen = () => {
-    useTranslation();
+    const { t } = useTranslation();
     const { id: productId } = useParams();
     const isEditMode = productId !== undefined; // If ID exists, we are editing
 
@@ -220,7 +220,7 @@ const ProductEditScreen = () => {
                             >
                                 <option value="">{tUZ("Kategoriyani tanlang")}</option>
                                 {PRODUCT_CATEGORIES.map((c) => (
-                                    <option key={c.value} value={c.value}>{tUZ(c.label)}</option>
+                                    <option key={c.value} value={c.value}>{t(`header.nav.${c.navKey}`)}</option>
                                 ))}
                             </select>
                         </div>

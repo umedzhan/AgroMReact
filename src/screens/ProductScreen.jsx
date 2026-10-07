@@ -12,7 +12,7 @@ import { getImageUrl } from '../utils/getImageUrl';
 import { getCategoryLabel } from '../utils/categories';
 
 const ProductScreen = () => {
-    useTranslation();
+    const { t } = useTranslation();
     const { id } = useParams();
     const navigate = useNavigate();
     const [product, setProduct] = useState(null);
@@ -79,7 +79,7 @@ const ProductScreen = () => {
                 <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 shadow-sm">
                     <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">
                         <span className="text-gray-600">{tUZ("Kategoriya:")}</span>
-                        <span className="font-semibold text-gray-800">{tUZ(getCategoryLabel(product.category))}</span>
+                        <span className="font-semibold text-gray-800">{getCategoryLabel(product.category, t)}</span>
                     </div>
 
                     <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-2">
