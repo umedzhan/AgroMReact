@@ -4111,6 +4111,289 @@ const dictionary = {
         ru: "Министерство внешних экономических связей",
         tg: "Вазорати робитаҳои иқтисодии хориҷӣ",
         fa: "وزارت روابط اقتصادی خارجی"
+    },
+    // Added: "Bozor/Eksport" (Phase 1) screens — ExportScreen + ProductEditScreen
+    "Davlatlar ro'yxatini yuklab bo'lmadi": {
+        en: "Could not load the list of countries",
+        ru: "Не удалось загрузить список стран",
+        tg: "Рӯйхати кишварҳоро бор карда натавонист",
+        fa: "فهرست کشورها بارگذاری نشد"
+    },
+    "Talablarni yuklab bo'lmadi": {
+        en: "Could not load the requirements",
+        ru: "Не удалось загрузить требования",
+        tg: "Талабҳоро бор карда натавонист",
+        fa: "الزامات بارگذاری نشد"
+    },
+    "Eksport jarayoni boshlandi": {
+        en: "Export process started",
+        ru: "Экспортный процесс начат",
+        tg: "Раванди содирот сар шуд",
+        fa: "فرآیند صادرات آغاز شد"
+    },
+    "Eksport jarayonini boshlab bo'lmadi": {
+        en: "Could not start the export process",
+        ru: "Не удалось начать экспортный процесс",
+        tg: "Раванди содиротро сар карда натавонист",
+        fa: "فرآیند صادرات آغاز نشد"
+    },
+    "Eksport bo'yicha davlat talablari": {
+        en: "Country requirements for export",
+        ru: "Требования стран для экспорта",
+        tg: "Талаботи кишварҳо барои содирот",
+        fa: "الزامات کشورها برای صادرات"
+    },
+    "Davlatni tanlang va shu davlatga eksport qilish uchun qanday talablar borligini ko'ring. Har bir talab rasmiy manbaga ishora qiladi.": {
+        en: "Choose a country to see what's required to export there. Each requirement links to an official source.",
+        ru: "Выберите страну, чтобы увидеть требования для экспорта туда. Каждое требование ссылается на официальный источник.",
+        tg: "Кишварро интихоб кунед ва бубинед, барои содирот ба он чӣ талабот лозим аст. Ҳар як талабот ба манбаи расмӣ ишора мекунад.",
+        fa: "کشوری را انتخاب کنید تا ببینید برای صادرات به آن چه الزاماتی وجود دارد. هر الزام به یک منبع رسمی اشاره می‌کند."
+    },
+    "Bu davlat uchun hali talab qo'shilmagan.": {
+        en: "No requirement has been added for this country yet.",
+        ru: "Для этой страны пока не добавлено ни одного требования.",
+        tg: "Барои ин кишвар ҳанӯз талабот илова нашудааст.",
+        fa: "هنوز هیچ الزامی برای این کشور اضافه نشده است."
+    },
+    "Rasmiy manba": {
+        en: "Official source",
+        ru: "Официальный источник",
+        tg: "Манбаи расмӣ",
+        fa: "منبع رسمی"
+    },
+    "Oxirgi tekshiruv": {
+        en: "Last verified",
+        ru: "Последняя проверка",
+        tg: "Санҷиши охирин",
+        fa: "آخرین بررسی"
+    },
+    "Mening eksport jarayonlarim": {
+        en: "My export operations",
+        ru: "Мои экспортные операции",
+        tg: "Равандҳои содироти ман",
+        fa: "عملیات صادراتی من"
+    },
+    "Tanlangan davlat": {
+        en: "Selected country",
+        ru: "Выбранная страна",
+        tg: "Кишвари интихобшуда",
+        fa: "کشور انتخاب شده"
+    },
+    "Mahsulotni tanlang": {
+        en: "Select a product",
+        ru: "Выберите товар",
+        tg: "Маҳсулотро интихоб кунед",
+        fa: "محصول را انتخاب کنید"
+    },
+    "Hajmi (tonna)": {
+        en: "Volume (tons)",
+        ru: "Объём (тонн)",
+        tg: "Ҳаҷм (тонна)",
+        fa: "حجم (تن)"
+    },
+    "Boshlash": {
+        en: "Start",
+        ru: "Начать",
+        tg: "Сар кардан",
+        fa: "شروع"
+    },
+    "Hali eksport jarayoni boshlanmagan.": {
+        en: "No export process has been started yet.",
+        ru: "Экспортный процесс пока не начат.",
+        tg: "Ҳанӯз раванди содирот сар нашудааст.",
+        fa: "هنوز فرآیند صادراتی آغاز نشده است."
+    },
+    "Bosqich": {
+        en: "Stage",
+        ru: "Этап",
+        tg: "Марҳила",
+        fa: "مرحله"
+    },
+    "Bozor va eksport uchun qo'shimcha ma'lumot (ixtiyoriy)": {
+        en: "Additional information for market & export (optional)",
+        ru: "Дополнительная информация для рынка и экспорта (необязательно)",
+        tg: "Маълумоти иловагӣ барои бозор ва содирот (ихтиёрӣ)",
+        fa: "اطلاعات تکمیلی برای بازار و صادرات (اختیاری)"
+    },
+    "Hudud": {
+        en: "Region",
+        ru: "Регион",
+        tg: "Минтақа",
+        fa: "منطقه"
+    },
+    "Hududni tanlang": {
+        en: "Select region",
+        ru: "Выберите регион",
+        tg: "Минтақаро интихоб кунед",
+        fa: "منطقه را انتخاب کنید"
+    },
+    "Sifat darajasi": {
+        en: "Quality grade",
+        ru: "Степень качества",
+        tg: "Дараҷаи сифат",
+        fa: "درجه کیفیت"
+    },
+    "Tanlanmagan": {
+        en: "Not selected",
+        ru: "Не выбрано",
+        tg: "Интихоб нашудааст",
+        fa: "انتخاب نشده"
+    },
+    "Premium": {
+        en: "Premium",
+        ru: "Премиум",
+        tg: "Премиум",
+        fa: "پرمیوم"
+    },
+    "1-sifat": {
+        en: "Grade 1",
+        ru: "1 сорт",
+        tg: "Дараҷаи 1",
+        fa: "درجه ۱"
+    },
+    "2-sifat": {
+        en: "Grade 2",
+        ru: "2 сорт",
+        tg: "Дараҷаи 2",
+        fa: "درجه ۲"
+    },
+    "Sertifikatlar (vergul bilan)": {
+        en: "Certificates (comma-separated)",
+        ru: "Сертификаты (через запятую)",
+        tg: "Сертификатҳо (бо вергул)",
+        fa: "گواهینامه‌ها (با کاما جدا کنید)"
+    },
+    "Hosil yig'ish sanasi": {
+        en: "Harvest date",
+        ru: "Дата сбора урожая",
+        tg: "Санаи ҷамъоварии ҳосил",
+        fa: "تاریخ برداشت"
+    },
+    "Xaridor turi": {
+        en: "Buyer type",
+        ru: "Тип покупателя",
+        tg: "Навъи харидор",
+        fa: "نوع خریدار"
+    },
+    "Yetkazib berish usuli": {
+        en: "Delivery method",
+        ru: "Способ доставки",
+        tg: "Усули интиқол",
+        fa: "روش ارسال"
+    },
+    "Ulgurji": {
+        en: "Wholesale",
+        ru: "Оптом",
+        tg: "Яклухт",
+        fa: "عمده"
+    },
+    "Chakana": {
+        en: "Retail",
+        ru: "Розница",
+        tg: "Чакана",
+        fa: "خرده‌فروشی"
+    },
+    "Qayta ishlash": {
+        en: "Processing",
+        ru: "Переработка",
+        tg: "Коркард",
+        fa: "فرآوری"
+    },
+    "HoReCa (mehmonxona/restoran)": {
+        en: "HoReCa (hotel/restaurant)",
+        ru: "HoReCa (отель/ресторан)",
+        tg: "HoReCa (меҳмонхона/ресторан)",
+        fa: "HoReCa (هتل/رستوران)"
+    },
+    "Distribyutor": {
+        en: "Distributor",
+        ru: "Дистрибьютор",
+        tg: "Дистрибютор",
+        fa: "توزیع‌کننده"
+    },
+    "Eksportyor": {
+        en: "Exporter",
+        ru: "Экспортёр",
+        tg: "Содиркунанда",
+        fa: "صادرکننده"
+    },
+    "O'zi olib ketadi": {
+        en: "Self pickup",
+        ru: "Самовывоз",
+        tg: "Худгирӣ",
+        fa: "تحویل حضوری"
+    },
+    "Sotuvchi yetkazadi": {
+        en: "Seller delivers",
+        ru: "Доставка продавцом",
+        tg: "Интиқол аз ҷониби фурӯшанда",
+        fa: "ارسال توسط فروشنده"
+    },
+    "Hamkor logistika orqali": {
+        en: "Via partner logistics",
+        ru: "Через партнёрскую логистику",
+        tg: "Тавассути логистикаи шарик",
+        fa: "از طریق لجستیک شریک"
+    },
+    "Toshkent viloyati": {
+        en: "Tashkent Region",
+        ru: "Ташкентская область",
+        tg: "Вилояти Тошкент",
+        fa: "استان تاشکند"
+    },
+    "Andijon": {
+        en: "Andijan",
+        ru: "Андижан",
+        tg: "Андижон",
+        fa: "آندیجان"
+    },
+    "Namangan": {
+        en: "Namangan",
+        ru: "Наманган",
+        tg: "Наманган",
+        fa: "نمنگان"
+    },
+    "Navoiy": {
+        en: "Navoiy",
+        ru: "Навои",
+        tg: "Навоӣ",
+        fa: "نوایی"
+    },
+    "Qashqadaryo": {
+        en: "Qashqadaryo",
+        ru: "Кашкадарья",
+        tg: "Қашқадарё",
+        fa: "قشقادریا"
+    },
+    "Surxondaryo": {
+        en: "Surkhandarya",
+        ru: "Сурхандарья",
+        tg: "Сурхондарё",
+        fa: "سورخان‌دریا"
+    },
+    "Jizzax": {
+        en: "Jizzakh",
+        ru: "Джизак",
+        tg: "Ҷиззах",
+        fa: "جیزاخ"
+    },
+    "Sirdaryo": {
+        en: "Sirdaryo",
+        ru: "Сырдарья",
+        tg: "Сирдарё",
+        fa: "سیردریا"
+    },
+    "Xorazm": {
+        en: "Khorezm",
+        ru: "Хорезм",
+        tg: "Хоразм",
+        fa: "خوارزم"
+    },
+    "Qoraqalpog'iston": {
+        en: "Karakalpakstan",
+        ru: "Каракалпакстан",
+        tg: "Қарақалпоқистон",
+        fa: "قره‌قالپاقستان"
     }
 };
 

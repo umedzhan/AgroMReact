@@ -8,6 +8,7 @@ import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
 import AdminRoute from './components/AdminRoute';
 import PrivateRoute from './components/PrivateRoute';
+import HostHome from './components/HostHome';
 
 function App() {
   return (
@@ -23,13 +24,14 @@ function App() {
                   {/* Public Routes */}
                   <Route path="/login" element={<LoginScreen />} />
                   <Route path="/register" element={<RegisterScreen />} />
-                  <Route path="/" element={<HomeScreen />} />
+                  <Route path="/" element={<HostHome />} />
                   <Route path="/search/:keyword" element={<HomeScreen />} />
                   <Route path="/page/:pageNumber" element={<HomeScreen />} />
                   <Route path="/search/:keyword/page/:pageNumber" element={<HomeScreen />} />
                   <Route path="/product/:id" element={<ProductScreen />} />
                   <Route path="/cart" element={<CartScreen />} />
                   <Route path="/shop" element={<ShopScreen />} />
+                  <Route path="/export" element={<ExportScreen />} />
                   <Route path="/pages" element={<HomeScreen />} />
                   <Route path="/blog" element={<HomeScreen />} />
                   <Route path="/about" element={<AboutScreen />} />
@@ -47,7 +49,6 @@ function App() {
                     <Route path="/checkout" element={<CheckoutScreen />} />
                     <Route path="/orders" element={<OrdersScreen />} />
                     <Route path="/certification" element={<CertificationScreen />} />
-                    <Route path="/export" element={<ExportScreen />} />
                     <Route path="/contracts" element={<ContractsScreen />} />
                     <Route path="/order/:id" element={<OrderScreen />} />
                     <Route path="/wishlist" element={<WishlistScreen />} />

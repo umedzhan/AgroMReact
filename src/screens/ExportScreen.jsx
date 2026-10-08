@@ -1,221 +1,243 @@
-import React, { useState } from 'react';
-import { FaPlane, FaTruck, FaShip, FaFlag, FaPassport, FaCheckCircle, FaSpinner, FaMapMarkedAlt } from 'react-icons/fa';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import { FaMapMarkedAlt, FaCheckCircle, FaSpinner, FaExternalLinkAlt, FaPlus } from 'react-icons/fa';
 import { tUZ } from '../utils/translateHelper';
-import { useTranslation } from 'react-i18next';
+import AuthContext from '../context/AuthContext';
+import Loader from '../components/Loader';
+
+const STATUS_BADGE = {
+    verified: { label: "Tasdiqlangan", className: 'bg-green-50 text-brand' },
+    pending: { label: "Tekshirilmoqda", className: 'bg-amber-50 text-amber-600' },
+    outdated: { label: "Eskirgan", className: 'bg-red-50 text-red-500' },
+};
 
 const ExportScreen = () => {
-    useTranslation();
-    // Mode selectors
-    const [selectedMode, setSelectedMode] = useState('all');
+    const { user } = useContext(AuthContext);
 
-    // Shipments mock list
-    const shipments = [
-        {
-            id: 'EXP-TR881',
-            destination: tUZ('Rossiya (Moskva)'),
-            mode: 'land',
-            cargo: tUZ('Qizil Pomidor (18 tonna)'),
-            status: 'cleared',
-            statusLabel: tUZ('Bojxonadan o\'tdi'),
-            eta: '2026-06-12'
-        },
-        {
-            id: 'EXP-TR882',
-            destination: tUZ('Turkiya (Istanbul)'),
-            mode: 'sea',
-            cargo: tUZ('Bug\'doy (45 tonna)'),
-            status: 'inspection',
-            statusLabel: tUZ('Bojxona tekshiruvida'),
-            eta: '2026-06-18'
-        },
-        {
-            id: 'EXP-TR883',
-            destination: tUZ('BAA (Dubay)'),
-            mode: 'air',
-            cargo: tUZ('Shirin Gilos (2.5 tonna)'),
-            status: 'documents',
-            statusLabel: tUZ('Hujjat kutilmoqda'),
-            eta: '2026-06-09'
-        },
-        {
-            id: 'EXP-TR884',
-            destination: tUZ('Qozog\'iston (Almati)'),
-            mode: 'land',
-            cargo: tUZ('Sariq Sabzi (12 tonna)'),
-            status: 'cleared',
-            statusLabel: tUZ('Bojxonadan o\'tdi'),
-            eta: '2026-06-08'
+    const [countries, setCountries] = useState([]);
+    const [selectedCountry, setSelectedCountry] = useState(null);
+    const [requirements, setRequirements] = useState([]);
+    const [loadingRequirements, setLoadingRequirements] = useState(false);
+
+    const [myProducts, setMyProducts] = useState([]);
+    const [operations, setOperations] = useState([]);
+    const [newOpProduct, setNewOpProduct] = useState('');
+    const [newOpTons, setNewOpTons] = useState('');
+    const [startingOp, setStartingOp] = useState(false);
+
+    useEffect(() => {
+        const fetchCountries = async () => {
+            try {
+                const { data } = await axios.get('/api/countries');
+                setCountries(data);
+                if (data.length > 0) setSelectedCountry(data[0].code);
+            } catch (error) {
+                toast.error(tUZ("Davlatlar ro'yxatini yuklab bo'lmadi"));
+            }
+        };
+        fetchCountries();
+    }, []);
+
+    useEffect(() => {
+        if (!selectedCountry) return;
+        const fetchRequirements = async () => {
+            try {
+                setLoadingRequirements(true);
+                const { data } = await axios.get('/api/export-requirements', { params: { country: selectedCountry } });
+                setRequirements(data);
+            } catch (error) {
+                toast.error(tUZ("Talablarni yuklab bo'lmadi"));
+            } finally {
+                setLoadingRequirements(false);
+            }
+        };
+        fetchRequirements();
+    }, [selectedCountry]);
+
+    useEffect(() => {
+        if (!user) return;
+
+        const fetchMine = async () => {
+            const config = { headers: { Authorization: `Bearer ${user.token}` } };
+            try {
+                const [productsRes, opsRes] = await Promise.all([
+                    axios.get('/api/products', { params: { myproducts: true }, ...config }),
+                    axios.get('/api/export-operations', config),
+                ]);
+                setMyProducts(productsRes.data.products || []);
+                setOperations(opsRes.data);
+            } catch (error) {
+                // Not critical for the read-only parts of the page
+            }
+        };
+        fetchMine();
+    }, [user]);
+
+    const startOperation = async (e) => {
+        e.preventDefault();
+        if (!newOpProduct || !newOpTons || !selectedCountry) return;
+
+        setStartingOp(true);
+        try {
+            const config = { headers: { Authorization: `Bearer ${user.token}`, 'Content-Type': 'application/json' } };
+            const { data } = await axios.post(
+                '/api/export-operations',
+                { product: newOpProduct, countryCode: selectedCountry, quantityTons: newOpTons },
+                config
+            );
+            setOperations([data, ...operations]);
+            setNewOpProduct('');
+            setNewOpTons('');
+            toast.success(tUZ("Eksport jarayoni boshlandi"));
+        } catch (error) {
+            toast.error(error.response?.data?.message || tUZ("Eksport jarayonini boshlab bo'lmadi"));
+        } finally {
+            setStartingOp(false);
         }
-    ];
+    };
 
-    // Country stats data
-    const countryStats = [
-        { name: tUZ('Rossiya'), tons: 250, percent: 85, flag: '🇷🇺' },
-        { name: tUZ('Qozog\'iston'), tons: 120, percent: 55, flag: '🇰🇿' },
-        { name: tUZ('Turkiya'), tons: 85, percent: 40, flag: '🇹🇷' },
-        { name: tUZ('BAA'), tons: 35, percent: 20, flag: '🇦🇪' }
-    ];
-
-    const filteredShipments = selectedMode === 'all' 
-        ? shipments 
-        : shipments.filter(s => s.mode === selectedMode);
+    const selectedCountryData = countries.find((c) => c.code === selectedCountry);
 
     return (
         <div className="container mx-auto px-4 py-8 max-w-5xl space-y-8 animate-fadeIn">
-            {/* Header */}
             <div>
                 <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 flex items-center gap-2">
                     <FaMapMarkedAlt className="text-blue-600" />
-                    {tUZ("Logistika va Eksport Nazorati")}
+                    {tUZ("Eksport bo'yicha davlat talablari")}
                 </h1>
-                <p className="text-gray-500 text-sm">{tUZ("Xalqaro buyurtmalarning yetkazilishi, bojxona rasmiylashtiruvi va eksport statistikasi.")}</p>
+                <p className="text-gray-500 text-sm">
+                    {tUZ("Davlatni tanlang va shu davlatga eksport qilish uchun qanday talablar borligini ko'ring. Har bir talab rasmiy manbaga ishora qiladi.")}
+                </p>
             </div>
 
-            {/* Logistics Modes Overview */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* Air freight */}
-                <div 
-                    onClick={() => setSelectedMode(selectedMode === 'air' ? 'all' : 'air')}
-                    className={`bg-white border rounded-2xl p-5 shadow-sm cursor-pointer hover:shadow-md transition-all flex items-center gap-4 ${
-                        selectedMode === 'air' ? 'border-blue-500 bg-blue-50/20' : 'border-gray-150'
-                    }`}
-                >
-                    <div className="bg-blue-50 text-blue-600 p-4 rounded-full">
-                        <FaPlane size={24} />
-                    </div>
-                    <div>
-                        <h3 className="font-extrabold text-gray-900 text-base">{tUZ("Havo Yo'llari")}</h3>
-                        <p className="text-xs text-gray-400 mt-0.5">{tUZ("Tezkor yetkazish | 1 ta faol yuk")}</p>
-                    </div>
-                </div>
-
-                {/* Land transport */}
-                <div 
-                    onClick={() => setSelectedMode(selectedMode === 'land' ? 'all' : 'land')}
-                    className={`bg-white border rounded-2xl p-5 shadow-sm cursor-pointer hover:shadow-md transition-all flex items-center gap-4 ${
-                        selectedMode === 'land' ? 'border-blue-500 bg-blue-50/20' : 'border-gray-150'
-                    }`}
-                >
-                    <div className="bg-emerald-50 text-emerald-600 p-4 rounded-full">
-                        <FaTruck size={24} />
-                    </div>
-                    <div>
-                        <h3 className="font-extrabold text-gray-900 text-base">{tUZ("Quruqlik Yo'llari")}</h3>
-                        <p className="text-xs text-gray-400 mt-0.5">{tUZ("Standart eksport | 2 ta faol yuk")}</p>
-                    </div>
-                </div>
-
-                {/* Sea cargo */}
-                <div 
-                    onClick={() => setSelectedMode(selectedMode === 'sea' ? 'all' : 'sea')}
-                    className={`bg-white border rounded-2xl p-5 shadow-sm cursor-pointer hover:shadow-md transition-all flex items-center gap-4 ${
-                        selectedMode === 'sea' ? 'border-blue-500 bg-blue-50/20' : 'border-gray-150'
-                    }`}
-                >
-                    <div className="bg-purple-50 text-purple-600 p-4 rounded-full">
-                        <FaShip size={24} />
-                    </div>
-                    <div>
-                        <h3 className="font-extrabold text-gray-900 text-base">{tUZ("Dengiz Karteri")}</h3>
-                        <p className="text-xs text-gray-400 mt-0.5">{tUZ("Yirik hajmli yuklar | 1 ta faol yuk")}</p>
-                    </div>
-                </div>
-            </div>
-
-            {/* Active customs tracking list */}
             <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm space-y-6">
-                <div>
-                    <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Faol Bojxona va Eksport Yuklari")}</h3>
-                    <p className="text-gray-500 text-xs">{tUZ("Bojxona nazoratidagi yuklarning holati va taxminiy etib borish vaqti.")}</p>
+                <div className="flex flex-wrap gap-2">
+                    {countries.map((c) => (
+                        <button
+                            key={c.code}
+                            onClick={() => setSelectedCountry(c.code)}
+                            className={`px-3 py-2 rounded-xl text-sm font-semibold border transition-colors flex items-center gap-1.5 ${
+                                selectedCountry === c.code
+                                    ? 'border-brand bg-green-50 text-brand'
+                                    : 'border-gray-150 text-gray-600 hover:border-gray-300'
+                            }`}
+                        >
+                            <span>{c.flag}</span> {tUZ(c.name.uz)}
+                        </button>
+                    ))}
                 </div>
 
-                <div className="overflow-x-auto">
-                    <table className="w-full text-left text-sm text-gray-600 min-w-[600px] divide-y divide-gray-100">
-                        <thead>
-                            <tr className="text-xs text-gray-400 font-bold uppercase pb-3 bg-gray-50/50">
-                                <th className="p-3.5">{tUZ("ID")}</th>
-                                <th className="p-3.5">{tUZ("Manzil")}</th>
-                                <th className="p-3.5">{tUZ("Yuk turi")}</th>
-                                <th className="p-3.5">{tUZ("Transport")}</th>
-                                <th className="p-3.5">{tUZ("Bojxona Statusi")}</th>
-                                <th className="p-3.5">{tUZ("Kutilayotgan sana")}</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-50">
-                            {filteredShipments.map((ship) => (
-                                <tr key={ship.id} className="hover:bg-gray-50/50 transition-colors">
-                                    <td className="p-3.5 font-bold text-gray-900">{ship.id}</td>
-                                    <td className="p-3.5 font-semibold text-gray-800">{ship.destination}</td>
-                                    <td className="p-3.5 text-xs">{ship.cargo}</td>
-                                    <td className="p-3.5 capitalize text-xs">
-                                        {ship.mode === 'air' ? tUZ('✈️ Havo') : ship.mode === 'land' ? tUZ('🚚 Quruqlik') : tUZ('🚢 Dengiz')}
-                                    </td>
-                                    <td className="p-3.5">
-                                        <span className={`text-[10px] font-extrabold py-0.5 px-2 rounded-full flex items-center gap-1.5 w-max ${
-                                            ship.status === 'cleared' 
-                                                ? 'bg-green-50 text-brand' 
-                                                : ship.status === 'inspection'
-                                                ? 'bg-amber-50 text-amber-600 animate-pulse'
-                                                : 'bg-red-50 text-red-500'
-                                        }`}>
-                                            {ship.status === 'cleared' ? <FaCheckCircle size={10} /> : <FaSpinner className={ship.status === 'inspection' ? 'animate-spin' : ''} size={10} />}
-                                            {tUZ(ship.statusLabel)}
-                                        </span>
-                                    </td>
-                                    <td className="p-3.5 font-bold text-gray-700 text-xs">{ship.eta}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                {loadingRequirements ? (
+                    <Loader />
+                ) : (
+                    <div className="space-y-3">
+                        {requirements.length === 0 && (
+                            <p className="text-sm text-gray-500">{tUZ("Bu davlat uchun hali talab qo'shilmagan.")}</p>
+                        )}
+                        {requirements.map((r) => {
+                            const badge = STATUS_BADGE[r.verificationStatus] || STATUS_BADGE.pending;
+                            return (
+                                <div key={r._id} className="border border-gray-100 rounded-xl p-4 flex items-start justify-between gap-3">
+                                    <div>
+                                        <p className="font-bold text-gray-900 text-sm">{r.title?.uz}</p>
+                                        {r.sourceName && (
+                                            <a
+                                                href={r.sourceUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-xs text-blue-600 hover:underline inline-flex items-center gap-1 mt-1"
+                                            >
+                                                {tUZ("Rasmiy manba")}: {r.sourceName} <FaExternalLinkAlt size={9} />
+                                            </a>
+                                        )}
+                                        <p className="text-[11px] text-gray-400 mt-1">
+                                            {tUZ("Oxirgi tekshiruv")}: {r.lastVerified ? new Date(r.lastVerified).toLocaleDateString() : '—'}
+                                        </p>
+                                    </div>
+                                    <span className={`text-[10px] font-extrabold py-1 px-2.5 rounded-full flex items-center gap-1.5 shrink-0 ${badge.className}`}>
+                                        {r.verificationStatus === 'verified' ? <FaCheckCircle size={10} /> : <FaSpinner size={10} />}
+                                        {tUZ(badge.label)}
+                                    </span>
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
             </div>
 
-            {/* Country wise Export stats */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Stats chart */}
-                <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm space-y-6">
+            {user && (
+                <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm space-y-5">
                     <div>
-                        <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Eksport Statistikasi (Mamlakat bo'yicha)")}</h3>
-                        <p className="text-gray-500 text-xs">{tUZ("2026-yilgi umumiy eksport qilingan mahsulot hajmi (tonnada).")}</p>
+                        <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Mening eksport jarayonlarim")}</h3>
+                        <p className="text-gray-500 text-xs">
+                            {selectedCountryData ? `${tUZ("Tanlangan davlat")}: ${selectedCountryData.flag} ${tUZ(selectedCountryData.name.uz)}` : ''}
+                        </p>
                     </div>
 
-                    <div className="space-y-4">
-                        {countryStats.map((c, index) => (
-                            <div key={index} className="space-y-1.5">
-                                <div className="flex justify-between text-xs font-bold text-gray-700">
-                                    <span className="flex items-center gap-1.5">{c.flag} {tUZ(c.name)}</span>
-                                    <span>{c.tons} {tUZ("tonna")}</span>
-                                </div>
-                                <div className="w-full bg-gray-100 rounded-full h-3.5 overflow-hidden">
-                                    <div 
-                                        className="bg-blue-500 h-3.5 rounded-full transition-all duration-1000" 
-                                        style={{ width: `${c.percent}%` }}
-                                    ></div>
-                                </div>
+                    <form onSubmit={startOperation} className="flex flex-wrap items-end gap-3">
+                        <select
+                            value={newOpProduct}
+                            onChange={(e) => setNewOpProduct(e.target.value)}
+                            className="border rounded-lg px-3 py-2 text-sm bg-white"
+                            required
+                        >
+                            <option value="">{tUZ("Mahsulotni tanlang")}</option>
+                            {myProducts.map((p) => (
+                                <option key={p._id} value={p._id}>{p.name}</option>
+                            ))}
+                        </select>
+                        <input
+                            type="number"
+                            min="0.1"
+                            step="0.1"
+                            placeholder={tUZ("Hajmi (tonna)")}
+                            value={newOpTons}
+                            onChange={(e) => setNewOpTons(e.target.value)}
+                            className="border rounded-lg px-3 py-2 text-sm w-36"
+                            required
+                        />
+                        <button
+                            type="submit"
+                            disabled={startingOp}
+                            className="bg-brand text-white font-bold px-4 py-2 rounded-lg text-sm flex items-center gap-1.5 hover:bg-brand-dark transition-colors disabled:opacity-50"
+                        >
+                            <FaPlus size={10} /> {tUZ("Boshlash")}
+                        </button>
+                    </form>
+
+                    <div className="space-y-2">
+                        {operations.length === 0 && (
+                            <p className="text-sm text-gray-500">{tUZ("Hali eksport jarayoni boshlanmagan.")}</p>
+                        )}
+                        {operations.map((op) => (
+                            <div key={op._id} className="border border-gray-100 rounded-xl p-3 flex items-center justify-between text-sm">
+                                <span className="font-semibold text-gray-800">
+                                    {op.product?.name || '—'} → {op.countryCode} ({op.quantityTons} t)
+                                </span>
+                                <span className="text-xs font-bold text-blue-600">{tUZ("Bosqich")}: {op.currentStage}</span>
                             </div>
                         ))}
                     </div>
                 </div>
+            )}
 
-                {/* Logistics Info Card */}
-                <div className="bg-gradient-to-br from-blue-900 to-indigo-900 rounded-2xl p-6 text-white flex flex-col justify-between shadow-md border border-blue-800">
-                    <div className="space-y-4">
-                        <span className="bg-blue-500 text-white text-[10px] uppercase font-bold py-1 px-3 rounded-full inline-block">
-                            {tUZ("Eksportga Tavsiyalar")}
-                        </span>
-                        <h3 className="text-xl font-bold leading-tight">{tUZ("Yevropa Ittifoqiga eksport qilish uchun imtiyozlar bormi?")}</h3>
-                        <p className="text-blue-100 text-xs leading-relaxed">
-                            {tUZ("O'zbekiston GSP+ tizimi doirasida 6000 dan ortiq tovar turlarini Yevropa Ittifoqiga bojxona to'lovlarisiz eksport qilishi mumkin. Hujjatlarni rasmiylashtirish bo'yicha bizning bepul maslahatchilarimiz xizmatidan foydalaning.")}
-                        </p>
-                    </div>
-                    <button 
-                        onClick={() => toast.success(tUZ("Bizning konsultantlarimiz tez orada siz bilan bog'lanishadi."))}
-                        className="bg-white hover:bg-blue-50 text-blue-900 font-bold py-2.5 rounded-xl text-xs transition-colors shadow-sm w-full mt-6"
-                    >
-                        {tUZ("Mutaxassis bilan bog'lanish")}
-                    </button>
+            <div className="bg-gradient-to-br from-blue-900 to-indigo-900 rounded-2xl p-6 text-white flex flex-col justify-between shadow-md border border-blue-800">
+                <div className="space-y-4">
+                    <span className="bg-blue-500 text-white text-[10px] uppercase font-bold py-1 px-3 rounded-full inline-block">
+                        {tUZ("Eksportga Tavsiyalar")}
+                    </span>
+                    <h3 className="text-xl font-bold leading-tight">{tUZ("Yevropa Ittifoqiga eksport qilish uchun imtiyozlar bormi?")}</h3>
+                    <p className="text-blue-100 text-xs leading-relaxed">
+                        {tUZ("O'zbekiston GSP+ tizimi doirasida 6000 dan ortiq tovar turlarini Yevropa Ittifoqiga bojxona to'lovlarisiz eksport qilishi mumkin. Hujjatlarni rasmiylashtirish bo'yicha bizning bepul maslahatchilarimiz xizmatidan foydalaning.")}
+                    </p>
                 </div>
+                <button
+                    onClick={() => toast.success(tUZ("Bizning konsultantlarimiz tez orada siz bilan bog'lanishadi."))}
+                    className="bg-white hover:bg-blue-50 text-blue-900 font-bold py-2.5 rounded-xl text-xs transition-colors shadow-sm w-full mt-6"
+                >
+                    {tUZ("Mutaxassis bilan bog'lanish")}
+                </button>
             </div>
         </div>
     );

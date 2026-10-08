@@ -7,6 +7,23 @@ import AuthContext from '../context/AuthContext';
 import { tUZ } from '../utils/translateHelper';
 import { useTranslation } from 'react-i18next';
 import { PRODUCT_CATEGORIES } from '../utils/categories';
+import { REGIONS } from '../utils/regions';
+
+const BUYER_TYPES = ['wholesale', 'retail', 'processing', 'horeca', 'distributor', 'exporter'];
+const BUYER_TYPE_LABELS = {
+    wholesale: "Ulgurji",
+    retail: "Chakana",
+    processing: "Qayta ishlash",
+    horeca: "HoReCa (mehmonxona/restoran)",
+    distributor: "Distribyutor",
+    exporter: "Eksportyor",
+};
+const DELIVERY_OPTIONS = ['pickup', 'seller', 'partner'];
+const DELIVERY_OPTION_LABELS = {
+    pickup: "O'zi olib ketadi",
+    seller: "Sotuvchi yetkazadi",
+    partner: "Hamkor logistika orqali",
+};
 
 const ProductEditScreen = () => {
     const { t } = useTranslation();
@@ -20,6 +37,13 @@ const ProductEditScreen = () => {
     const [category, setCategory] = useState('');
     const [countInStock, setCountInStock] = useState(0);
     const [description, setDescription] = useState('');
+    // Optional "Market" (local/export trade) fields
+    const [region, setRegion] = useState('');
+    const [grade, setGrade] = useState('');
+    const [certificatesText, setCertificatesText] = useState('');
+    const [harvestDate, setHarvestDate] = useState('');
+    const [buyerTypes, setBuyerTypes] = useState([]);
+    const [delivery, setDelivery] = useState([]);
     const [loading, setLoading] = useState(false);
     const [loadingUpdate, setLoadingUpdate] = useState(false);
     const [uploading, setUploading] = useState(false);
@@ -45,6 +69,12 @@ const ProductEditScreen = () => {
                     setCategory(data.category);
                     setCountInStock(data.countInStock);
                     setDescription(data.description);
+                    setRegion(data.region || '');
+                    setGrade(data.grade || '');
+                    setCertificatesText((data.certificates || []).join(', '));
+                    setHarvestDate(data.harvestDate ? data.harvestDate.substring(0, 10) : '');
+                    setBuyerTypes(data.buyerTypes || []);
+                    setDelivery(data.delivery || []);
                     setLoading(false);
                 } catch (error) {
                     setLoading(false);
@@ -78,6 +108,10 @@ const ProductEditScreen = () => {
         }
     };
 
+    const toggleArrayValue = (list, setList, value) => {
+        setList(list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
+    };
+
     const submitHandler = async (e) => {
         e.preventDefault();
         setLoadingUpdate(true);
@@ -89,35 +123,29 @@ const ProductEditScreen = () => {
                 },
             };
 
+            const payload = {
+                name,
+                price,
+                image,
+                brand,
+                category,
+                description,
+                countInStock,
+                region: region || undefined,
+                grade: grade || undefined,
+                certificates: certificatesText
+                    ? certificatesText.split(',').map((c) => c.trim()).filter(Boolean)
+                    : [],
+                harvestDate: harvestDate || undefined,
+                buyerTypes,
+                delivery,
+            };
+
             if (isEditMode) {
-                await axios.put(
-                    `/api/products/${productId}`,
-                    {
-                        name,
-                        price,
-                        image,
-                        brand,
-                        category,
-                        description,
-                        countInStock,
-                    },
-                    config
-                );
+                await axios.put(`/api/products/${productId}`, payload, config);
                 toast.success(tUZ('Mahsulot muvaffaqiyatli yangilandi'));
             } else {
-                await axios.post(
-                    '/api/products',
-                    {
-                        name,
-                        price,
-                        image,
-                        brand,
-                        category,
-                        description,
-                        countInStock,
-                    },
-                    config
-                );
+                await axios.post('/api/products', payload, config);
                 toast.success(tUZ('Mahsulot muvaffaqiyatli yaratildi'));
             }
             setLoadingUpdate(false);
@@ -234,6 +262,97 @@ const ProductEditScreen = () => {
                                 rows="4"
                                 className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
                             ></textarea>
+                        </div>
+
+                        <div className="border-t pt-4 mt-2 mb-4">
+                            <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">
+                                {tUZ("Bozor va eksport uchun qo'shimcha ma'lumot (ixtiyoriy)")}
+                            </h2>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="mb-4">
+                                    <label className="block text-gray-700 font-bold mb-2">{tUZ("Hudud")}</label>
+                                    <select
+                                        value={region}
+                                        onChange={(e) => setRegion(e.target.value)}
+                                        className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none bg-white"
+                                    >
+                                        <option value="">{tUZ("Hududni tanlang")}</option>
+                                        {REGIONS.map((r) => (
+                                            <option key={r.value} value={r.value}>{tUZ(r.label)}</option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                <div className="mb-4">
+                                    <label className="block text-gray-700 font-bold mb-2">{tUZ("Sifat darajasi")}</label>
+                                    <select
+                                        value={grade}
+                                        onChange={(e) => setGrade(e.target.value)}
+                                        className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none bg-white"
+                                    >
+                                        <option value="">{tUZ("Tanlanmagan")}</option>
+                                        <option value="premium">{tUZ("Premium")}</option>
+                                        <option value="grade1">{tUZ("1-sifat")}</option>
+                                        <option value="grade2">{tUZ("2-sifat")}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="mb-4">
+                                    <label className="block text-gray-700 font-bold mb-2">{tUZ("Sertifikatlar (vergul bilan)")}</label>
+                                    <input
+                                        type="text"
+                                        placeholder="GlobalGAP, Organic"
+                                        value={certificatesText}
+                                        onChange={(e) => setCertificatesText(e.target.value)}
+                                        className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
+                                    />
+                                </div>
+
+                                <div className="mb-4">
+                                    <label className="block text-gray-700 font-bold mb-2">{tUZ("Hosil yig'ish sanasi")}</label>
+                                    <input
+                                        type="date"
+                                        value={harvestDate}
+                                        onChange={(e) => setHarvestDate(e.target.value)}
+                                        className="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-500 outline-none"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 font-bold mb-2">{tUZ("Xaridor turi")}</label>
+                                <div className="flex flex-wrap gap-3">
+                                    {BUYER_TYPES.map((bt) => (
+                                        <label key={bt} className="flex items-center gap-1.5 text-sm text-gray-700">
+                                            <input
+                                                type="checkbox"
+                                                checked={buyerTypes.includes(bt)}
+                                                onChange={() => toggleArrayValue(buyerTypes, setBuyerTypes, bt)}
+                                            />
+                                            {tUZ(BUYER_TYPE_LABELS[bt])}
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="mb-4">
+                                <label className="block text-gray-700 font-bold mb-2">{tUZ("Yetkazib berish usuli")}</label>
+                                <div className="flex flex-wrap gap-3">
+                                    {DELIVERY_OPTIONS.map((d) => (
+                                        <label key={d} className="flex items-center gap-1.5 text-sm text-gray-700">
+                                            <input
+                                                type="checkbox"
+                                                checked={delivery.includes(d)}
+                                                onChange={() => toggleArrayValue(delivery, setDelivery, d)}
+                                            />
+                                            {tUZ(DELIVERY_OPTION_LABELS[d])}
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
 
                         <button
