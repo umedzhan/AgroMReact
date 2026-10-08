@@ -4394,6 +4394,151 @@ const dictionary = {
         ru: "Каракалпакстан",
         tg: "Қарақалпоқистон",
         fa: "قره‌قالپاقستان"
+    },
+    // Added: Certificates/Contracts/Logistics screens (Phase 2)
+    "Sertifikatlarni yuklab bo'lmadi": {
+        en: "Could not load certificates",
+        ru: "Не удалось загрузить сертификаты",
+        tg: "Сертификатҳоро бор карда натавонист",
+        fa: "گواهینامه‌ها بارگذاری نشد"
+    },
+    "Bu sertifikat uchun fayl yuklanmagan": {
+        en: "No file has been uploaded for this certificate",
+        ru: "Для этого сертификата файл не загружен",
+        tg: "Барои ин сертификат файл бор нашудааст",
+        fa: "فایلی برای این گواهینامه بارگذاری نشده است"
+    },
+    "Fayl yuklash bajarilmadi": {
+        en: "File upload failed",
+        ru: "Не удалось загрузить файл",
+        tg: "Боргирии файл иҷро нашуд",
+        fa: "آپلود فایل انجام نشد"
+    },
+    "Hujjatni yuklab bo'lmadi": {
+        en: "Could not upload the document",
+        ru: "Не удалось загрузить документ",
+        tg: "Ҳуҷҷатро бор карда натавонист",
+        fa: "سند بارگذاری نشد"
+    },
+    "Bu bo'limdan foydalanish uchun tizimga kiring.": {
+        en: "Log in to use this section.",
+        ru: "Войдите в систему, чтобы использовать этот раздел.",
+        tg: "Барои истифодаи ин бахш ба система ворид шавед.",
+        fa: "برای استفاده از این بخش وارد سیستم شوید."
+    },
+    "Hali sertifikat yuklanmagan.": {
+        en: "No certificate has been uploaded yet.",
+        ru: "Пока не загружено ни одного сертификата.",
+        tg: "Ҳанӯз ҳеҷ сертификат бор карда нашудааст.",
+        fa: "هنوز هیچ گواهینامه‌ای بارگذاری نشده است."
+    },
+    "Hujjat raqami": {
+        en: "Document number",
+        ru: "Номер документа",
+        tg: "Рақами ҳуҷҷат",
+        fa: "شماره سند"
+    },
+    "Amal qilish muddati": {
+        en: "Expiry date",
+        ru: "Срок действия",
+        tg: "Мӯҳлати амал",
+        fa: "تاریخ انقضا"
+    },
+    "Fayl (PDF yoki rasm)": {
+        en: "File (PDF or image)",
+        ru: "Файл (PDF или изображение)",
+        tg: "Файл (PDF ё расм)",
+        fa: "فایل (PDF یا تصویر)"
+    },
+    "Shartnomalarni yuklab bo'lmadi": {
+        en: "Could not load contracts",
+        ru: "Не удалось загрузить договоры",
+        tg: "Шартномаҳоро бор карда натавонист",
+        fa: "قراردادها بارگذاری نشد"
+    },
+    "Shartnomani yaratib bo'lmadi": {
+        en: "Could not create the contract",
+        ru: "Не удалось создать договор",
+        tg: "Шартномаро сохта натавонист",
+        fa: "قرارداد ایجاد نشد"
+    },
+    "Shartnomani imzolab bo'lmadi": {
+        en: "Could not sign the contract",
+        ru: "Не удалось подписать договор",
+        tg: "Шартномаро имзо карда натавонист",
+        fa: "قرارداد امضا نشد"
+    },
+    "Hali shartnoma yaratilmagan.": {
+        en: "No contract created yet.",
+        ru: "Пока не создано ни одного договора.",
+        tg: "Ҳанӯз ҳеҷ шартнома сохта нашудааст.",
+        fa: "هنوز هیچ قراردادی ایجاد نشده است."
+    },
+    "Masalan: Bug'doy (Sifatli)": {
+        en: "e.g. Wheat (Quality)",
+        ru: "например: Пшеница (качественная)",
+        tg: "масалан: Гандум (сифатнок)",
+        fa: "به عنوان مثال: گندم (با کیفیت)"
+    },
+    "So'rovingiz qabul qilindi. Bizning konsultantlarimiz tez orada siz bilan bog'lanishadi.": {
+        en: "Your request has been received. Our consultants will contact you soon.",
+        ru: "Ваш запрос принят. Наши консультанты скоро свяжутся с вами.",
+        tg: "Дархости шумо қабул шуд. Мушовирони мо ба зудӣ бо шумо тамос мегиранд.",
+        fa: "درخواست شما دریافت شد. مشاوران ما به زودی با شما تماس خواهند گرفت."
+    },
+    "So'rovni yuborib bo'lmadi": {
+        en: "Could not send the request",
+        ru: "Не удалось отправить запрос",
+        tg: "Дархостро фирист карда натавонист",
+        fa: "درخواست ارسال نشد"
+    },
+    "Logistika narxini taxminiy hisoblash": {
+        en: "Estimate logistics cost",
+        ru: "Расчёт примерной стоимости логистики",
+        tg: "Ҳисоби тахминии арзиши логистика",
+        fa: "تخمین هزینه لجستیک"
+    },
+    "Bu taxminiy baho. Haqiqiy narx tashuvchi kompaniyaga bog'liq holda farq qilishi mumkin.": {
+        en: "This is an estimate. The actual price may vary depending on the carrier.",
+        ru: "Это примерная оценка. Фактическая цена может отличаться в зависимости от перевозчика.",
+        tg: "Ин баҳои тахминӣ аст. Нархи воқеӣ вобаста ба интиқолдиҳанда фарқ карда метавонад.",
+        fa: "این یک تخمین است. قیمت واقعی ممکن است بسته به شرکت حمل‌ونقل متفاوت باشد."
+    },
+    "kun": {
+        en: "days",
+        ru: "дней",
+        tg: "рӯз",
+        fa: "روز"
+    },
+    "Hisoblash uchun davlat va hajmni tanlang.": {
+        en: "Select a country and weight to calculate.",
+        ru: "Выберите страну и вес для расчёта.",
+        tg: "Барои ҳисоб кишвар ва вазнро интихоб кунед.",
+        fa: "برای محاسبه، کشور و وزن را انتخاب کنید."
+    },
+    "Qanday mahsulot, qancha hajmda eksport qilmoqchisiz?": {
+        en: "What product, and what volume, would you like to export?",
+        ru: "Какой товар и в каком объёме вы хотите экспортировать?",
+        tg: "Кадом маҳсулот ва бо кадом ҳаҷм содирот кардан мехоҳед?",
+        fa: "چه محصولی و با چه حجمی می‌خواهید صادر کنید؟"
+    },
+    "Telefon raqamingiz": {
+        en: "Your phone number",
+        ru: "Ваш номер телефона",
+        tg: "Рақами телефони шумо",
+        fa: "شماره تلفن شما"
+    },
+    "Yuborilmoqda...": {
+        en: "Sending...",
+        ru: "Отправка...",
+        tg: "Фиристода шуда истодааст...",
+        fa: "در حال ارسال..."
+    },
+    "So'rovni yuborish": {
+        en: "Send request",
+        ru: "Отправить запрос",
+        tg: "Дархостро фиристодан",
+        fa: "ارسال درخواست"
     }
 };
 

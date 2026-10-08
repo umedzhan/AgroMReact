@@ -26,6 +26,15 @@ const ExportScreen = () => {
     const [newOpTons, setNewOpTons] = useState('');
     const [startingOp, setStartingOp] = useState(false);
 
+    const [logisticsWeight, setLogisticsWeight] = useState('5');
+    const [logisticsEstimate, setLogisticsEstimate] = useState(null);
+    const [loadingLogistics, setLoadingLogistics] = useState(false);
+
+    const [showLeadForm, setShowLeadForm] = useState(false);
+    const [leadMessage, setLeadMessage] = useState('');
+    const [leadPhone, setLeadPhone] = useState('');
+    const [sendingLead, setSendingLead] = useState(false);
+
     useEffect(() => {
         const fetchCountries = async () => {
             try {
@@ -94,6 +103,49 @@ const ExportScreen = () => {
             toast.error(error.response?.data?.message || tUZ("Eksport jarayonini boshlab bo'lmadi"));
         } finally {
             setStartingOp(false);
+        }
+    };
+
+    useEffect(() => {
+        if (!selectedCountry || !logisticsWeight) return;
+        const fetchEstimate = async () => {
+            try {
+                setLoadingLogistics(true);
+                const { data } = await axios.get('/api/logistics/estimate', {
+                    params: { country: selectedCountry, weightTons: logisticsWeight },
+                });
+                setLogisticsEstimate(data);
+            } catch (error) {
+                setLogisticsEstimate(null);
+            } finally {
+                setLoadingLogistics(false);
+            }
+        };
+        fetchEstimate();
+    }, [selectedCountry, logisticsWeight]);
+
+    const sendLead = async (e) => {
+        e.preventDefault();
+        if (!user) {
+            toast.error(tUZ("Iltimos, avval tizimga kiring."));
+            return;
+        }
+
+        setSendingLead(true);
+        try {
+            await axios.post(
+                '/api/export-leads',
+                { countryCode: selectedCountry, message: leadMessage, contactPhone: leadPhone },
+                { headers: { Authorization: `Bearer ${user.token}`, 'Content-Type': 'application/json' } }
+            );
+            setShowLeadForm(false);
+            setLeadMessage('');
+            setLeadPhone('');
+            toast.success(tUZ("So'rovingiz qabul qilindi. Bizning konsultantlarimiz tez orada siz bilan bog'lanishadi."));
+        } catch (error) {
+            toast.error(error.response?.data?.message || tUZ("So'rovni yuborib bo'lmadi"));
+        } finally {
+            setSendingLead(false);
         }
     };
 
@@ -166,6 +218,38 @@ const ExportScreen = () => {
                 )}
             </div>
 
+            <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm space-y-4">
+                <div>
+                    <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Logistika narxini taxminiy hisoblash")}</h3>
+                    <p className="text-gray-500 text-xs">{tUZ("Bu taxminiy baho. Haqiqiy narx tashuvchi kompaniyaga bog'liq holda farq qilishi mumkin.")}</p>
+                </div>
+                <div className="flex flex-wrap items-end gap-3">
+                    <div>
+                        <label className="block text-xs font-semibold text-gray-700 mb-1">{tUZ("Hajmi (tonna)")}</label>
+                        <input
+                            type="number"
+                            min="0.1"
+                            step="0.1"
+                            value={logisticsWeight}
+                            onChange={(e) => setLogisticsWeight(e.target.value)}
+                            className="border rounded-lg px-3 py-2 text-sm w-28"
+                        />
+                    </div>
+                    {loadingLogistics ? (
+                        <Loader />
+                    ) : logisticsEstimate ? (
+                        <div className="text-sm">
+                            <p className="font-bold text-gray-900">
+                                ≈ ${logisticsEstimate.estimatedTotalUsd.toLocaleString()} ({logisticsEstimate.transitDays[0]}–{logisticsEstimate.transitDays[1]} {tUZ("kun")})
+                            </p>
+                            <p className="text-xs text-gray-500">{tUZ(logisticsEstimate.note)}</p>
+                        </div>
+                    ) : (
+                        <p className="text-sm text-gray-400">{tUZ("Hisoblash uchun davlat va hajmni tanlang.")}</p>
+                    )}
+                </div>
+            </div>
+
             {user && (
                 <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm space-y-5">
                     <div>
@@ -232,12 +316,40 @@ const ExportScreen = () => {
                         {tUZ("O'zbekiston GSP+ tizimi doirasida 6000 dan ortiq tovar turlarini Yevropa Ittifoqiga bojxona to'lovlarisiz eksport qilishi mumkin. Hujjatlarni rasmiylashtirish bo'yicha bizning bepul maslahatchilarimiz xizmatidan foydalaning.")}
                     </p>
                 </div>
-                <button
-                    onClick={() => toast.success(tUZ("Bizning konsultantlarimiz tez orada siz bilan bog'lanishadi."))}
-                    className="bg-white hover:bg-blue-50 text-blue-900 font-bold py-2.5 rounded-xl text-xs transition-colors shadow-sm w-full mt-6"
-                >
-                    {tUZ("Mutaxassis bilan bog'lanish")}
-                </button>
+                {showLeadForm ? (
+                    <form onSubmit={sendLead} className="space-y-2 mt-6">
+                        <textarea
+                            rows="2"
+                            required
+                            placeholder={tUZ("Qanday mahsulot, qancha hajmda eksport qilmoqchisiz?")}
+                            value={leadMessage}
+                            onChange={(e) => setLeadMessage(e.target.value)}
+                            className="w-full rounded-xl px-3 py-2 text-sm text-gray-900"
+                        />
+                        <input
+                            type="tel"
+                            required
+                            placeholder={tUZ("Telefon raqamingiz")}
+                            value={leadPhone}
+                            onChange={(e) => setLeadPhone(e.target.value)}
+                            className="w-full rounded-xl px-3 py-2 text-sm text-gray-900"
+                        />
+                        <button
+                            type="submit"
+                            disabled={sendingLead}
+                            className="bg-white hover:bg-blue-50 text-blue-900 font-bold py-2.5 rounded-xl text-xs transition-colors shadow-sm w-full disabled:opacity-50"
+                        >
+                            {sendingLead ? tUZ('Yuborilmoqda...') : tUZ("So'rovni yuborish")}
+                        </button>
+                    </form>
+                ) : (
+                    <button
+                        onClick={() => setShowLeadForm(true)}
+                        className="bg-white hover:bg-blue-50 text-blue-900 font-bold py-2.5 rounded-xl text-xs transition-colors shadow-sm w-full mt-6"
+                    >
+                        {tUZ("Mutaxassis bilan bog'lanish")}
+                    </button>
+                )}
             </div>
         </div>
     );
