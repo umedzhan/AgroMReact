@@ -4655,6 +4655,43 @@ const dictionary = {
         ru: "Заключён договор с партнёром",
         tg: "Бо шарик шартнома баста шудааст",
         fa: "یک قرارداد با شریک منعقد شده است"
+    },
+    // Market landing
+    "Mahsulotlar do'koni": {
+        en: "Product store",
+        ru: "Магазин продуктов",
+        tg: "Мағозаи маҳсулот",
+        fa: "فروشگاه محصولات"
+    },
+    "Fermerlardan to'g'ridan-to'g'ri yangi mahsulotlar: barcha toifalar, filtrlar va qulay buyurtma.": {
+        en: "Fresh produce straight from farmers: all categories, filters and easy ordering.",
+        ru: "Свежие продукты напрямую от фермеров: все категории, фильтры и удобный заказ.",
+        tg: "Маҳсулоти тоза бевосита аз деҳқонон: ҳамаи категорияҳо, филтрҳо ва фармоиши осон.",
+        fa: "محصولات تازه مستقیم از کشاورزان: همه دسته‌ها، فیلترها و سفارش آسان."
+    },
+    "Do'konga o'tish": {
+        en: "Go to store",
+        ru: "Перейти в магазин",
+        tg: "Ба мағоза гузаштан",
+        fa: "رفتن به فروشگاه"
+    },
+    "Mahsulotlarni xorijga eksport qilish: davlatlar bo'yicha talab, logistika va hujjatlar.": {
+        en: "Export products abroad: demand by country, logistics and paperwork.",
+        ru: "Экспорт продукции за рубеж: спрос по странам, логистика и документы.",
+        tg: "Содироти маҳсулот ба хориҷ: талабот аз рӯи кишварҳо, логистика ва ҳуҷҷатҳо.",
+        fa: "صادرات محصولات به خارج: تقاضا بر اساس کشور، لجستیک و مدارک."
+    },
+    "Eksportga o'tish": {
+        en: "Go to export",
+        ru: "Перейти к экспорту",
+        tg: "Ба содирот гузаштан",
+        fa: "رفتن به صادرات"
+    },
+    "Barcha mahsulotlarni ko'rish": {
+        en: "View all products",
+        ru: "Смотреть все товары",
+        tg: "Ҳамаи маҳсулотро дидан",
+        fa: "مشاهده همه محصولات"
     }
 };
 
