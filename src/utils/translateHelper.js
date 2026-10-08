@@ -4594,6 +4594,67 @@ const dictionary = {
         ru: "Смотреть все",
         tg: "Ҳамаро дидан",
         fa: "مشاهده همه"
+    },
+    // Added: local-market readiness checklist (/api/local-requirements)
+    "Mahalliy bozorda sotishga tayyorlik": {
+        en: "Readiness to sell on the local market",
+        ru: "Готовность к продаже на местном рынке",
+        tg: "Омодагӣ барои фурӯш дар бозори маҳаллӣ",
+        fa: "آمادگی برای فروش در بازار محلی"
+    },
+    "Tayyor": {
+        en: "Ready",
+        ru: "Готово",
+        tg: "Омода",
+        fa: "آماده"
+    },
+    "Talab qilinadi": {
+        en: "Required",
+        ru: "Требуется",
+        tg: "Талаб карда мешавад",
+        fa: "لازم است"
+    },
+    "Ixtiyoriy": {
+        en: "Optional",
+        ru: "Необязательно",
+        tg: "Ихтиёрӣ",
+        fa: "اختیاری"
+    },
+    "Email tasdiqlangan hisob": {
+        en: "Verified email account",
+        ru: "Подтверждённый email-аккаунт",
+        tg: "Ҳисоби email тасдиқшуда",
+        fa: "حساب با ایمیل تایید شده"
+    },
+    "Kamida bitta mahsulot joylangan": {
+        en: "At least one product listed",
+        ru: "Размещён хотя бы один товар",
+        tg: "Ҳадди ақал як маҳсулот гузошта шудааст",
+        fa: "حداقل یک محصول ثبت شده است"
+    },
+    "Mahsulotda sifat darajasi (grade) ko'rsatilgan": {
+        en: "Quality grade specified on a product",
+        ru: "Указан сорт (качество) товара",
+        tg: "Дараҷаи сифат дар маҳсулот нишон дода шудааст",
+        fa: "درجه کیفیت در محصول مشخص شده است"
+    },
+    "Faol sertifikat mavjud": {
+        en: "An active certificate exists",
+        ru: "Есть активный сертификат",
+        tg: "Сертификати фаъол мавҷуд аст",
+        fa: "یک گواهینامه فعال وجود دارد"
+    },
+    "Yetkazib berish usuli belgilangan": {
+        en: "Delivery method specified",
+        ru: "Указан способ доставки",
+        tg: "Усули интиқол муайян шудааст",
+        fa: "روش ارسال مشخص شده است"
+    },
+    "Hamkor bilan shartnoma tuzilgan": {
+        en: "A contract with a partner has been made",
+        ru: "Заключён договор с партнёром",
+        tg: "Бо шарик шартнома баста шудааст",
+        fa: "یک قرارداد با شریک منعقد شده است"
     }
 };
 

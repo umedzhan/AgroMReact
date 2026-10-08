@@ -22,6 +22,7 @@ const ProfileScreen = () => {
 
     const [summary, setSummary] = useState(null);
     const [recentContracts, setRecentContracts] = useState([]);
+    const [localRequirements, setLocalRequirements] = useState([]);
 
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
@@ -42,12 +43,14 @@ const ProfileScreen = () => {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
         const fetchDashboard = async () => {
             try {
-                const [summaryRes, contractsRes] = await Promise.all([
+                const [summaryRes, contractsRes, localReqRes] = await Promise.all([
                     axios.get('/api/dashboard/summary', config),
                     axios.get('/api/contracts', config),
+                    axios.get('/api/local-requirements', config),
                 ]);
                 setSummary(summaryRes.data);
                 setRecentContracts(contractsRes.data.slice(0, 2));
+                setLocalRequirements(localReqRes.data);
             } catch (error) {
                 // Dashboard stats are supplementary — don't block the page over it
             }
@@ -361,6 +364,30 @@ const ProfileScreen = () => {
                             </Link>
                         </div>
                     </div>
+
+                    {/* Local-market readiness checklist — computed from this
+                        user's own data, not invented rules */}
+                    {localRequirements.length > 0 && (
+                        <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm space-y-4">
+                            <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Mahalliy bozorda sotishga tayyorlik")}</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                {localRequirements.map((item, idx) => (
+                                    <div key={idx} className="flex items-center justify-between border border-gray-100 rounded-xl px-4 py-2.5">
+                                        <span className="text-xs font-semibold text-gray-700">{tUZ(item.title)}</span>
+                                        <span className={`text-[10px] font-bold py-0.5 px-2 rounded-full shrink-0 ml-2 ${
+                                            item.status === 'ready'
+                                                ? 'bg-green-50 text-brand'
+                                                : item.status === 'required'
+                                                ? 'bg-red-50 text-red-500'
+                                                : 'bg-gray-50 text-gray-400'
+                                        }`}>
+                                            {item.status === 'ready' ? tUZ('Tayyor') : item.status === 'required' ? tUZ('Talab qilinadi') : tUZ('Ixtiyoriy')}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             )}
 
