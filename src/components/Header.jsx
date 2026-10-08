@@ -8,6 +8,7 @@ import TopBar from './TopBar';
 import SearchBox from './SearchBox';
 import { useTranslation } from 'react-i18next';
 import { PRODUCT_CATEGORIES } from '../utils/categories';
+import NotificationBell from './NotificationBell';
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
@@ -78,6 +79,7 @@ const Header = () => {
 
             {/* Right Actions (Desktop Only) */}
             <div className="hidden lg:flex items-center space-x-6">
+              {user && <NotificationBell />}
               {/* User/Sign In */}
               {user ? (
                 <div className="relative group z-50">

@@ -19,6 +19,7 @@ const HomeScreen = () => {
     const [error, setError] = useState('');
     const [page, setPage] = useState(1);
     const [pages, setPages] = useState(1);
+    const [matchedCountries, setMatchedCountries] = useState([]);
     const { t } = useTranslation();
 
     const { addToWishlist, removeFromWishlist, isInWishlist } = useContext(WishlistContext);
@@ -65,6 +66,22 @@ const HomeScreen = () => {
 
         fetchProducts();
     }, [keyword, pageNumber]);
+
+    useEffect(() => {
+        if (!keyword) {
+            setMatchedCountries([]);
+            return;
+        }
+        const fetchMatches = async () => {
+            try {
+                const { data } = await axios.get('/api/search', { params: { q: keyword } });
+                setMatchedCountries(data.countries || []);
+            } catch (err) {
+                setMatchedCountries([]);
+            }
+        };
+        fetchMatches();
+    }, [keyword]);
 
     const toggleWishlist = (e, product) => {
         e.preventDefault();
@@ -119,6 +136,23 @@ const HomeScreen = () => {
                     </div>
                 </div>
             </div>
+
+            {matchedCountries.length > 0 && (
+                <div className="container mx-auto px-4 mb-8">
+                    <h3 className="text-sm font-bold text-gray-500 mb-2">{tUZ("Mos keluvchi davlatlar (eksport)")}</h3>
+                    <div className="flex flex-wrap gap-2">
+                        {matchedCountries.map((c) => (
+                            <Link
+                                key={c.code}
+                                to={`/export?country=${c.code}`}
+                                className="px-3 py-2 rounded-xl text-sm font-semibold border border-gray-150 text-gray-700 hover:border-brand hover:text-brand transition-colors flex items-center gap-1.5 bg-white"
+                            >
+                                <span>{c.flag}</span> {tUZ(c.name.uz)}
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            )}
 
             <div className="container mx-auto px-4 py-4">
                 <div className="flex justify-between items-end mb-8">

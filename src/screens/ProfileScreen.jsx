@@ -20,6 +20,9 @@ const ProfileScreen = () => {
     const [role, setRole] = useState(null); // 'buyer' or 'seller' or null (role selector)
     const [showEditForm, setShowEditForm] = useState(false);
 
+    const [summary, setSummary] = useState(null);
+    const [recentContracts, setRecentContracts] = useState([]);
+
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
 
@@ -33,6 +36,24 @@ const ProfileScreen = () => {
             setRole('buyer');
         }
     }, [navigate, user]);
+
+    useEffect(() => {
+        if (!user) return;
+        const config = { headers: { Authorization: `Bearer ${user.token}` } };
+        const fetchDashboard = async () => {
+            try {
+                const [summaryRes, contractsRes] = await Promise.all([
+                    axios.get('/api/dashboard/summary', config),
+                    axios.get('/api/contracts', config),
+                ]);
+                setSummary(summaryRes.data);
+                setRecentContracts(contractsRes.data.slice(0, 2));
+            } catch (error) {
+                // Dashboard stats are supplementary — don't block the page over it
+            }
+        };
+        fetchDashboard();
+    }, [user]);
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -157,27 +178,21 @@ const ProfileScreen = () => {
                     {/* Dashboard Body Grid */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         
-                        {/* Loyalty Card Column */}
+                        {/* Real purchase stats column */}
                         <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-6">
                             <div className="flex items-center justify-between">
-                                <h3 className="font-extrabold text-gray-900 text-base">{tUZ("Sodiqlik Tizimi")}</h3>
-                                <span className="text-yellow-500"><FaAward size={20} /></span>
+                                <h3 className="font-extrabold text-gray-900 text-base">{tUZ("Xaridlarim")}</h3>
+                                <span className="text-brand"><FaShoppingBag size={20} /></span>
                             </div>
 
-                            <div className="bg-yellow-50/50 rounded-2xl p-4 border border-yellow-100/50 text-center">
-                                <span className="text-xs uppercase tracking-wider text-yellow-600 font-extrabold">{tUZ("Joriy Status")}</span>
-                                <h4 className="text-2xl font-black text-yellow-700 mt-1">{tUZ("Oltin A'zo (Gold)")}</h4>
+                            <div className="bg-green-50/50 rounded-2xl p-4 border border-green-100/50 text-center">
+                                <span className="text-xs uppercase tracking-wider text-brand font-extrabold">{tUZ("Jami buyurtmalar")}</span>
+                                <h4 className="text-2xl font-black text-gray-900 mt-1">{summary?.myOrdersCount ?? 0}</h4>
                             </div>
 
-                            <div className="space-y-2">
-                                <div className="flex justify-between text-xs font-bold text-gray-500">
-                                    <span>{tUZ("Reting ballingiz:")} 750 {tUZ("ball")}</span>
-                                    <span>1000 {tUZ("ball")}</span>
-                                </div>
-                                <div className="w-full bg-gray-100 rounded-full h-2">
-                                    <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '75%' }}></div>
-                                </div>
-                                <p className="text-[10px] text-gray-400">{tUZ("Yana 250 ball to'plab, Platinum statusiga va bepul ekspress yetkazib berish xizmatiga ega bo'ling!")}</p>
+                            <div className="space-y-1 text-center">
+                                <span className="text-xs font-bold text-gray-500">{tUZ("Jami sarflangan:")}</span>
+                                <p className="text-lg font-black text-gray-900">{(summary?.myOrdersTotalUzs ?? 0).toLocaleString()} UZS</p>
                             </div>
                         </div>
 
@@ -266,24 +281,41 @@ const ProfileScreen = () => {
                         </div>
                     </div>
 
-                    {/* Seller Analytics stats */}
+                    {/* Real seller stats — computed from this user's own products/orders/contracts */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm">
                             <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{tUZ("Jami Savdo")}</span>
-                            <h3 className="text-2xl font-black text-gray-900 mt-2">12,450,000 UZS</h3>
-                            <p className="text-xs text-brand font-semibold mt-1">{tUZ("▲ O'tgan oyga nisbatan +15%")}</p>
+                            <h3 className="text-2xl font-black text-gray-900 mt-2">{(summary?.totalSalesUzs ?? 0).toLocaleString()} UZS</h3>
+                            {summary?.salesTrend?.length > 0 ? (
+                                <div className="flex items-end gap-1 mt-3 h-8">
+                                    {summary.salesTrend.map((m) => {
+                                        const max = Math.max(...summary.salesTrend.map((x) => x.total), 1);
+                                        return (
+                                            <div
+                                                key={m.month}
+                                                title={`${m.month}: ${m.total.toLocaleString()} UZS`}
+                                                className="bg-brand/70 rounded-sm flex-1"
+                                                style={{ height: `${Math.max((m.total / max) * 100, 6)}%` }}
+                                            ></div>
+                                        );
+                                    })}
+                                </div>
+                            ) : (
+                                <p className="text-xs text-gray-400 mt-1">{tUZ("Hali haqiqiy savdo tarixi yo'q")}</p>
+                            )}
                         </div>
 
                         <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm">
                             <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{tUZ("Faol Mahsulotlar")}</span>
-                            <h3 className="text-2xl font-black text-gray-900 mt-2">18 {tUZ("ta mahsulot")}</h3>
-                            <p className="text-xs text-gray-400 mt-1">{tUZ("Barcha mahsulotlar tasdiqlangan")}</p>
+                            <h3 className="text-2xl font-black text-gray-900 mt-2">{summary?.activeProducts ?? 0} {tUZ("ta mahsulot")}</h3>
                         </div>
 
                         <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm">
                             <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{tUZ("Shartnomalar")}</span>
-                            <h3 className="text-2xl font-black text-gray-900 mt-2">5 {tUZ("ta faol kelishuv")}</h3>
-                            <p className="text-xs text-amber-600 font-semibold mt-1">{tUZ("● 1 ta imzolash kutilmoqda")}</p>
+                            <h3 className="text-2xl font-black text-gray-900 mt-2">{summary?.contractsActive ?? 0} {tUZ("ta faol kelishuv")}</h3>
+                            {summary?.contractsDraft > 0 && (
+                                <p className="text-xs text-amber-600 font-semibold mt-1">● {summary.contractsDraft} {tUZ("ta imzolash kutilmoqda")}</p>
+                            )}
                         </div>
                     </div>
 
@@ -305,22 +337,28 @@ const ProfileScreen = () => {
 
                         <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm space-y-4">
                             <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Faol Kelishuvlar & Shartnomalar")}</h3>
-                            <div className="divide-y divide-gray-100">
-                                <div className="py-3 flex justify-between items-center">
-                                    <div>
-                                        <p className="text-xs font-bold text-gray-800">Shartnoma #204 - Dehqonobod MCHJ</p>
-                                        <p className="text-[10px] text-gray-400">{tUZ("Bug'doy yetkazib berish (10 tonna)")}</p>
-                                    </div>
-                                    <span className="text-[10px] font-bold py-0.5 px-2 bg-green-50 text-brand rounded-full">{tUZ("Faol")}</span>
+                            {recentContracts.length === 0 ? (
+                                <p className="text-xs text-gray-400">{tUZ("Hali shartnoma yaratilmagan.")}</p>
+                            ) : (
+                                <div className="divide-y divide-gray-100">
+                                    {recentContracts.map((c) => (
+                                        <div key={c._id} className="py-3 flex justify-between items-center">
+                                            <div>
+                                                <p className="text-xs font-bold text-gray-800">{c.partnerName}</p>
+                                                <p className="text-[10px] text-gray-400">{c.cropType} ({c.volume} {tUZ("tonna")})</p>
+                                            </div>
+                                            <span className={`text-[10px] font-bold py-0.5 px-2 rounded-full ${
+                                                c.status === 'active' ? 'bg-green-50 text-brand' : 'bg-amber-50 text-amber-600'
+                                            }`}>
+                                                {c.status === 'active' ? tUZ('Faol') : tUZ('Imzo kutilmoqda')}
+                                            </span>
+                                        </div>
+                                    ))}
                                 </div>
-                                <div className="py-3 flex justify-between items-center">
-                                    <div>
-                                        <p className="text-xs font-bold text-gray-800">Shartnoma #205 - Agrosanoat Savdo</p>
-                                        <p className="text-[10px] text-gray-400">{tUZ("Organik Kartoshka (5 tonna)")}</p>
-                                    </div>
-                                    <span className="text-[10px] font-bold py-0.5 px-2 bg-amber-50 text-amber-600 rounded-full">{tUZ("Imzo kutilmoqda")}</span>
-                                </div>
-                            </div>
+                            )}
+                            <Link to="/contracts" className="text-xs font-bold text-brand hover:underline inline-block">
+                                {tUZ("Barchasini ko'rish")} →
+                            </Link>
                         </div>
                     </div>
                 </div>

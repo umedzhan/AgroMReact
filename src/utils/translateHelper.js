@@ -4539,6 +4539,61 @@ const dictionary = {
         ru: "Отправить запрос",
         tg: "Дархостро фиристодан",
         fa: "ارسال درخواست"
+    },
+    // Added: Notifications, dashboard stats, search (Phase 3)
+    "Bildirishnomalar": {
+        en: "Notifications",
+        ru: "Уведомления",
+        tg: "Огоҳномаҳо",
+        fa: "اعلان‌ها"
+    },
+    "Hozircha bildirishnoma yo'q": {
+        en: "No notifications yet",
+        ru: "Пока нет уведомлений",
+        tg: "Ҳанӯз огоҳнома нест",
+        fa: "هنوز اعلانی وجود ندارد"
+    },
+    "Mos keluvchi davlatlar (eksport)": {
+        en: "Matching countries (export)",
+        ru: "Подходящие страны (экспорт)",
+        tg: "Кишварҳои мувофиқ (содирот)",
+        fa: "کشورهای مرتبط (صادرات)"
+    },
+    "Xaridlarim": {
+        en: "My Purchases",
+        ru: "Мои покупки",
+        tg: "Харидҳои ман",
+        fa: "خریدهای من"
+    },
+    "Jami buyurtmalar": {
+        en: "Total orders",
+        ru: "Всего заказов",
+        tg: "Ҷамъи фармоишҳо",
+        fa: "کل سفارشات"
+    },
+    "Jami sarflangan:": {
+        en: "Total spent:",
+        ru: "Всего потрачено:",
+        tg: "Ҷамъи сарф шуд:",
+        fa: "مجموع هزینه:"
+    },
+    "Hali haqiqiy savdo tarixi yo'q": {
+        en: "No sales history yet",
+        ru: "Пока нет истории продаж",
+        tg: "Ҳанӯз таърихи фурӯш нест",
+        fa: "هنوز تاریخچه فروش وجود ندارد"
+    },
+    "ta imzolash kutilmoqda": {
+        en: "awaiting signature",
+        ru: "ожидают подписания",
+        tg: "интизори имзо",
+        fa: "در انتظار امضا"
+    },
+    "Barchasini ko'rish": {
+        en: "View all",
+        ru: "Смотреть все",
+        tg: "Ҳамаро дидан",
+        fa: "مشاهده همه"
     }
 };
 

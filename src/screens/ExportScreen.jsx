@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { FaMapMarkedAlt, FaCheckCircle, FaSpinner, FaExternalLinkAlt, FaPlus } from 'react-icons/fa';
 import { tUZ } from '../utils/translateHelper';
@@ -14,6 +15,8 @@ const STATUS_BADGE = {
 
 const ExportScreen = () => {
     const { user } = useContext(AuthContext);
+    const [searchParams] = useSearchParams();
+    const preselectedCountry = searchParams.get('country');
 
     const [countries, setCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState(null);
@@ -40,7 +43,8 @@ const ExportScreen = () => {
             try {
                 const { data } = await axios.get('/api/countries');
                 setCountries(data);
-                if (data.length > 0) setSelectedCountry(data[0].code);
+                const preselected = data.find((c) => c.code === preselectedCountry?.toUpperCase());
+                setSelectedCountry(preselected ? preselected.code : data[0]?.code);
             } catch (error) {
                 toast.error(tUZ("Davlatlar ro'yxatini yuklab bo'lmadi"));
             }
