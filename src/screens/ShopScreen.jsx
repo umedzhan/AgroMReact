@@ -60,68 +60,76 @@ const ShopScreen = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            {/* Breadcrumb or Header */}
-            <div className="bg-green-50 p-8 rounded-lg mb-8 text-center bg-[url('/images/breadcrumb.jpg')] bg-cover bg-center relative">
-                <div className="relative z-10">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-2">{tUZ("Do'kon")}</h1>
-                    <div className="flex justify-center space-x-2 text-sm text-gray-500">
-                        <Link to="/" className="hover:text-brand">{tUZ("Bosh sahifa")}</Link>
-                        <span>/</span>
-                        <span className="text-brand font-medium">{tUZ("Do'kon")}</span>
+        <div className="space-y-8">
+            {/* Page header */}
+            <div className="card relative overflow-hidden rounded-3xl">
+                <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_top_right,black_20%,transparent_70%)]" />
+                <div className="absolute -right-24 -top-24 size-72 rounded-full bg-harvest-200/40 blur-3xl" />
+                <div className="relative p-6 md:p-10">
+                    <div className="eyebrow mb-3">🇺🇿 mb.agrom24.uz</div>
+                    <h1 className="text-3xl font-extrabold leading-tight text-ink-950 md:text-5xl">{tUZ("Do'kon")}</h1>
+                    <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-ink-500">
+                        <Link to="/" className="hover:text-ink-900">{tUZ("Bosh sahifa")}</Link>
+                        <span className="text-ink-300">/</span>
+                        <span className="font-semibold text-brand-700">{tUZ("Do'kon")}</span>
                         {categoryQuery && (
                             <>
-                                <span>/</span>
-                                <span className="text-gray-900 capitalize">{getCategoryLabel(categoryQuery, t)}</span>
+                                <span className="text-ink-300">/</span>
+                                <span className="font-semibold text-ink-900 capitalize">{getCategoryLabel(categoryQuery, t)}</span>
                             </>
                         )}
                     </div>
                 </div>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-8">
-                {/* Filters Sidebar (Mock for now, scalable later) */}
-                <div className="w-full md:w-1/4">
-                    <div className="bg-white rounded-2xl shadow-card border border-line md:p-6">
+            <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
+                {/* Filters Sidebar */}
+                <aside>
+                    <div className="card lg:sticky lg:top-36 lg:p-5">
                         <button
                             type="button"
                             onClick={() => setFilterOpen((open) => !open)}
-                            className="w-full flex items-center justify-between p-6 md:p-0 md:mb-6 md:pb-4 md:border-b md:border-gray-100 md:pointer-events-none"
+                            className="flex w-full items-center justify-between p-5 lg:pointer-events-none lg:mb-4 lg:p-0"
                         >
-                            <span className="flex items-center space-x-2">
-                                <FaFilter className="text-brand" />
-                                <h3 className="font-bold text-gray-900 text-lg">{tUZ("Filtr")}</h3>
+                            <span className="flex items-center gap-2">
+                                <FaFilter className="text-brand-600" size={14} />
+                                <h3 className="font-display text-lg font-bold text-ink-900">{tUZ("Filtr")}</h3>
                             </span>
-                            <FaChevronDown className={`text-gray-400 transition-transform md:hidden ${filterOpen ? 'rotate-180' : ''}`} />
+                            <FaChevronDown className={`text-ink-400 transition-transform lg:hidden ${filterOpen ? 'rotate-180' : ''}`} />
                         </button>
 
-                        <div className={`${filterOpen ? 'block' : 'hidden'} md:block px-6 pb-6 md:p-0`}>
-                            <div className="md:mb-6">
-                                <h4 className="font-semibold text-gray-900 mb-3">{tUZ("Kategoriyalar")}</h4>
-                                <ul className="space-y-2 text-gray-600 text-sm">
-                                    <li>
-                                        <Link to="/shop" className={`hover:text-brand ${!categoryQuery ? 'text-brand font-bold' : ''}`}>{tUZ("Barcha kategoriyalar")}</Link>
+                        <div className={`${filterOpen ? 'block' : 'hidden'} lg:block px-5 pb-5 lg:p-0`}>
+                            <h4 className="mb-2 text-sm font-medium text-ink-700">{tUZ("Kategoriyalar")}</h4>
+                            <ul className="space-y-0.5 text-[15px]">
+                                <li>
+                                    <Link
+                                        to="/shop"
+                                        className={`block rounded-xl px-3 py-2 transition ${!categoryQuery ? 'bg-brand-50 font-semibold text-brand-800' : 'text-ink-600 hover:bg-ink-50 hover:text-ink-900'}`}
+                                    >
+                                        {tUZ("Barcha kategoriyalar")}
+                                    </Link>
+                                </li>
+                                {PRODUCT_CATEGORIES.map((c) => (
+                                    <li key={c.value}>
+                                        <Link
+                                            to={`/shop?category=${c.value}`}
+                                            className={`block rounded-xl px-3 py-2 transition ${categoryQuery === c.value ? 'bg-brand-50 font-semibold text-brand-800' : 'text-ink-600 hover:bg-ink-50 hover:text-ink-900'}`}
+                                        >
+                                            {t(`header.nav.${c.navKey}`)}
+                                        </Link>
                                     </li>
-                                    {PRODUCT_CATEGORIES.map((c) => (
-                                        <li key={c.value}>
-                                            <Link
-                                                to={`/shop?category=${c.value}`}
-                                                className={`hover:text-brand ${categoryQuery === c.value ? 'text-brand font-bold' : ''}`}
-                                            >
-                                                {t(`header.nav.${c.navKey}`)}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                                ))}
+                            </ul>
                         </div>
                     </div>
-                </div>
+                </aside>
 
                 {/* Product Grid */}
-                <div className="w-full md:w-3/4">
-                    <div className="flex justify-between items-center mb-6">
-                        <p className="text-gray-500 text-sm"><span className="font-bold text-gray-900">{products.length}</span> {tUZ("Natijalar topildi")}</p>
+                <div className="min-w-0">
+                    <div className="mb-5 flex items-center gap-2">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-sm text-ink-500 ring-1 ring-inset ring-line">
+                            <span className="font-bold text-ink-900">{products.length}</span> {tUZ("Natijalar topildi")}
+                        </span>
                     </div>
 
                     {loading ? <Loader /> : error ? (
@@ -129,44 +137,44 @@ const ShopScreen = () => {
                     ) : (
                         <>
                             {products.length === 0 && (
-                                <div className="text-center py-10 bg-gray-50 rounded-lg">
-                                    <p className="text-gray-500">{tUZ("Kategoriyada mahsulotlar topilmadi.")}</p>
-                                    <Link to="/shop" className="text-brand font-bold mt-2 inline-block">{tUZ("Filtrlarni tozalash")}</Link>
+                                <div className="card px-6 py-14 text-center">
+                                    <p className="text-ink-500">{tUZ("Kategoriyada mahsulotlar topilmadi.")}</p>
+                                    <Link to="/shop" className="btn-outline mt-4">{tUZ("Filtrlarni tozalash")}</Link>
                                 </div>
                             )}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
                                 {products.map((product) => (
-                                    <div key={product._id} className="bg-white rounded-2xl shadow-card overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-line group flex flex-col">
+                                    <div key={product._id} className="card group flex flex-col overflow-hidden transition duration-300 hover:-translate-y-0.5 hover:shadow-lift">
                                         <Link to={`/product/${product._id}`}>
-                                            <div className="h-48 overflow-hidden bg-gray-100 flex items-center justify-center relative">
+                                            <div className="relative flex h-52 items-center justify-center overflow-hidden bg-ink-50">
                                                 <img
                                                     src={getImageUrl(product.image)}
                                                     alt={product.name}
-                                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                                                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                                                 />
                                                 <button
                                                     onClick={(e) => toggleWishlist(e, product)}
-                                                    className="absolute top-2 right-2 bg-white/80 p-2 rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors z-10"
+                                                    className="absolute right-3 top-3 z-10 grid size-9 place-items-center rounded-full bg-white/90 text-ink-400 shadow-sm backdrop-blur transition-colors hover:text-red-500"
                                                 >
                                                     {isInWishlist(product._id) ? (
-                                                        <FaHeart className="text-red-500 w-5 h-5" />
+                                                        <FaHeart className="h-4 w-4 text-red-500" />
                                                     ) : (
-                                                        <FaRegHeart className="w-5 h-5" />
+                                                        <FaRegHeart className="h-4 w-4" />
                                                     )}
                                                 </button>
                                             </div>
                                         </Link>
-                                        <div className="p-4 flex-grow flex flex-col">
+                                        <div className="flex flex-grow flex-col p-4">
                                             <Link to={`/product/${product._id}`}>
-                                                <h2 className="text-base font-bold text-gray-800 hover:text-brand transition-colors truncate mb-1">{product.name}</h2>
+                                                <h2 className="mb-1 truncate text-base font-semibold text-ink-900 transition-colors hover:text-brand-700">{product.name}</h2>
                                             </Link>
-                                            <div className="flex items-center justify-between mb-2">
-                                                <span className="text-gray-500 text-xs">{product.price} UZS / kg</span>
+                                            <div className="mb-3 flex items-center justify-between">
+                                                <span className="text-xs text-ink-400">{product.price} UZS / kg</span>
                                                 <Rating value={product.rating} text={null} color="#FBBF24" />
                                             </div>
-                                            <div className="mt-auto flex items-center justify-between">
-                                                <p className="text-lg font-bold text-gray-900">{product.price} UZS</p>
-                                                <Link to={`/product/${product._id}`} className="bg-gray-100 hover:bg-brand hover:text-white text-gray-900 p-2 rounded-full transition-all">
+                                            <div className="mt-auto flex items-center justify-between border-t border-line pt-3">
+                                                <p className="font-display text-xl font-extrabold text-ink-950">{product.price} <span className="text-xs font-semibold text-ink-400">UZS</span></p>
+                                                <Link to={`/product/${product._id}`} className="grid size-10 place-items-center rounded-xl bg-brand-50 text-brand-700 transition-all hover:bg-brand-600 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                                                     </svg>
