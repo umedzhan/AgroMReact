@@ -12,6 +12,7 @@
     },
     "header": {
         "find_store": "یافتن فروشگاه",
+        "shop_by_category": "خرید بر اساس دسته",
         "browse_now": "دسته‌بندی‌ها",
         "signed_in_as": "وارد شده به عنوان:",
         "admin_dashboard": "پنل مدیریت",

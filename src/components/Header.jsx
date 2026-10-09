@@ -199,124 +199,124 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Drawer */}
-        <div className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-          {/* Backdrop */}
-          <div className="absolute inset-0 bg-ink-950/40" onClick={toggleMobileMenu}></div>
+      </header>
+      {/* Mobile Menu Drawer: kept outside <header> because its backdrop-blur would make it the containing block for this fixed overlay */}
+      <div className={`fixed inset-0 z-[60] lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        {/* Backdrop */}
+        <div className="absolute inset-0 bg-ink-950/40" onClick={toggleMobileMenu}></div>
 
-          {/* Drawer Content */}
-          <div className={`absolute top-0 left-0 bottom-0 w-[88%] max-w-sm bg-white shadow-lift transform transition-transform duration-300 flex flex-col ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        {/* Drawer Content */}
+        <div className={`absolute top-0 left-0 bottom-0 w-[88%] max-w-sm bg-white shadow-lift transform transition-transform duration-300 flex flex-col ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
 
-            {/* Drawer Header */}
-            <div className="flex h-16 items-center justify-between border-b border-line px-4">
-              <img src="/images/logo.png" alt="AgroM Logo" className="h-8 w-auto object-contain" />
-              <button onClick={toggleMobileMenu} className="grid size-10 place-items-center rounded-xl text-ink-600 hover:bg-ink-50" aria-label="Close">
-                <FaTimes size={18} />
-              </button>
-            </div>
+          {/* Drawer Header */}
+          <div className="flex h-16 items-center justify-between border-b border-line px-4">
+            <img src="/images/logo.png" alt="AgroM Logo" className="h-8 w-auto object-contain" />
+            <button onClick={toggleMobileMenu} className="grid size-10 place-items-center rounded-xl text-ink-600 hover:bg-ink-50" aria-label="Close">
+              <FaTimes size={18} />
+            </button>
+          </div>
 
-            {/* Drawer Body - Scrollable */}
-            <div className="flex-grow overflow-y-auto p-3">
+          {/* Drawer Body - Scrollable */}
+          <div className="flex-grow overflow-y-auto p-3">
 
-              {/* User Section */}
-              {user ? (
-                <div className="mb-4 rounded-2xl border border-line bg-canvas p-4">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="bg-brand-600 text-white rounded-full size-10 flex items-center justify-center font-bold">
-                      {user.name?.charAt(0).toUpperCase() || '?'}
-                    </div>
-                    <div>
-                      <p className="text-xs text-ink-400">{t('header.signed_in_as')}</p>
-                      <p className="font-semibold text-ink-900">{user.name}</p>
-                    </div>
+            {/* User Section */}
+            {user ? (
+              <div className="mb-4 rounded-2xl border border-line bg-canvas p-4">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="bg-brand-600 text-white rounded-full size-10 flex items-center justify-center font-bold">
+                    {user.name?.charAt(0).toUpperCase() || '?'}
                   </div>
-                  <div className="grid grid-cols-1 gap-1.5">
-                    <Link to="/profile" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2.5 rounded-xl text-ink-700 block border border-line">
-                      {t('common.profile')}
-                    </Link>
-                    {user.isAdmin && (
-                      <Link to="/admin/dashboard" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2.5 rounded-xl text-ink-700 block border border-line">
-                        {t('header.admin_dashboard')}
-                      </Link>
-                    )}
-                    <Link to="/admin/productlist" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2.5 rounded-xl text-ink-700 block border border-line">
-                      {tUZ('Mahsulotlarim')}
-                    </Link>
-                    <Link to="/wishlist" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2.5 rounded-xl text-ink-700 border border-line flex justify-between items-center">
-                      <span>{t('header.wishlist')}</span>
-                      <FaHeart className="text-red-400" />
-                    </Link>
-                    <button onClick={() => { logout(); toggleMobileMenu(); }} className="text-sm bg-white text-red-700 px-3 py-2.5 rounded-xl block border border-red-200 text-left">
-                      {t('common.logout')}
-                    </button>
+                  <div>
+                    <p className="text-xs text-ink-400">{t('header.signed_in_as')}</p>
+                    <p className="font-semibold text-ink-900">{user.name}</p>
                   </div>
                 </div>
-              ) : (
-                <div className="flex gap-2 mb-4">
-                  <Link to="/login" onClick={toggleMobileMenu} className="btn-outline flex-1">
-                    {t('common.sign_in')}
+                <div className="grid grid-cols-1 gap-1.5">
+                  <Link to="/profile" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2.5 rounded-xl text-ink-700 block border border-line">
+                    {t('common.profile')}
                   </Link>
-                  <Link to="/register" onClick={toggleMobileMenu} className="btn-primary flex-1">
-                    {t('common.sign_up')}
+                  {user.isAdmin && (
+                    <Link to="/admin/dashboard" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2.5 rounded-xl text-ink-700 block border border-line">
+                      {t('header.admin_dashboard')}
+                    </Link>
+                  )}
+                  <Link to="/admin/productlist" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2.5 rounded-xl text-ink-700 block border border-line">
+                    {tUZ('Mahsulotlarim')}
                   </Link>
+                  <Link to="/wishlist" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2.5 rounded-xl text-ink-700 border border-line flex justify-between items-center">
+                    <span>{t('header.wishlist')}</span>
+                    <FaHeart className="text-red-400" />
+                  </Link>
+                  <button onClick={() => { logout(); toggleMobileMenu(); }} className="text-sm bg-white text-red-700 px-3 py-2.5 rounded-xl block border border-red-200 text-left">
+                    {t('common.logout')}
+                  </button>
                 </div>
-              )}
-
-              <nav className="space-y-0.5">
-                {[
-                  ['/', tUZ("Bosh sahifa")],
-                  ['/certification', tUZ("Sertifikatlash (Halal/Organic)")],
-                  ['/export', tUZ("Logistika & Eksport")],
-                  ['/contracts', tUZ("ERI Shartnomalar")],
-                ].map(([to, label]) => (
-                  <NavLink
-                    key={to}
-                    to={to}
-                    end={to === '/'}
-                    onClick={toggleMobileMenu}
-                    className={({ isActive }) => `block rounded-xl px-4 py-3 text-base font-semibold ${isActive ? 'bg-brand-50 text-brand-800' : 'text-ink-800 hover:bg-ink-50'}`}
-                  >
-                    {label}
-                  </NavLink>
-                ))}
-              </nav>
-
-              {/* Navigation Links */}
-              <div className="my-3 h-px bg-line" />
-              <div className="space-y-0.5">
-                <p className="px-4 text-xs font-semibold text-ink-400 uppercase tracking-[0.12em] mb-2 mt-4">{t('header.shop_by_category')}</p>
-
-                <Link to="/shop" onClick={toggleMobileMenu} className="block rounded-xl px-4 py-2.5 text-[15px] font-medium text-ink-600 hover:bg-ink-50">
-                  {t('header.browse_now')} (All)
+              </div>
+            ) : (
+              <div className="flex gap-2 mb-4">
+                <Link to="/login" onClick={toggleMobileMenu} className="btn-outline flex-1">
+                  {t('common.sign_in')}
                 </Link>
-                {PRODUCT_CATEGORIES.map((c) => (
-                  <Link
-                    key={c.value}
-                    to={`/shop?category=${c.value}`}
-                    onClick={toggleMobileMenu}
-                    className="block rounded-xl px-4 py-2.5 text-[15px] font-medium text-ink-600 hover:bg-ink-50"
-                  >
-                    {t(`header.nav.${c.navKey}`)}
-                  </Link>
-                ))}
+                <Link to="/register" onClick={toggleMobileMenu} className="btn-primary flex-1">
+                  {t('common.sign_up')}
+                </Link>
               </div>
+            )}
 
-              <div className="mt-4 pt-4 border-t border-line">
-                <p className="px-4 text-xs font-semibold text-ink-400 uppercase tracking-[0.12em] mb-2">{t('footer.helps')}</p>
-                <Link to="/contact" onClick={toggleMobileMenu} className="block rounded-xl px-4 py-2.5 text-[15px] text-ink-600 hover:bg-ink-50">{t('footer.contact')}</Link>
-                <Link to="/about" onClick={toggleMobileMenu} className="block rounded-xl px-4 py-2.5 text-[15px] text-ink-600 hover:bg-ink-50">{t('footer.about')}</Link>
-              </div>
+            <nav className="space-y-0.5">
+              {[
+                ['/', tUZ("Bosh sahifa")],
+                ['/certification', tUZ("Sertifikatlash (Halal/Organic)")],
+                ['/export', tUZ("Logistika & Eksport")],
+                ['/contracts', tUZ("ERI Shartnomalar")],
+              ].map(([to, label]) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  end={to === '/'}
+                  onClick={toggleMobileMenu}
+                  className={({ isActive }) => `block rounded-xl px-4 py-3 text-base font-semibold ${isActive ? 'bg-brand-50 text-brand-800' : 'text-ink-800 hover:bg-ink-50'}`}
+                >
+                  {label}
+                </NavLink>
+              ))}
+            </nav>
 
+            {/* Navigation Links */}
+            <div className="my-3 h-px bg-line" />
+            <div className="space-y-0.5">
+              <p className="px-4 text-xs font-semibold text-ink-400 uppercase tracking-[0.12em] mb-2 mt-4">{t('header.shop_by_category')}</p>
+
+              <Link to="/shop" onClick={toggleMobileMenu} className="block rounded-xl px-4 py-2.5 text-[15px] font-medium text-ink-600 hover:bg-ink-50">
+                {t('header.browse_now')} (All)
+              </Link>
+              {PRODUCT_CATEGORIES.map((c) => (
+                <Link
+                  key={c.value}
+                  to={`/shop?category=${c.value}`}
+                  onClick={toggleMobileMenu}
+                  className="block rounded-xl px-4 py-2.5 text-[15px] font-medium text-ink-600 hover:bg-ink-50"
+                >
+                  {t(`header.nav.${c.navKey}`)}
+                </Link>
+              ))}
             </div>
 
-            {/* Drawer Footer */}
-            <div className="p-4 border-t border-line text-center text-xs text-ink-400">
-              &copy; 2024 AgroM Inc.
+            <div className="mt-4 pt-4 border-t border-line">
+              <p className="px-4 text-xs font-semibold text-ink-400 uppercase tracking-[0.12em] mb-2">{t('footer.helps')}</p>
+              <Link to="/contact" onClick={toggleMobileMenu} className="block rounded-xl px-4 py-2.5 text-[15px] text-ink-600 hover:bg-ink-50">{t('footer.contact')}</Link>
+              <Link to="/about" onClick={toggleMobileMenu} className="block rounded-xl px-4 py-2.5 text-[15px] text-ink-600 hover:bg-ink-50">{t('footer.about')}</Link>
             </div>
 
           </div>
+
+          {/* Drawer Footer */}
+          <div className="p-4 border-t border-line text-center text-xs text-ink-400">
+            &copy; 2024 AgroM Inc.
+          </div>
+
         </div>
-      </header>
+      </div>
     </>
   );
 };

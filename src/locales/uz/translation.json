@@ -12,6 +12,7 @@
     },
     "header": {
         "find_store": "Do'konni topish",
+        "shop_by_category": "Kategoriyalar bo'yicha",
         "browse_now": "Kategoriyalar",
         "signed_in_as": "Profil:",
         "admin_dashboard": "Admin paneli",

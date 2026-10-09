@@ -12,6 +12,7 @@
     },
     "header": {
         "find_store": "Найти магазин",
+        "shop_by_category": "По категориям",
         "browse_now": "Категории",
         "signed_in_as": "Вы вошли как:",
         "admin_dashboard": "Админ панель",

@@ -12,6 +12,7 @@
     },
     "header": {
         "find_store": "Find a store",
+        "shop_by_category": "Shop by category",
         "browse_now": "Browse now",
         "signed_in_as": "Signed in as:",
         "admin_dashboard": "Admin Dashboard",
