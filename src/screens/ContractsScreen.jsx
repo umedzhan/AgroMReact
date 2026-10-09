@@ -122,7 +122,7 @@ const ContractsScreen = () => {
                 <p className="text-gray-500 text-sm">{tUZ("Platformadagi Elektron Raqamli Imzo (ERI/DS) orqali tasdiqlangan huquqiy shartnomalar.")}</p>
             </div>
 
-            <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm space-y-6">
+            <div className="bg-white border border-line rounded-2xl p-6 shadow-card space-y-6">
                 <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Mavjud Shartnomalar")}</h3>
 
                 {loading ? (
@@ -196,7 +196,7 @@ const ContractsScreen = () => {
                 )}
             </div>
 
-            <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm space-y-6">
+            <div className="bg-white border border-line rounded-2xl p-6 shadow-card space-y-6">
                 <div>
                     <h3 className="font-extrabold text-gray-900 text-lg flex items-center gap-2">
                         <FaPlus className="text-brand text-sm" />
@@ -269,7 +269,7 @@ const ContractsScreen = () => {
 
             {signingContract && (
                 <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm animate-fadeIn">
-                    <div className="bg-white rounded-3xl p-6 md:p-8 shadow-2xl w-full max-w-md border border-gray-100 space-y-6">
+                    <div className="bg-white rounded-3xl p-6 md:p-8 shadow-lift w-full max-w-md border border-line space-y-6">
                         <div className="flex justify-between items-center">
                             <h3 className="text-lg font-extrabold text-gray-950 flex items-center gap-1.5">
                                 <FaPenNib className="text-amber-600" /> {tUZ("ERI Imzosi bilan Tasdiqlash")}

@@ -128,7 +128,7 @@ const CertificationScreen = () => {
                         <p className="text-sm text-gray-500 md:col-span-2">{tUZ("Hali sertifikat yuklanmagan.")}</p>
                     )}
                     {certificates.map((cert) => (
-                        <div key={cert._id} className="bg-white border border-gray-150 rounded-2xl p-5 md:p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden">
+                        <div key={cert._id} className="bg-white border border-line rounded-2xl p-5 md:p-6 shadow-card flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden">
                             {cert.status === 'pending' && (
                                 <div className="absolute inset-0 bg-white/60 backdrop-blur-[1px] z-10 flex items-center justify-center">
                                     <span className="bg-gray-100 border border-gray-200 text-gray-600 font-bold text-xs py-1.5 px-3 rounded-full flex items-center gap-1.5 shadow-sm">
@@ -185,7 +185,7 @@ const CertificationScreen = () => {
                 </div>
             )}
 
-            <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm space-y-6">
+            <div className="bg-white border border-line rounded-2xl p-6 shadow-card space-y-6">
                 <div>
                     <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Yangi sertifikat yuklash")}</h3>
                     <p className="text-gray-500 text-xs">{tUZ("Sertifikatingiz PDF formatini va ma'lumotlarini yuklang. Biz uni 24 soat ichida tekshirib verifikatsiyadan o'tkazamiz.")}</p>

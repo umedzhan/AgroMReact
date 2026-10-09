@@ -82,7 +82,7 @@ const ShopScreen = () => {
             <div className="flex flex-col md:flex-row gap-8">
                 {/* Filters Sidebar (Mock for now, scalable later) */}
                 <div className="w-full md:w-1/4">
-                    <div className="bg-white rounded-lg shadow-sm border border-gray-100 md:p-6">
+                    <div className="bg-white rounded-2xl shadow-card border border-line md:p-6">
                         <button
                             type="button"
                             onClick={() => setFilterOpen((open) => !open)}
@@ -125,7 +125,7 @@ const ShopScreen = () => {
                     </div>
 
                     {loading ? <Loader /> : error ? (
-                        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">{error}</div>
+                        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl">{error}</div>
                     ) : (
                         <>
                             {products.length === 0 && (
@@ -136,7 +136,7 @@ const ShopScreen = () => {
                             )}
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {products.map((product) => (
-                                    <div key={product._id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 group flex flex-col">
+                                    <div key={product._id} className="bg-white rounded-2xl shadow-card overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-line group flex flex-col">
                                         <Link to={`/product/${product._id}`}>
                                             <div className="h-48 overflow-hidden bg-gray-100 flex items-center justify-center relative">
                                                 <img

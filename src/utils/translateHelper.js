@@ -4669,12 +4669,6 @@ const dictionary = {
         tg: "Маҳсулоти тоза бевосита аз деҳқонон: ҳамаи категорияҳо, филтрҳо ва фармоиши осон.",
         fa: "محصولات تازه مستقیم از کشاورزان: همه دسته‌ها، فیلترها و سفارش آسان."
     },
-    "Do'konga o'tish": {
-        en: "Go to store",
-        ru: "Перейти в магазин",
-        tg: "Ба мағоза гузаштан",
-        fa: "رفتن به فروشگاه"
-    },
     "Mahsulotlarni xorijga eksport qilish: davlatlar bo'yicha talab, logistika va hujjatlar.": {
         en: "Export products abroad: demand by country, logistics and paperwork.",
         ru: "Экспорт продукции за рубеж: спрос по странам, логистика и документы.",

@@ -163,7 +163,7 @@ const ProductEditScreen = () => {
                 {tUZ("Orqaga")}
             </Link>
 
-            <div className="bg-white shadow-md rounded-lg p-8">
+            <div className="bg-white shadow-card rounded-2xl p-8 border border-line">
                 <h1 className="text-2xl font-bold mb-6 text-gray-800">
                     {isEditMode ? tUZ('Mahsulotni tahrirlash') : tUZ('Mahsulot yaratish')}
                 </h1>

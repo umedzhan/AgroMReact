@@ -79,21 +79,21 @@ const AboutScreen = () => {
             {/* Features Section */}
             <div className="bg-gray-50 rounded-2xl p-8 lg:p-12 mb-20">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div className="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div className="p-6 bg-white rounded-2xl shadow-card hover:shadow-md transition-shadow border border-line">
                         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-brand text-2xl">
                             <FaShippingFast />
                         </div>
                         <h3 className="text-xl font-bold text-gray-900 mb-2">{tUZ("Bepul yetkazib berish")}</h3>
                         <p className="text-gray-500 text-sm">{tUZ("Chegirma bilan bepul yetkazib berish")}</p>
                     </div>
-                    <div className="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div className="p-6 bg-white rounded-2xl shadow-card hover:shadow-md transition-shadow border border-line">
                         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-brand text-2xl">
                             <FaHeadset />
                         </div>
                         <h3 className="text-xl font-bold text-gray-900 mb-2">{tUZ("24/7 ajoyib qo'llab-quvvatlash")}</h3>
                         <p className="text-gray-500 text-sm">{tUZ("Aloqaga tezkor kirish")}</p>
                     </div>
-                    <div className="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                    <div className="p-6 bg-white rounded-2xl shadow-card hover:shadow-md transition-shadow border border-line">
                         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-brand text-2xl">
                             <FaShieldAlt />
                         </div>
@@ -113,7 +113,7 @@ const AboutScreen = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 {/* Team Member 1 */}
-                <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-md transition-all group border border-line">
                     <div className="h-64 overflow-hidden">
                         <img src="/images/ourteam/behruz_karimov.png" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>
@@ -124,7 +124,7 @@ const AboutScreen = () => {
                 </div>
 
                 {/* Team Member 2 */}
-                <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-md transition-all group border border-line">
                     <div className="h-64 overflow-hidden">
                         <img src="/images/ourteam/usmon_rakhimjonov.png" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>
@@ -135,7 +135,7 @@ const AboutScreen = () => {
                 </div>
 
                 {/* Team Member 3 */}
-                <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-md transition-all group border border-line">
                     <div className="h-64 overflow-hidden">
                         <img src="/images/ourteam/azizbek_jorayev.png" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>
@@ -146,7 +146,7 @@ const AboutScreen = () => {
                 </div>
 
                 {/* Team Member 4 */}
-                <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-md transition-all group border border-line">
                     <div className="h-64 overflow-hidden">
                         <img src="/images/ourteam/umedjon_karayev.png" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>
@@ -157,7 +157,7 @@ const AboutScreen = () => {
                 </div>
 
                 {/* Team Member 5 */}
-                <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+                <div className="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-md transition-all group border border-line">
                     <div className="h-64 overflow-hidden">
                         <img src="/images/ourteam/durdona_kattayeva.png" alt="Team Member" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>

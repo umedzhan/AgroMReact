@@ -163,18 +163,18 @@ const HomeScreen = () => {
                 </div>
 
                 {loading ? <Loader /> : error ? (
-                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">{error}</div>
+                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl">{error}</div>
                 ) : (
                     <>
                         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
                             {products?.map((product) => (
-                                <div key={product._id} className="bg-white rounded-lg md:rounded-xl shadow-sm md:shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
+                                <div key={product._id} className="card group overflow-hidden flex flex-col transition duration-300 hover:-translate-y-0.5 hover:shadow-lift">
                                     <Link to={`/product/${product._id}`}>
-                                        <div className="h-32 md:h-48 overflow-hidden bg-gray-100 flex items-center justify-center relative">
+                                        <div className="h-32 md:h-48 overflow-hidden bg-ink-50 flex items-center justify-center relative">
                                             <img
                                                 src={getImageUrl(product.image)}
                                                 alt={product.name}
-                                                className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                                                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                                             />
                                             <button
                                                 onClick={(e) => toggleWishlist(e, product)}
@@ -190,7 +190,7 @@ const HomeScreen = () => {
                                     </Link>
                                     <div className="p-3 md:p-5 flex-grow flex flex-col">
                                         <Link to={`/product/${product._id}`}>
-                                            <h2 className="text-sm md:text-lg font-bold text-gray-800 hover:text-green-600 transition-colors line-clamp-2 mb-1 md:mb-2 min-h-[40px] md:min-h-0">{product.name}</h2>
+                                            <h2 className="text-sm md:text-base font-semibold text-ink-900 hover:text-brand-700 transition-colors line-clamp-2 mb-1 md:mb-2 min-h-[40px] md:min-h-0">{product.name}</h2>
                                         </Link>
                                         <div className="flex items-center mb-2 md:mb-3">
                                             <Rating value={product.rating} text={`${product.numReviews}`} color="#FBBF24" />

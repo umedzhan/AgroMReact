@@ -15,7 +15,7 @@ const AdminSidebar = () => {
     };
 
     return (
-        <div className="w-64 bg-white shadow-md rounded-lg hidden md:block h-full min-h-[500px]">
+        <div className="w-64 bg-white shadow-card rounded-2xl hidden md:block h-full min-h-[500px] border border-line">
             <div className="p-6 border-b border-gray-100">
                 <h2 className="text-xl font-bold text-gray-800">
                     {user && user.isAdmin

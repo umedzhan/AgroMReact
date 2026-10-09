@@ -7,44 +7,51 @@ const Hero = () => {
     const { t } = useTranslation();
 
     return (
-        <section className="container mx-auto px-4 py-6 lg:py-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <section className="relative">
+            <div className="bg-grid pointer-events-none absolute inset-x-0 -top-8 h-[420px] [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" />
+            <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 py-2 lg:py-4">
                 {/* Main Banner */}
-                <div className="lg:col-span-2 relative bg-gray-100 rounded-lg overflow-hidden h-auto aspect-[4/3] md:aspect-auto md:h-[400px] flex items-center">
+                <div className="lg:col-span-2 relative overflow-hidden rounded-3xl border border-line bg-white shadow-card aspect-[4/3] md:aspect-auto md:h-[420px] flex items-center">
                     <img
                         src="/images/hero-delivery.png"
                         alt="Delivery"
                         className="absolute inset-0 w-full h-full object-cover z-0"
                     />
-                    <div className="relative z-10 p-6 md:pl-12 max-w-lg">
-                        <span className="text-brand font-medium tracking-wide uppercase text-xs md:text-sm mb-2 block">{t('hero.welcome')}</span>
-                        <h1 className="text-3xl md:text-6xl font-bold text-gray-900 leading-tight mb-4">
+                    <div className="absolute inset-0 z-0 bg-gradient-to-r from-white/95 via-white/80 md:via-white/70 to-transparent" />
+                    <div className="relative z-10 p-6 md:pl-12 max-w-lg animate-fade-up">
+                        <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-line bg-white/80 py-1 pl-1 pr-3 text-xs font-semibold text-ink-600 shadow-sm backdrop-blur">
+                            <span className="rounded-full bg-ink-900 px-2 py-0.5 text-[10px] uppercase tracking-wider text-white">AgroM</span>
+                            {t('hero.welcome')}
+                        </span>
+                        <h1 className="text-[2rem] md:text-6xl font-extrabold text-ink-950 leading-[1.04] mb-4 text-balance">
                             {t('hero.delivery_text')}
                         </h1>
-                        <p className="text-gray-500 mb-6 md:mb-8 text-sm md:text-base">{t('hero.free_shipping_note')}</p>
-                        <Link to="/shop" className="bg-brand text-white px-6 md:px-8 py-2 md:py-3 rounded-full font-semibold hover:bg-brand-dark transition-colors inline-flex items-center text-sm md:text-base">
-                            {t('hero.shop_now')} <FaArrowRight className="ml-2" />
+                        <p className="text-ink-500 mb-6 md:mb-8 text-sm md:text-lg">{t('hero.free_shipping_note')}</p>
+                        <Link to="/shop" className="btn-primary group">
+                            {t('hero.shop_now')} <FaArrowRight className="transition group-hover:translate-x-0.5" />
                         </Link>
                     </div>
                 </div>
 
                 {/* Side Banner */}
-                <div className="hidden lg:block relative bg-green-50 rounded-lg overflow-hidden h-[400px]">
+                <div className="hidden lg:block relative overflow-hidden rounded-3xl bg-ink-950 text-white shadow-lift h-[420px]">
                     <img
                         src="/images/hero-vegetables.png"
                         alt="Vegetables"
-                        className="absolute inset-0 w-full h-full object-cover z-0"
+                        className="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
                     />
+                    <div className="absolute inset-0 z-0 bg-gradient-to-b from-ink-950/80 via-ink-950/30 to-ink-950/80" />
+                    <div className="absolute -right-16 -top-16 size-56 rounded-full bg-brand-500/25 blur-3xl" />
                     <div className="relative z-10 p-8 h-full flex flex-col justify-start">
-                        <span className="text-gray-900 font-medium tracking-wide uppercase text-sm mb-2">{t('hero.summer_sale')}</span>
-                        <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                        <span className="text-xs font-bold uppercase tracking-[0.16em] text-harvest-300 mb-3">{t('hero.summer_sale')}</span>
+                        <h2 className="text-4xl font-extrabold mb-2">
                             {t('hero.off_75')}
                         </h2>
-                        <h3 className="text-gray-600 mb-4">
+                        <h3 className="text-ink-200 mb-4">
                             {t('hero.only_fruit_veg')}
                         </h3>
-                        <Link to="/shop" className="text-brand font-bold hover:text-brand-dark transition-colors inline-flex items-center mt-auto">
-                            {t('hero.shop_now')} <FaArrowRight className="ml-2" />
+                        <Link to="/shop" className="btn-harvest group mt-auto self-start">
+                            {t('hero.shop_now')} <FaArrowRight className="transition group-hover:translate-x-0.5" />
                         </Link>
                     </div>
                 </div>

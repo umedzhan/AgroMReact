@@ -104,7 +104,7 @@ const OrderScreen = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="md:col-span-2 space-y-6">
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-white p-6 rounded-2xl shadow-card border border-line">
                         <h2 className="text-xl font-bold mb-4 text-gray-700">{tUZ("Yetkazib berish")}</h2>
                         <p><strong>{tUZ("Ism")}: </strong> {order.user.name}</p>
                         <p><strong>{tUZ("Pochta: ")}</strong> <a href={`mailto:${order.user.email}`} className="text-green-600">{order.user.email}</a></p>
@@ -120,7 +120,7 @@ const OrderScreen = () => {
                         )}
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-white p-6 rounded-2xl shadow-card border border-line">
                         <h2 className="text-xl font-bold mb-4 text-gray-700">{tUZ("To'lov usuli")}</h2>
                         <p><strong>{tUZ("Usul: ")}</strong> {order.paymentMethod}</p>
                         {order.isPaid ? (
@@ -130,7 +130,7 @@ const OrderScreen = () => {
                         )}
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-white p-6 rounded-2xl shadow-card border border-line">
                         <h2 className="text-xl font-bold mb-4 text-gray-700">{tUZ("Buyurtma mahsulotlari")}</h2>
                         <div className="divide-y divide-gray-200">
                             {order.orderItems.map((item, index) => (
@@ -151,7 +151,7 @@ const OrderScreen = () => {
                 </div>
 
                 <div className="md:col-span-1">
-                    <div className="bg-white p-6 rounded-lg shadow-md sticky top-24">
+                    <div className="bg-white p-6 rounded-2xl shadow-card sticky top-24 border border-line">
                         <h2 className="text-xl font-bold mb-6 text-gray-700 border-b pb-2">{tUZ("Buyurtma hisobi")}</h2>
                         <div className="space-y-4">
                             <div className="flex justify-between text-gray-600">

@@ -163,7 +163,7 @@ const AdminDashboardScreen = () => {
                     {/* Stats Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {/* Revenue Card */}
-                        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center transition-all hover:shadow-md">
+                        <div className="bg-white p-6 rounded-2xl border border-line shadow-card flex items-center transition-all hover:shadow-md">
                             <div className="p-4 rounded-full bg-emerald-50 text-emerald-600 mr-4">
                                 <FaMoneyBillWave size={24} />
                             </div>
@@ -176,7 +176,7 @@ const AdminDashboardScreen = () => {
                         </div>
 
                         {/* Orders Card */}
-                        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center transition-all hover:shadow-md">
+                        <div className="bg-white p-6 rounded-2xl border border-line shadow-card flex items-center transition-all hover:shadow-md">
                             <div className="p-4 rounded-full bg-blue-50 text-blue-600 mr-4">
                                 <FaShoppingCart size={24} />
                             </div>
@@ -187,7 +187,7 @@ const AdminDashboardScreen = () => {
                         </div>
 
                         {/* Products Card */}
-                        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center transition-all hover:shadow-md">
+                        <div className="bg-white p-6 rounded-2xl border border-line shadow-card flex items-center transition-all hover:shadow-md">
                             <div className="p-4 rounded-full bg-orange-50 text-orange-600 mr-4">
                                 <FaBoxOpen size={24} />
                             </div>
@@ -198,7 +198,7 @@ const AdminDashboardScreen = () => {
                         </div>
 
                         {/* Users Card */}
-                        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center transition-all hover:shadow-md">
+                        <div className="bg-white p-6 rounded-2xl border border-line shadow-card flex items-center transition-all hover:shadow-md">
                             <div className="p-4 rounded-full bg-purple-50 text-purple-600 mr-4">
                                 <FaUsers size={24} />
                             </div>
@@ -212,7 +212,7 @@ const AdminDashboardScreen = () => {
                     {/* Analytics Section Grid */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {/* Weekly Sales bar chart */}
-                        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between min-h-[350px]">
+                        <div className="bg-white p-6 rounded-2xl shadow-card border border-line flex flex-col justify-between min-h-[350px]">
                             <div>
                                 <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Savdo dinamikasi")}</h3>
                                 <p className="text-gray-400 text-xs mt-1">{tUZ("Haftalik savdo tahlili")}</p>
@@ -239,7 +239,7 @@ const AdminDashboardScreen = () => {
                         </div>
 
                         {/* Category Distribution */}
-                        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between min-h-[350px]">
+                        <div className="bg-white p-6 rounded-2xl shadow-card border border-line flex flex-col justify-between min-h-[350px]">
                             <div>
                                 <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Kategoriyalar taqsimoti")}</h3>
                                 <p className="text-gray-400 text-xs mt-1">{tUZ("Mahsulot toifalari ulushi")}</p>
@@ -271,7 +271,7 @@ const AdminDashboardScreen = () => {
                     {/* Recent Ledger & Actions Grid */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         {/* Recent Orders Table */}
-                        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 lg:col-span-2 space-y-4">
+                        <div className="bg-white p-6 rounded-2xl shadow-card border border-line lg:col-span-2 space-y-4">
                             <div className="flex items-center justify-between border-b border-gray-50 pb-3">
                                 <h3 className="font-extrabold text-gray-900 text-base">{tUZ("Oxirgi buyurtmalar")}</h3>
                                 <Link to="/admin/orderlist" className="text-brand hover:text-brand-dark text-xs font-bold flex items-center gap-1.5 transition-colors">
@@ -335,7 +335,7 @@ const AdminDashboardScreen = () => {
                         </div>
 
                         {/* Quick Actions Panel */}
-                        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
+                        <div className="bg-white p-6 rounded-2xl shadow-card border border-line space-y-4">
                             <h3 className="font-extrabold text-gray-900 text-base border-b border-gray-50 pb-3">{tUZ("Tezkor amallar")}</h3>
                             <div className="space-y-3 pt-2">
                                 <Link 

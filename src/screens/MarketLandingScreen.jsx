@@ -65,7 +65,7 @@ const MarketLandingScreen = () => {
             title: tUZ("Mahsulotlar do'koni"),
             text: tUZ("Fermerlardan to'g'ridan-to'g'ri yangi mahsulotlar: barcha toifalar, filtrlar va qulay buyurtma."),
             cta: tUZ("Do'konga o'tish"),
-            style: 'from-emerald-700 to-green-500',
+            dark: false,
         },
         {
             href: EXPORT_URL,
@@ -74,7 +74,7 @@ const MarketLandingScreen = () => {
             title: tUZ("Logistika & Eksport"),
             text: tUZ("Mahsulotlarni xorijga eksport qilish: davlatlar bo'yicha talab, logistika va hujjatlar."),
             cta: tUZ("Eksportga o'tish"),
-            style: 'from-sky-700 to-blue-500',
+            dark: true,
         },
     ];
 
@@ -83,26 +83,34 @@ const MarketLandingScreen = () => {
             <Hero />
 
             {/* Gateways to the mb and export subdomains */}
-            <section className="container mx-auto px-4 py-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <section className="py-8 md:py-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {gateways.map((g) => (
                         <SmartLink
                             key={g.domain}
                             href={g.href}
-                            className={`group bg-gradient-to-r ${g.style} rounded-2xl p-6 md:p-8 text-white shadow-md hover:shadow-xl transition-shadow flex flex-col`}
+                            className={`group relative flex min-h-[260px] flex-col overflow-hidden rounded-3xl p-6 md:p-8 transition duration-300 hover:-translate-y-1 ${
+                                g.dark ? 'bg-ink-950 text-white shadow-lift' : 'border border-line bg-white shadow-card hover:shadow-lift'
+                            }`}
                         >
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="bg-white/20 rounded-xl p-3">{g.icon}</div>
-                                <span className="text-xs font-semibold uppercase tracking-wider bg-black/20 rounded-full py-1 px-3">
+                            {g.dark && <div className="bg-grid-dark absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent)]" />}
+                            <div className={`absolute -right-16 -top-16 size-56 rounded-full blur-3xl ${g.dark ? 'bg-brand-500/25' : 'bg-harvest-200/50'}`} />
+                            <div className="relative flex items-start justify-between">
+                                <div className={`grid size-12 place-items-center rounded-xl ${g.dark ? 'bg-white/10 text-harvest-300' : 'bg-brand-50 text-brand-700'}`}>{g.icon}</div>
+                                <span className={`rounded-full px-2.5 py-1 font-mono text-[11px] ${g.dark ? 'bg-white/10 text-ink-200' : 'bg-ink-50 text-ink-500'}`}>
                                     {g.domain}
                                 </span>
                             </div>
-                            <h2 className="text-2xl md:text-3xl font-extrabold mb-2">{g.title}</h2>
-                            <p className="text-white/85 text-sm md:text-base mb-6 max-w-md">{g.text}</p>
-                            <span className="mt-auto inline-flex items-center font-semibold">
-                                {g.cta}
-                                <FaArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
-                            </span>
+                            <div className="relative mt-auto pt-8">
+                                <div className={`text-xs font-bold uppercase tracking-[0.16em] ${g.dark ? 'text-harvest-300' : 'text-brand-600'}`}>{g.title}</div>
+                                <p className={`mt-2 font-display text-xl font-bold md:text-2xl ${g.dark ? 'text-white' : 'text-ink-900'}`}>{g.text}</p>
+                                <span className={`mt-6 inline-flex h-12 items-center gap-2 rounded-xl px-5 text-[15px] font-semibold transition ${
+                                    g.dark ? 'bg-harvest-400 text-ink-950 group-hover:bg-harvest-300' : 'bg-brand-600 text-white group-hover:bg-brand-700'
+                                }`}>
+                                    {g.cta}
+                                    <FaArrowRight className="transition group-hover:translate-x-0.5" />
+                                </span>
+                            </div>
                         </SmartLink>
                     ))}
                 </div>
@@ -111,48 +119,51 @@ const MarketLandingScreen = () => {
             <InfoSection />
 
             {/* A short selection of products; the full catalogue lives on mb */}
-            <section className="container mx-auto px-4 py-4">
-                <div className="flex justify-between items-end mb-8">
-                    <h2 className="text-3xl font-bold text-gray-900">{t('home.popular_products')}</h2>
-                    <SmartLink href={MB_URL} className="text-brand font-medium hover:text-brand-dark flex items-center">
-                        {t('home.view_all')} <FaArrowRight className="ml-2" />
+            <section className="py-4">
+                <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                    <div>
+                        <div className="eyebrow mb-3">mb.agrom24.uz</div>
+                        <h2 className="text-3xl font-bold leading-tight text-ink-900 md:text-[2.5rem]">{t('home.popular_products')}</h2>
+                    </div>
+                    <SmartLink href={MB_URL} className="btn-outline self-start md:self-auto">
+                        {t('home.view_all')} <FaArrowRight />
                     </SmartLink>
                 </div>
 
                 {loading ? <Loader /> : error ? (
-                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">{error}</div>
+                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl">{error}</div>
                 ) : (
-                    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
+                    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5">
                         {products.map((product) => (
-                            <div key={product._id} className="bg-white rounded-lg md:rounded-xl shadow-sm md:shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
+                            <div key={product._id} className="card group overflow-hidden flex flex-col transition duration-300 hover:-translate-y-0.5 hover:shadow-lift">
                                 <Link to={`/product/${product._id}`}>
-                                    <div className="h-32 md:h-48 overflow-hidden bg-gray-100 flex items-center justify-center relative">
+                                    <div className="h-32 md:h-48 overflow-hidden bg-ink-50 flex items-center justify-center relative">
                                         <img
                                             src={getImageUrl(product.image)}
                                             alt={product.name}
-                                            className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                                         />
                                         <button
                                             onClick={(e) => toggleWishlist(e, product)}
-                                            className="absolute top-2 right-2 bg-white/80 p-1.5 md:p-2 rounded-full text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors z-10 shadow-sm"
+                                            className="absolute top-2 right-2 grid size-8 md:size-9 place-items-center rounded-full bg-white/90 text-ink-400 hover:text-red-500 transition-colors z-10 shadow-sm backdrop-blur"
                                         >
                                             {isInWishlist(product._id) ? (
-                                                <FaHeart className="text-red-500 w-4 h-4 md:w-5 md:h-5" />
+                                                <FaHeart className="text-red-500 w-4 h-4" />
                                             ) : (
-                                                <FaRegHeart className="w-4 h-4 md:w-5 md:h-5" />
+                                                <FaRegHeart className="w-4 h-4" />
                                             )}
                                         </button>
                                     </div>
                                 </Link>
-                                <div className="p-3 md:p-5 flex-grow flex flex-col">
+                                <div className="p-3 md:p-4 flex-grow flex flex-col">
                                     <Link to={`/product/${product._id}`}>
-                                        <h3 className="text-sm md:text-lg font-bold text-gray-800 hover:text-green-600 transition-colors line-clamp-2 mb-1 md:mb-2 min-h-[40px] md:min-h-0">{product.name}</h3>
+                                        <h3 className="text-sm md:text-base font-semibold text-ink-900 hover:text-brand-700 transition-colors line-clamp-2 mb-1 md:mb-2 min-h-[40px] md:min-h-0">{product.name}</h3>
                                     </Link>
                                     <div className="flex items-center mb-2 md:mb-3">
                                         <Rating value={product.rating} text={`${product.numReviews}`} color="#FBBF24" />
-                                        <span className="text-xs text-gray-400 ml-1">{t('home.reviews')}</span>
+                                        <span className="text-xs text-ink-400 ml-1">{t('home.reviews')}</span>
                                     </div>
-                                    <p className="mt-auto text-lg md:text-2xl font-bold text-gray-900">{product.price} UZS</p>
+                                    <p className="mt-auto font-display text-lg md:text-xl font-extrabold text-ink-950">{product.price} <span className="text-xs font-semibold text-ink-400">UZS</span></p>
                                 </div>
                             </div>
                         ))}
@@ -162,9 +173,9 @@ const MarketLandingScreen = () => {
                 <div className="text-center mt-10">
                     <SmartLink
                         href={MB_URL}
-                        className="inline-flex items-center bg-brand text-white px-8 py-3 rounded-full font-semibold hover:bg-brand-dark transition-colors"
+                        className="btn-primary group h-12 px-6"
                     >
-                        {tUZ("Barcha mahsulotlarni ko'rish")} <FaArrowRight className="ml-2" />
+                        {tUZ("Barcha mahsulotlarni ko'rish")} <FaArrowRight className="transition group-hover:translate-x-0.5" />
                     </SmartLink>
                 </div>
             </section>

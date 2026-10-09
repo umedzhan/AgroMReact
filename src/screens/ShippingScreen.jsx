@@ -23,7 +23,7 @@ const ShippingScreen = () => {
 
     return (
         <div className="min-h-[calc(100vh-200px)] flex items-center justify-center">
-            <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+            <div className="bg-white p-8 rounded-2xl shadow-card w-full max-w-md border border-line">
                 <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">{tUZ("Yetkazib berish")}</h1>
 
                 <form onSubmit={submitHandler}>

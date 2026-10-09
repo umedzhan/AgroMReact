@@ -90,7 +90,7 @@ const PlaceOrderScreen = () => {
                 {/* Order Details */}
                 <div className="md:col-span-2 space-y-6">
                     {/* Shipping */}
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-white p-6 rounded-2xl shadow-card border border-line">
                         <h2 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2">{tUZ("Yetkazib berish")}</h2>
                         <p>
                             <strong>{tUZ("Manzil")}: </strong>
@@ -100,7 +100,7 @@ const PlaceOrderScreen = () => {
                     </div>
 
                     {/* Payment Method */}
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-white p-6 rounded-2xl shadow-card border border-line">
                         <h2 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2">{tUZ("To'lov usuli")}</h2>
                         <p>
                             <strong>{tUZ("Usul: ")}</strong>
@@ -109,7 +109,7 @@ const PlaceOrderScreen = () => {
                     </div>
 
                     {/* Order Items */}
-                    <div className="bg-white p-6 rounded-lg shadow-md">
+                    <div className="bg-white p-6 rounded-2xl shadow-card border border-line">
                         <h2 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2">{tUZ("Buyurtma mahsulotlari")}</h2>
                         {cartItems.length === 0 ? (
                             <p>{tUZ("Savat bo'sh")}</p>
@@ -139,7 +139,7 @@ const PlaceOrderScreen = () => {
 
                 {/* Order Summary Card */}
                 <div className="md:col-span-1">
-                    <div className="bg-white p-6 rounded-lg shadow-md sticky top-24">
+                    <div className="bg-white p-6 rounded-2xl shadow-card sticky top-24 border border-line">
                         <h2 className="text-xl font-bold mb-6 text-gray-700 border-b pb-2">{tUZ("Buyurtma hisobi")}</h2>
                         <div className="space-y-4">
                             <div className="flex justify-between text-gray-600">

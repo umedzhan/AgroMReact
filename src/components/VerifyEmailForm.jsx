@@ -15,7 +15,7 @@ const VerifyEmailForm = ({ email, onBack }) => {
     };
 
     return (
-        <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <div className="bg-white p-8 rounded-2xl shadow-card w-full max-w-md border border-line">
             <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">{tUZ("Emailni tasdiqlang")}</h1>
             <p className="text-gray-600 text-sm text-center mb-6">
                 <span className="font-semibold">{email}</span> {tUZ("manziliga 6 xonali kod yuborildi. Kodni quyiga kiriting.")}

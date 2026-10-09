@@ -108,7 +108,7 @@ const ProfileScreen = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
                         <div 
                             onClick={() => setRole('buyer')}
-                            className="bg-white border border-gray-100 hover:border-brand rounded-2xl p-8 cursor-pointer shadow-sm hover:shadow-lg transition-all text-center flex flex-col items-center justify-between group min-h-[250px]"
+                            className="bg-white border border-line hover:border-brand rounded-2xl p-8 cursor-pointer shadow-card hover:shadow-lg transition-all text-center flex flex-col items-center justify-between group min-h-[250px]"
                         >
                             <div className="bg-green-50 text-brand p-5 rounded-full group-hover:scale-110 transition-transform">
                                 <FaShoppingBag size={36} />
@@ -126,7 +126,7 @@ const ProfileScreen = () => {
 
                         <div 
                             onClick={() => setRole('seller')}
-                            className="bg-white border border-gray-100 hover:border-brand rounded-2xl p-8 cursor-pointer shadow-sm hover:shadow-lg transition-all text-center flex flex-col items-center justify-between group min-h-[250px]"
+                            className="bg-white border border-line hover:border-brand rounded-2xl p-8 cursor-pointer shadow-card hover:shadow-lg transition-all text-center flex flex-col items-center justify-between group min-h-[250px]"
                         >
                             <div className="bg-amber-50 text-amber-600 p-5 rounded-full group-hover:scale-110 transition-transform">
                                 <FaChartLine size={36} />
@@ -182,7 +182,7 @@ const ProfileScreen = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         
                         {/* Real purchase stats column */}
-                        <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm space-y-6">
+                        <div className="bg-white border border-line rounded-2xl p-6 shadow-card space-y-6">
                             <div className="flex items-center justify-between">
                                 <h3 className="font-extrabold text-gray-900 text-base">{tUZ("Xaridlarim")}</h3>
                                 <span className="text-brand"><FaShoppingBag size={20} /></span>
@@ -203,42 +203,42 @@ const ProfileScreen = () => {
                         <div className="lg:col-span-2 space-y-6">
                             <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Tezkor Menyu")}</h3>
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                <Link to="/orders" className="bg-white border border-gray-100 hover:border-brand p-5 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center group">
+                                <Link to="/orders" className="bg-white border border-line hover:border-brand p-5 rounded-2xl shadow-card hover:shadow-md transition-all flex flex-col items-center text-center group">
                                     <div className="bg-green-50 text-brand p-3 rounded-full mb-3 group-hover:scale-110 transition-transform">
                                         <FaShoppingBag size={20} />
                                     </div>
                                     <span className="font-bold text-gray-800 text-sm">{tUZ("Buyurtmalarim")}</span>
                                 </Link>
 
-                                <Link to="/cart" className="bg-white border border-gray-100 hover:border-brand p-5 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center group">
+                                <Link to="/cart" className="bg-white border border-line hover:border-brand p-5 rounded-2xl shadow-card hover:shadow-md transition-all flex flex-col items-center text-center group">
                                     <div className="bg-green-50 text-brand p-3 rounded-full mb-3 group-hover:scale-110 transition-transform">
                                         <FaShoppingBag size={20} />
                                     </div>
                                     <span className="font-bold text-gray-800 text-sm">{tUZ("Savatim")}</span>
                                 </Link>
 
-                                <Link to="/wishlist" className="bg-white border border-gray-100 hover:border-brand p-5 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center group">
+                                <Link to="/wishlist" className="bg-white border border-line hover:border-brand p-5 rounded-2xl shadow-card hover:shadow-md transition-all flex flex-col items-center text-center group">
                                     <div className="bg-red-50 text-red-500 p-3 rounded-full mb-3 group-hover:scale-110 transition-transform">
                                         <FaHeart size={20} />
                                     </div>
                                     <span className="font-bold text-gray-800 text-sm">{tUZ("Sevimlilar")}</span>
                                 </Link>
 
-                                <Link to="/export" className="bg-white border border-gray-100 hover:border-brand p-5 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center group">
+                                <Link to="/export" className="bg-white border border-line hover:border-brand p-5 rounded-2xl shadow-card hover:shadow-md transition-all flex flex-col items-center text-center group">
                                     <div className="bg-blue-50 text-blue-600 p-3 rounded-full mb-3 group-hover:scale-110 transition-transform">
                                         <FaTruck size={20} />
                                     </div>
                                     <span className="font-bold text-gray-800 text-sm">{tUZ("Logistika statusi")}</span>
                                 </Link>
 
-                                <Link to="/contracts" className="bg-white border border-gray-100 hover:border-brand p-5 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center group">
+                                <Link to="/contracts" className="bg-white border border-line hover:border-brand p-5 rounded-2xl shadow-card hover:shadow-md transition-all flex flex-col items-center text-center group">
                                     <div className="bg-amber-50 text-amber-700 p-3 rounded-full mb-3 group-hover:scale-110 transition-transform">
                                         <FaFileContract size={20} />
                                     </div>
                                     <span className="font-bold text-gray-800 text-sm">{tUZ("Shartnomalarim")}</span>
                                 </Link>
 
-                                <Link to="/certification" className="bg-white border border-gray-100 hover:border-brand p-5 rounded-2xl shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center group">
+                                <Link to="/certification" className="bg-white border border-line hover:border-brand p-5 rounded-2xl shadow-card hover:shadow-md transition-all flex flex-col items-center text-center group">
                                     <div className="bg-purple-50 text-purple-600 p-3 rounded-full mb-3 group-hover:scale-110 transition-transform">
                                         <FaAward size={20} />
                                     </div>
@@ -286,7 +286,7 @@ const ProfileScreen = () => {
 
                     {/* Real seller stats — computed from this user's own products/orders/contracts */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm">
+                        <div className="bg-white border border-line p-6 rounded-2xl shadow-card">
                             <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{tUZ("Jami Savdo")}</span>
                             <h3 className="text-2xl font-black text-gray-900 mt-2">{(summary?.totalSalesUzs ?? 0).toLocaleString()} UZS</h3>
                             {summary?.salesTrend?.length > 0 ? (
@@ -308,12 +308,12 @@ const ProfileScreen = () => {
                             )}
                         </div>
 
-                        <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm">
+                        <div className="bg-white border border-line p-6 rounded-2xl shadow-card">
                             <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{tUZ("Faol Mahsulotlar")}</span>
                             <h3 className="text-2xl font-black text-gray-900 mt-2">{summary?.activeProducts ?? 0} {tUZ("ta mahsulot")}</h3>
                         </div>
 
-                        <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm">
+                        <div className="bg-white border border-line p-6 rounded-2xl shadow-card">
                             <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">{tUZ("Shartnomalar")}</span>
                             <h3 className="text-2xl font-black text-gray-900 mt-2">{summary?.contractsActive ?? 0} {tUZ("ta faol kelishuv")}</h3>
                             {summary?.contractsDraft > 0 && (
@@ -324,7 +324,7 @@ const ProfileScreen = () => {
 
                     {/* Quick navigation and action widgets */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm space-y-4">
+                        <div className="bg-white border border-line p-6 rounded-2xl shadow-card space-y-4">
                             <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Do'kon Boshqaruvi")}</h3>
                             <div className="grid grid-cols-2 gap-4">
                                 <Link to="/admin/product/create" className="border border-dashed border-gray-300 hover:border-brand p-5 rounded-xl text-center flex flex-col items-center justify-center group transition-colors">
@@ -338,7 +338,7 @@ const ProfileScreen = () => {
                             </div>
                         </div>
 
-                        <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm space-y-4">
+                        <div className="bg-white border border-line p-6 rounded-2xl shadow-card space-y-4">
                             <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Faol Kelishuvlar & Shartnomalar")}</h3>
                             {recentContracts.length === 0 ? (
                                 <p className="text-xs text-gray-400">{tUZ("Hali shartnoma yaratilmagan.")}</p>
@@ -368,7 +368,7 @@ const ProfileScreen = () => {
                     {/* Local-market readiness checklist — computed from this
                         user's own data, not invented rules */}
                     {localRequirements.length > 0 && (
-                        <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm space-y-4">
+                        <div className="bg-white border border-line p-6 rounded-2xl shadow-card space-y-4">
                             <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Mahalliy bozorda sotishga tayyorlik")}</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 {localRequirements.map((item, idx) => (
@@ -394,7 +394,7 @@ const ProfileScreen = () => {
             {/* EDIT PROFILE FORM MODAL / OVERLAY */}
             {showEditForm && (
                 <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm animate-fadeIn">
-                    <div className="bg-white rounded-3xl p-6 md:p-8 shadow-2xl w-full max-w-md border border-gray-100 space-y-6">
+                    <div className="bg-white rounded-3xl p-6 md:p-8 shadow-lift w-full max-w-md border border-line space-y-6">
                         <div className="flex justify-between items-center">
                             <h3 className="text-xl font-extrabold text-gray-955">{tUZ("Profilni Yangilash")}</h3>
                             <button 

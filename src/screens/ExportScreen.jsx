@@ -167,7 +167,7 @@ const ExportScreen = () => {
                 </p>
             </div>
 
-            <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm space-y-6">
+            <div className="bg-white border border-line rounded-2xl p-6 shadow-card space-y-6">
                 <div className="flex flex-wrap gap-2">
                     {countries.map((c) => (
                         <button
@@ -222,7 +222,7 @@ const ExportScreen = () => {
                 )}
             </div>
 
-            <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm space-y-4">
+            <div className="bg-white border border-line rounded-2xl p-6 shadow-card space-y-4">
                 <div>
                     <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Logistika narxini taxminiy hisoblash")}</h3>
                     <p className="text-gray-500 text-xs">{tUZ("Bu taxminiy baho. Haqiqiy narx tashuvchi kompaniyaga bog'liq holda farq qilishi mumkin.")}</p>
@@ -255,7 +255,7 @@ const ExportScreen = () => {
             </div>
 
             {user && (
-                <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm space-y-5">
+                <div className="bg-white border border-line rounded-2xl p-6 shadow-card space-y-5">
                     <div>
                         <h3 className="font-extrabold text-gray-900 text-lg">{tUZ("Mening eksport jarayonlarim")}</h3>
                         <p className="text-gray-500 text-xs">
@@ -341,7 +341,7 @@ const ExportScreen = () => {
                         <button
                             type="submit"
                             disabled={sendingLead}
-                            className="bg-white hover:bg-blue-50 text-blue-900 font-bold py-2.5 rounded-xl text-xs transition-colors shadow-sm w-full disabled:opacity-50"
+                            className="bg-white hover:bg-blue-50 text-blue-900 font-bold py-2.5 rounded-2xl text-xs transition-colors shadow-card w-full disabled:opacity-50 border border-line"
                         >
                             {sendingLead ? tUZ('Yuborilmoqda...') : tUZ("So'rovni yuborish")}
                         </button>
@@ -349,7 +349,7 @@ const ExportScreen = () => {
                 ) : (
                     <button
                         onClick={() => setShowLeadForm(true)}
-                        className="bg-white hover:bg-blue-50 text-blue-900 font-bold py-2.5 rounded-xl text-xs transition-colors shadow-sm w-full mt-6"
+                        className="bg-white hover:bg-blue-50 text-blue-900 font-bold py-2.5 rounded-2xl text-xs transition-colors shadow-card w-full mt-6 border border-line"
                     >
                         {tUZ("Mutaxassis bilan bog'lanish")}
                     </button>

@@ -23,7 +23,7 @@ const LanguageSwitcher = () => {
                 <span className="uppercase">{i18n.language}</span>
             </button>
             <div className="absolute right-0 top-full pt-2 w-32 hidden group-hover:block z-50">
-                <div className="bg-white rounded-md shadow-lg py-1 border border-gray-100">
+                <div className="bg-white rounded-2xl shadow-lift py-1 border border-line">
                     {languages.map((lng) => (
                         <button
                             key={lng.code}

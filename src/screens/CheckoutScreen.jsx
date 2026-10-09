@@ -154,7 +154,7 @@ const CheckoutScreen = () => {
             </div>
 
             {/* Step Contents */}
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-lg p-6 md:p-8 min-h-[400px] flex flex-col justify-between">
+            <div className="bg-white rounded-2xl border border-line shadow-lift p-6 md:p-8 min-h-[400px] flex flex-col justify-between">
                 
                 {/* STEP 1: SHIPPING ADDRESS */}
                 {step === 1 && (

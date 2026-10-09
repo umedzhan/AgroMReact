@@ -66,7 +66,7 @@ const CartScreen = () => {
                     {/* Cart Items List */}
                     <div className="lg:col-span-2 space-y-6">
                         {/* Free Shipping Tracker */}
-                        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm">
+                        <div className="bg-white p-5 rounded-2xl border border-line shadow-card">
                             <div className="flex items-center gap-3 text-gray-800 mb-3 font-semibold text-sm md:text-base">
                                 <FaTruck className="text-brand text-xl" />
                                 {amountNeeded > 0 ? (
@@ -88,7 +88,7 @@ const CartScreen = () => {
                         </div>
 
                         {/* Cart Items */}
-                        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden divide-y divide-gray-100">
+                        <div className="bg-white rounded-2xl border border-line shadow-card overflow-hidden divide-y divide-gray-100">
                             {cartItems.map((item) => (
                                 <div key={item._id} className="p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                                     <div className="flex items-center space-x-4 flex-1">
@@ -140,7 +140,7 @@ const CartScreen = () => {
 
                     {/* Summary Card */}
                     <div className="space-y-6">
-                        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm space-y-6 sticky top-24">
+                        <div className="bg-white p-6 rounded-2xl border border-line shadow-card space-y-6 sticky top-24">
                             <h2 className="text-xl font-bold text-gray-900 border-b border-gray-100 pb-4">{tUZ("Xarid Tafsilotlari")}</h2>
                             
                             <div className="space-y-4 text-sm text-gray-600">
@@ -189,7 +189,7 @@ const CartScreen = () => {
                             <Link
                                 to={`/product/${prod._id}`}
                                 key={prod._id}
-                                className="bg-white rounded-2xl border border-gray-150 p-4 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4"
+                                className="bg-white rounded-2xl border border-line p-4 shadow-card hover:shadow-md transition-shadow flex items-center gap-4"
                             >
                                 <img src={getImageUrl(prod.image)} alt={prod.name} className="w-20 h-20 object-cover rounded-xl" />
                                 <div className="flex-1">

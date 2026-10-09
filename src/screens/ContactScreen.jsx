@@ -22,7 +22,7 @@ const ContactScreen = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
                 {/* Contact Info Cards */}
-                <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
+                <div className="bg-white p-8 rounded-2xl shadow-card border border-line text-center hover:shadow-md transition-shadow">
                     <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600 text-2xl">
                         <FaMapMarkerAlt />
                     </div>
@@ -32,7 +32,7 @@ const ContactScreen = () => {
                     </p>
                 </div>
 
-                <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
+                <div className="bg-white p-8 rounded-2xl shadow-card border border-line text-center hover:shadow-md transition-shadow">
                     <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600 text-2xl">
                         <FaEnvelope />
                     </div>
@@ -45,7 +45,7 @@ const ContactScreen = () => {
                     </p>
                 </div>
 
-                <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
+                <div className="bg-white p-8 rounded-2xl shadow-card border border-line text-center hover:shadow-md transition-shadow">
                     <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600 text-2xl">
                         <FaPhoneAlt />
                     </div>
@@ -59,7 +59,7 @@ const ContactScreen = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white p-8 lg:p-12 rounded-2xl shadow-lg border border-gray-100">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white p-8 lg:p-12 rounded-2xl shadow-lift border border-line">
                 {/* Contact Form */}
                 <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">{tUZ("Bizga yozing!")}</h2>

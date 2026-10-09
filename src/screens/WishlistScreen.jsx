@@ -32,13 +32,13 @@ const WishlistScreen = () => {
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {wishlist.map((product) => (
-                        <div key={product._id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 flex flex-col">
+                        <div key={product._id} className="bg-white rounded-2xl shadow-card overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-line flex flex-col">
                             <Link to={`/product/${product._id}`}>
                                 <div className="h-48 overflow-hidden bg-gray-100 flex items-center justify-center relative">
                                     <img
                                         src={getImageUrl(product.image)}
                                         alt={product.name}
-                                        className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                                     />
                                     <button
                                         onClick={(e) => {

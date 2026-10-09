@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { tUZ } from '../utils/translateHelper';
-import { FaShoppingCart, FaHeart, FaSearch, FaPhoneAlt, FaBars, FaTimes, FaMapMarkerAlt, FaChevronDown } from 'react-icons/fa';
+import { FaShoppingCart, FaHeart, FaPhoneAlt, FaBars, FaTimes, FaMapMarkerAlt, FaChevronDown } from 'react-icons/fa';
 import AuthContext from '../context/AuthContext';
 import CartContext from '../context/CartContext';
 import TopBar from './TopBar';
@@ -10,14 +10,27 @@ import { useTranslation } from 'react-i18next';
 import { PRODUCT_CATEGORIES } from '../utils/categories';
 import NotificationBell from './NotificationBell';
 
+const navClass = ({ isActive }) =>
+  `whitespace-nowrap rounded-lg px-3 py-2 text-[14px] font-medium transition flex items-center gap-1.5 ${
+    isActive ? 'bg-ink-900/[0.05] text-ink-900' : 'text-ink-500 hover:text-ink-900'
+  }`;
+
 const Header = () => {
   const { user, logout } = useContext(AuthContext);
   const { cartItems } = useContext(CartContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { t } = useTranslation();
 
   const cartItemCount = cartItems.reduce((acc, item) => acc + item.qty, 0);
   const cartTotal = cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -26,48 +39,48 @@ const Header = () => {
   return (
     <>
       <TopBar />
-      <header className="bg-white sticky top-0 z-50 shadow-sm">
+      <header className={`sticky top-0 z-50 border-b transition-colors ${scrolled ? 'border-line bg-white/90 backdrop-blur-xl' : 'border-transparent bg-canvas/80 backdrop-blur'}`}>
         {/* Main Header Middle Section */}
-        <div className="container mx-auto px-4 py-2.5 lg:py-3.5">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
+        <div className="container mx-auto px-4 py-2.5 lg:py-3">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-3 lg:gap-6">
 
             {/* Top Row: Logo & Mobile Toggle & Cart (Mobile) */}
-            <div className="flex w-full lg:w-auto justify-between items-center">
+            <div className="flex w-full lg:w-auto lg:shrink-0 justify-between items-center">
               {/* Mobile Menu Button */}
-              <button onClick={toggleMobileMenu} className="lg:hidden text-gray-900 focus:outline-none p-2">
-                {isMobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+              <button onClick={toggleMobileMenu} className="lg:hidden grid size-10 place-items-center rounded-xl text-ink-800 hover:bg-ink-50" aria-label="Menu">
+                {isMobileMenuOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
               </button>
 
               {/* Logo */}
-              <Link to="/" className="flex items-center">
-                <img src="/images/logo.png" alt="AgroM Logo" className="h-8 lg:h-10 w-auto object-contain" />
+              <Link to="/" className="flex shrink-0 items-center">
+                <img src="/images/logo.png" alt="AgroM Logo" className="h-10 lg:h-12 w-auto shrink-0 object-contain" />
               </Link>
 
               {/* Mobile Cart Icon */}
-              <Link to="/cart" className="lg:hidden relative text-gray-900 p-2">
-                <FaShoppingCart className="text-xl" />
+              <Link to="/cart" className="lg:hidden relative grid size-10 place-items-center rounded-xl text-ink-800 hover:bg-ink-50">
+                <FaShoppingCart className="text-lg" />
                 {cartItemCount > 0 && (
-                  <span className="absolute top-0 right-0 bg-brand text-white text-[9px] font-bold rounded-full h-4 w-4 flex items-center justify-center border border-white">
+                  <span className="absolute top-1 right-1 bg-harvest-400 text-ink-950 text-[9px] font-bold rounded-full h-4 min-w-4 px-1 flex items-center justify-center">
                     {cartItemCount}
                   </span>
                 )}
               </Link>
 
               {/* Location Widget (Desktop Only) */}
-              <Link to="/contact" className="hidden xl:flex items-center border border-gray-200 rounded h-10 px-4 mr-4 hover:border-brand transition-colors group ml-8 min-w-[150px]">
-                <FaMapMarkerAlt className="text-gray-400 mr-2 group-hover:text-brand transition-colors text-sm" />
-                <span className="text-gray-500 text-xs font-semibold group-hover:text-brand transition-colors">{t('header.find_store')}</span>
+              <Link to="/contact" className="hidden 2xl:flex shrink-0 items-center rounded-xl h-10 px-3 ml-4 text-ink-500 hover:bg-ink-50 hover:text-ink-900 transition-colors">
+                <FaMapMarkerAlt className="mr-2 text-ink-400 text-sm" />
+                <span className="text-sm font-medium whitespace-nowrap">{t('header.find_store')}</span>
               </Link>
             </div>
 
 
             {/* Search Section */}
-            <div className="w-full lg:flex-grow lg:mx-8">
-              <div className="flex items-center h-10 gap-4">
+            <div className="w-full min-w-0 lg:flex-grow">
+              <div className="flex items-center h-11 gap-3">
                 {/* Browse Dropdown (Desktop Only) */}
-                <Link to="/shop" className="hidden lg:flex items-center h-full bg-green-50 px-4 rounded border border-brand cursor-pointer min-w-[150px] justify-between hover:bg-green-100 transition-colors whitespace-nowrap">
-                  <span className="text-gray-700 text-xs font-semibold">{t('header.browse_now')}</span>
-                  <FaChevronDown className="text-gray-400 text-[10px] ml-2" />
+                <Link to="/shop" className="hidden lg:flex items-center h-full rounded-xl bg-brand-50 px-4 text-brand-800 hover:bg-brand-100 transition-colors whitespace-nowrap gap-2">
+                  <span className="text-sm font-semibold">{t('header.browse_now')}</span>
+                  <FaChevronDown className="text-[10px] opacity-60" />
                 </Link>
 
                 <div className="flex-grow">
@@ -78,40 +91,45 @@ const Header = () => {
 
 
             {/* Right Actions (Desktop Only) */}
-            <div className="hidden lg:flex items-center space-x-6">
+            <div className="hidden lg:flex shrink-0 items-center gap-2">
               {user && <NotificationBell />}
               {/* User/Sign In */}
               {user ? (
                 <div className="relative group z-50">
-                  <button className="flex items-center space-x-1 text-gray-700 hover:text-brand font-semibold text-sm focus:outline-none">
-                    <span>{user.name}</span>
-                    <FaChevronDown className="text-[10px] text-gray-400" />
+                  <button className="flex h-10 items-center gap-1.5 rounded-xl px-3 text-sm font-semibold text-ink-700 hover:bg-ink-50 focus:outline-none">
+                    <span className="grid size-7 place-items-center rounded-full bg-brand-600 text-xs font-bold text-white">
+                      {user.name?.charAt(0).toUpperCase() || '?'}
+                    </span>
+                    <span className="max-w-[120px] truncate">{user.name}</span>
+                    <FaChevronDown className="text-[10px] text-ink-400" />
                   </button>
                   {/* Dropdown Menu */}
-                  <div className="absolute right-0 top-full pt-2 w-44 z-50 hidden group-hover:block">
-                    <div className="bg-white rounded-xl shadow-xl py-1.5 border border-gray-100">
-                      <div className="px-4 py-2 border-b border-gray-50">
-                        <p className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">{t('header.signed_in_as')}</p>
-                        <p className="text-xs font-black truncate text-gray-900 mt-0.5">{user.name}</p>
+                  <div className="absolute right-0 top-full pt-2 w-52 z-50 hidden group-hover:block">
+                    <div className="animate-fade-up overflow-hidden rounded-2xl border border-line bg-white p-1.5 shadow-lift">
+                      <div className="px-3 py-2">
+                        <p className="text-[10px] text-ink-400 uppercase font-semibold tracking-[0.12em]">{t('header.signed_in_as')}</p>
+                        <p className="text-sm font-semibold truncate text-ink-900 mt-0.5">{user.name}</p>
                       </div>
+                      <div className="my-1 h-px bg-line" />
 
-                      <Link to="/profile" className="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-green-50 hover:text-brand transition-colors">
+                      <Link to="/profile" className="block rounded-xl px-3 py-2 text-sm text-ink-600 hover:bg-ink-50 hover:text-ink-900 transition-colors">
                         {t('common.profile')}
                       </Link>
 
                       {user.isAdmin && (
-                        <Link to="/admin/dashboard" className="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-green-50 hover:text-brand transition-colors">
+                        <Link to="/admin/dashboard" className="block rounded-xl px-3 py-2 text-sm text-ink-600 hover:bg-ink-50 hover:text-ink-900 transition-colors">
                           {t('header.admin_dashboard')}
                         </Link>
                       )}
 
-                      <Link to="/admin/productlist" className="block px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-green-50 hover:text-brand transition-colors">
+                      <Link to="/admin/productlist" className="block rounded-xl px-3 py-2 text-sm text-ink-600 hover:bg-ink-50 hover:text-ink-900 transition-colors">
                         {tUZ('Mahsulotlarim')}
                       </Link>
 
+                      <div className="my-1 h-px bg-line" />
                       <button
                         onClick={logout}
-                        className="block w-full text-left px-4 py-2 text-xs font-bold text-red-600 hover:bg-red-50 transition-colors border-t border-gray-50 mt-1 pt-2"
+                        className="block w-full text-left rounded-xl px-3 py-2 text-sm font-semibold text-red-700 hover:bg-red-50 transition-colors"
                       >
                         {t('common.logout')}
                       </button>
@@ -119,66 +137,64 @@ const Header = () => {
                   </div>
                 </div>
               ) : (
-                <Link to="/login" className="flex items-center space-x-2 text-gray-700 hover:text-brand font-semibold text-sm">
-                  <span className="hidden xl:inline">{t('common.sign_in')}</span>
+                <Link to="/login" className="flex h-10 items-center rounded-xl px-3 text-sm font-semibold text-ink-700 hover:bg-ink-50">
+                  <span className="hidden xl:inline whitespace-nowrap">{t('common.sign_in')}</span>
                 </Link>
               )}
 
-              <Link to="/wishlist" className="relative group flex items-center text-gray-700 hover:text-brand transition-colors">
-                <FaHeart className="text-lg mr-2 text-gray-400 group-hover:text-brand transition-colors" />
+              <Link to="/wishlist" className="flex h-10 items-center gap-2 rounded-xl px-3 text-ink-700 hover:bg-ink-50 transition-colors">
+                <FaHeart className="text-ink-400" />
                 <span className="hidden xl:inline text-sm font-semibold">{t('header.wishlist')}</span>
               </Link>
 
-              <div className="border-l border-gray-250 h-6"></div>
+              <div className="mx-1 h-6 w-px bg-line"></div>
 
-              <div className="flex items-center space-x-3 group">
-                <div className="relative">
-                  <Link to="/cart" className="flex items-center">
-                    <FaShoppingCart className="text-lg text-gray-700 group-hover:text-brand transition-colors" />
-                    {cartItemCount > 0 && (
-                      <span className="absolute -top-2 -right-2 bg-brand text-white text-[9px] font-bold rounded-full h-4.5 w-4.5 flex items-center justify-center border border-white">
-                        {cartItemCount}
-                      </span>
-                    )}
-                  </Link>
-                </div>
-                <div className="text-sm">
-                  <p className="text-gray-400 text-[9px] uppercase font-bold tracking-wider leading-none">{t('header.shopping_cart')}</p>
-                  <p className="font-black text-gray-900 mt-0.5 text-xs">{cartTotal} UZS</p>
-                </div>
-              </div>
+              <Link to="/cart" className="flex h-11 items-center gap-3 rounded-2xl border border-line bg-white px-3 shadow-card hover:shadow-lift transition-shadow">
+                <span className="relative">
+                  <FaShoppingCart className="text-ink-700" />
+                  {cartItemCount > 0 && (
+                    <span className="absolute -top-2.5 -right-2.5 bg-harvest-400 text-ink-950 text-[9px] font-bold rounded-full h-4 min-w-4 px-1 flex items-center justify-center">
+                      {cartItemCount}
+                    </span>
+                  )}
+                </span>
+                <span className="text-left leading-none whitespace-nowrap">
+                  <span className="block text-ink-400 text-[10px] uppercase font-semibold tracking-[0.12em]">{t('header.shopping_cart')}</span>
+                  <span className="block font-bold text-ink-900 mt-1 text-sm">{cartTotal} UZS</span>
+                </span>
+              </Link>
             </div>
           </div>
         </div>
 
         {/* Desktop Navigation Link Bar */}
-        <div className="hidden lg:block bg-white border-t border-gray-100 shadow-sm">
+        <div className="hidden lg:block border-t border-line/70">
           <div className="container mx-auto px-4">
-            <div className="flex justify-between items-center py-2">
-               <nav className="flex space-x-6 text-gray-600 font-semibold text-sm">
-                <Link to="/" className="hover:text-brand transition-colors">
+            <div className="flex justify-between items-center py-1.5">
+              <nav className="flex items-center gap-0.5">
+                <NavLink to="/" end className={navClass}>
                   {tUZ("Bosh sahifa")}
-                </Link>
-                <Link to="/shop" className="hover:text-brand transition-colors">
+                </NavLink>
+                <NavLink to="/shop" className={navClass}>
                   {tUZ("Mahsulotlar")}
-                </Link>
-                <div className="h-4 w-[1px] bg-gray-200 align-middle my-auto"></div>
-                <Link to="/certification" className="hover:text-brand transition-colors flex items-center gap-1.5 py-1 px-2.5 rounded bg-green-50 text-brand">
-                  <span className="h-2 w-2 rounded-full bg-brand animate-pulse"></span>
+                </NavLink>
+                <div className="mx-2 h-4 w-px bg-line"></div>
+                <NavLink to="/certification" className={navClass}>
+                  <span className="h-2 w-2 rounded-full bg-harvest-400 animate-pulse"></span>
                   {tUZ("Sertifikatlash (Halal/Organic)")}
-                </Link>
-                <Link to="/export" className="hover:text-brand transition-colors flex items-center gap-1.5 py-1 px-2.5 rounded bg-blue-50 text-blue-600">
+                </NavLink>
+                <NavLink to="/export" className={navClass}>
                   {tUZ("Logistika & Eksport")}
-                </Link>
-                <Link to="/contracts" className="hover:text-brand transition-colors flex items-center gap-1.5 py-1 px-2.5 rounded bg-amber-50 text-amber-700">
+                </NavLink>
+                <NavLink to="/contracts" className={navClass}>
                   {tUZ("ERI Shartnomalar")}
-                </Link>
+                </NavLink>
               </nav>
 
-              <div className="flex items-center space-x-2 text-brand font-bold text-sm">
-                <FaPhoneAlt size={12} />
+              <a href="tel:+998999970515" className="hidden xl:flex shrink-0 whitespace-nowrap items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-brand-700 hover:bg-brand-50">
+                <FaPhoneAlt size={11} />
                 <span>{tUZ("Yordam: +998 (99) 997-05-15")}</span>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -186,72 +202,91 @@ const Header = () => {
         {/* Mobile Menu Drawer */}
         <div className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
           {/* Backdrop */}
-          <div className="absolute inset-0 bg-black bg-opacity-50" onClick={toggleMobileMenu}></div>
+          <div className="absolute inset-0 bg-ink-950/40" onClick={toggleMobileMenu}></div>
 
           {/* Drawer Content */}
-          <div className={`absolute top-0 left-0 bottom-0 w-[80%] max-w-sm bg-white shadow-xl transform transition-transform duration-300 flex flex-col ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          <div className={`absolute top-0 left-0 bottom-0 w-[88%] max-w-sm bg-white shadow-lift transform transition-transform duration-300 flex flex-col ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
 
             {/* Drawer Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-gray-50">
-              <div className="font-bold text-lg text-brand">Menu</div>
-              <button onClick={toggleMobileMenu} className="text-gray-500 hover:text-red-500">
-                <FaTimes size={24} />
+            <div className="flex h-16 items-center justify-between border-b border-line px-4">
+              <img src="/images/logo.png" alt="AgroM Logo" className="h-8 w-auto object-contain" />
+              <button onClick={toggleMobileMenu} className="grid size-10 place-items-center rounded-xl text-ink-600 hover:bg-ink-50" aria-label="Close">
+                <FaTimes size={18} />
               </button>
             </div>
 
             {/* Drawer Body - Scrollable */}
-            <div className="flex-grow overflow-y-auto p-4 py-2">
+            <div className="flex-grow overflow-y-auto p-3">
 
               {/* User Section */}
               {user ? (
-                <div className="mb-6 bg-green-50 rounded-lg p-4">
-                  <div className="flex items-center space-x-3 mb-3">
-                    <div className="bg-brand text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">
+                <div className="mb-4 rounded-2xl border border-line bg-canvas p-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="bg-brand-600 text-white rounded-full size-10 flex items-center justify-center font-bold">
                       {user.name?.charAt(0).toUpperCase() || '?'}
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500">{t('header.signed_in_as')}</p>
-                      <p className="font-bold text-gray-900">{user.name}</p>
+                      <p className="text-xs text-ink-400">{t('header.signed_in_as')}</p>
+                      <p className="font-semibold text-ink-900">{user.name}</p>
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 gap-2">
-                    <Link to="/profile" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2 rounded text-gray-700 block border border-gray-100">
+                  <div className="grid grid-cols-1 gap-1.5">
+                    <Link to="/profile" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2.5 rounded-xl text-ink-700 block border border-line">
                       {t('common.profile')}
                     </Link>
                     {user.isAdmin && (
-                      <Link to="/admin/dashboard" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2 rounded text-gray-700 block border border-gray-100">
+                      <Link to="/admin/dashboard" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2.5 rounded-xl text-ink-700 block border border-line">
                         {t('header.admin_dashboard')}
                       </Link>
                     )}
-                    <Link to="/admin/productlist" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2 rounded text-gray-700 block border border-gray-100">
+                    <Link to="/admin/productlist" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2.5 rounded-xl text-ink-700 block border border-line">
                       {tUZ('Mahsulotlarim')}
                     </Link>
-                    <Link to="/wishlist" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2 rounded text-gray-700 block border border-gray-100 flex justify-between items-center">
+                    <Link to="/wishlist" onClick={toggleMobileMenu} className="text-sm bg-white px-3 py-2.5 rounded-xl text-ink-700 border border-line flex justify-between items-center">
                       <span>{t('header.wishlist')}</span>
                       <FaHeart className="text-red-400" />
                     </Link>
-                    <button onClick={() => { logout(); toggleMobileMenu(); }} className="text-sm bg-red-50 text-red-600 px-3 py-2 rounded block border border-red-100 text-left">
+                    <button onClick={() => { logout(); toggleMobileMenu(); }} className="text-sm bg-white text-red-700 px-3 py-2.5 rounded-xl block border border-red-200 text-left">
                       {t('common.logout')}
                     </button>
                   </div>
                 </div>
               ) : (
-                <div className="flex gap-2 mb-6">
-                  <Link to="/login" onClick={toggleMobileMenu} className="flex-1 text-center bg-gray-100 text-gray-700 py-2 rounded font-semibold hover:bg-gray-200">
+                <div className="flex gap-2 mb-4">
+                  <Link to="/login" onClick={toggleMobileMenu} className="btn-outline flex-1">
                     {t('common.sign_in')}
                   </Link>
-                  <Link to="/register" onClick={toggleMobileMenu} className="flex-1 text-center bg-brand text-white py-2 rounded font-semibold hover:bg-brand-dark">
+                  <Link to="/register" onClick={toggleMobileMenu} className="btn-primary flex-1">
                     {t('common.sign_up')}
                   </Link>
                 </div>
               )}
 
+              <nav className="space-y-0.5">
+                {[
+                  ['/', tUZ("Bosh sahifa")],
+                  ['/certification', tUZ("Sertifikatlash (Halal/Organic)")],
+                  ['/export', tUZ("Logistika & Eksport")],
+                  ['/contracts', tUZ("ERI Shartnomalar")],
+                ].map(([to, label]) => (
+                  <NavLink
+                    key={to}
+                    to={to}
+                    end={to === '/'}
+                    onClick={toggleMobileMenu}
+                    className={({ isActive }) => `block rounded-xl px-4 py-3 text-base font-semibold ${isActive ? 'bg-brand-50 text-brand-800' : 'text-ink-800 hover:bg-ink-50'}`}
+                  >
+                    {label}
+                  </NavLink>
+                ))}
+              </nav>
 
               {/* Navigation Links */}
-              <div className="space-y-1">
-                <p className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 mt-4">{t('header.shop_by_category')}</p>
+              <div className="my-3 h-px bg-line" />
+              <div className="space-y-0.5">
+                <p className="px-4 text-xs font-semibold text-ink-400 uppercase tracking-[0.12em] mb-2 mt-4">{t('header.shop_by_category')}</p>
 
-                <Link to="/shop" onClick={toggleMobileMenu} className="block px-2 py-2 text-gray-700 font-medium hover:bg-green-50 hover:text-brand rounded transition-colors">
+                <Link to="/shop" onClick={toggleMobileMenu} className="block rounded-xl px-4 py-2.5 text-[15px] font-medium text-ink-600 hover:bg-ink-50">
                   {t('header.browse_now')} (All)
                 </Link>
                 {PRODUCT_CATEGORIES.map((c) => (
@@ -259,23 +294,23 @@ const Header = () => {
                     key={c.value}
                     to={`/shop?category=${c.value}`}
                     onClick={toggleMobileMenu}
-                    className="block px-2 py-2 text-gray-700 font-medium hover:bg-green-50 hover:text-brand rounded transition-colors"
+                    className="block rounded-xl px-4 py-2.5 text-[15px] font-medium text-ink-600 hover:bg-ink-50"
                   >
                     {t(`header.nav.${c.navKey}`)}
                   </Link>
                 ))}
               </div>
 
-              <div className="mt-8 pt-6 border-t border-gray-100">
-                <p className="px-2 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">{t('footer.helps')}</p>
-                <Link to="/contact" onClick={toggleMobileMenu} className="block px-2 py-2 text-gray-600 hover:text-brand">{t('footer.contact')}</Link>
-                <Link to="/about" onClick={toggleMobileMenu} className="block px-2 py-2 text-gray-600 hover:text-brand">{t('footer.about')}</Link>
+              <div className="mt-4 pt-4 border-t border-line">
+                <p className="px-4 text-xs font-semibold text-ink-400 uppercase tracking-[0.12em] mb-2">{t('footer.helps')}</p>
+                <Link to="/contact" onClick={toggleMobileMenu} className="block rounded-xl px-4 py-2.5 text-[15px] text-ink-600 hover:bg-ink-50">{t('footer.contact')}</Link>
+                <Link to="/about" onClick={toggleMobileMenu} className="block rounded-xl px-4 py-2.5 text-[15px] text-ink-600 hover:bg-ink-50">{t('footer.about')}</Link>
               </div>
 
             </div>
 
             {/* Drawer Footer */}
-            <div className="p-4 bg-gray-50 border-t border-gray-100 text-center text-xs text-gray-500">
+            <div className="p-4 border-t border-line text-center text-xs text-ink-400">
               &copy; 2024 AgroM Inc.
             </div>
 

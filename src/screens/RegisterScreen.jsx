@@ -51,10 +51,10 @@ const RegisterScreen = () => {
 
     return (
         <div className="min-h-[calc(100vh-200px)] flex items-center justify-center">
-            <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+            <div className="bg-white p-8 rounded-2xl shadow-card w-full max-w-md border border-line">
                 <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">{tUZ("Ro'yxatdan o'tish")}</h1>
 
-                {message && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">{message}</div>}
+                {message && <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl relative mb-4">{message}</div>}
                 {loading && <div className="mb-4 text-center"><Loader /></div>}
 
                 <form onSubmit={submitHandler}>

@@ -20,8 +20,8 @@ const SearchBox = () => {
     };
 
     return (
-        <form onSubmit={submitHandler} className="flex w-full items-center bg-gray-100 rounded overflow-hidden h-10">
-            <div className="px-4 text-gray-500 flex items-center h-full">
+        <form onSubmit={submitHandler} className="flex w-full items-center rounded-xl border border-line-strong bg-white overflow-hidden h-11 transition focus-within:border-brand-500 focus-within:ring-4 focus-within:ring-brand-500/10">
+            <div className="pl-3.5 pr-2.5 text-ink-400 flex items-center h-full">
                 <FaSearch />
             </div>
             <input
@@ -30,9 +30,9 @@ const SearchBox = () => {
                 onChange={(e) => setKeyword(e.target.value)}
                 value={keyword}
                 placeholder={tUZ("Mahsulotlarni qidirish")}
-                className="w-full h-full bg-transparent outline-none text-gray-700 placeholder-gray-400"
+                className="w-full h-full bg-transparent outline-none text-[15px] text-ink-900 placeholder:text-ink-300"
             />
-            <button type="submit" className="px-6 h-full bg-brand text-white hover:bg-brand-dark transition-colors font-semibold">
+            <button type="submit" className="m-1 h-9 rounded-lg px-4 bg-brand-600 text-sm text-white hover:bg-brand-700 transition-colors font-semibold">
                 {tUZ("Qidirish")}
             </button>
         </form>

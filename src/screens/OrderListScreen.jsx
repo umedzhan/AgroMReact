@@ -108,7 +108,7 @@ const OrderListScreen = () => {
                     {/* Stats Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
                         {/* Total Revenue */}
-                        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 transition-all hover:shadow-md">
+                        <div className="bg-white p-5 rounded-2xl border border-line shadow-card flex items-center gap-4 transition-all hover:shadow-md">
                             <div className="p-3.5 bg-emerald-50 text-emerald-600 rounded-full flex-shrink-0">
                                 <FaMoneyBillWave size={22} />
                             </div>
@@ -121,7 +121,7 @@ const OrderListScreen = () => {
                         </div>
 
                         {/* All Orders */}
-                        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 transition-all hover:shadow-md cursor-pointer" onClick={() => setActiveFilter('all')}>
+                        <div className="bg-white p-5 rounded-2xl border border-line shadow-card flex items-center gap-4 transition-all hover:shadow-md cursor-pointer" onClick={() => setActiveFilter('all')}>
                             <div className="p-3.5 bg-blue-50 text-blue-600 rounded-full flex-shrink-0">
                                 <FaShoppingCart size={22} />
                             </div>
@@ -132,7 +132,7 @@ const OrderListScreen = () => {
                         </div>
 
                         {/* Pending Payment */}
-                        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 transition-all hover:shadow-md cursor-pointer" onClick={() => setActiveFilter('pending_payment')}>
+                        <div className="bg-white p-5 rounded-2xl border border-line shadow-card flex items-center gap-4 transition-all hover:shadow-md cursor-pointer" onClick={() => setActiveFilter('pending_payment')}>
                             <div className="p-3.5 bg-amber-50 text-amber-600 rounded-full flex-shrink-0">
                                 <FaHourglassHalf size={22} />
                             </div>
@@ -143,7 +143,7 @@ const OrderListScreen = () => {
                         </div>
 
                         {/* Pending Delivery */}
-                        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 transition-all hover:shadow-md cursor-pointer" onClick={() => setActiveFilter('pending_delivery')}>
+                        <div className="bg-white p-5 rounded-2xl border border-line shadow-card flex items-center gap-4 transition-all hover:shadow-md cursor-pointer" onClick={() => setActiveFilter('pending_delivery')}>
                             <div className="p-3.5 bg-indigo-50 text-indigo-600 rounded-full flex-shrink-0">
                                 <FaTruck size={22} />
                             </div>
@@ -154,7 +154,7 @@ const OrderListScreen = () => {
                         </div>
 
                         {/* Completed */}
-                        <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 transition-all hover:shadow-md cursor-pointer" onClick={() => setActiveFilter('completed')}>
+                        <div className="bg-white p-5 rounded-2xl border border-line shadow-card flex items-center gap-4 transition-all hover:shadow-md cursor-pointer" onClick={() => setActiveFilter('completed')}>
                             <div className="p-3.5 bg-green-50 text-green-600 rounded-full flex-shrink-0">
                                 <FaCheckCircle size={22} />
                             </div>
@@ -166,7 +166,7 @@ const OrderListScreen = () => {
                     </div>
 
                     {/* Filters & Search Action Row */}
-                    <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                    <div className="bg-white p-4 rounded-2xl border border-line shadow-card flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                         {/* Tab buttons */}
                         <div className="flex flex-wrap items-center gap-2">
                             {/* All */}
@@ -231,7 +231,7 @@ const OrderListScreen = () => {
                     </div>
 
                     {/* Table View */}
-                    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                    <div className="bg-white rounded-2xl border border-line shadow-card overflow-hidden">
                         {filteredOrders.length === 0 ? (
                             <div className="text-center py-12 text-gray-500">
                                 <FaShoppingCart size={40} className="mx-auto text-gray-200 mb-3 flex-shrink-0" />

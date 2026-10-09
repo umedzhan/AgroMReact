@@ -179,7 +179,7 @@ const OrdersScreen = () => {
 
             {/* Dashboard Analytics Panel */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white border border-gray-150 p-6 rounded-2xl shadow-sm flex items-center gap-4">
+                <div className="bg-white border border-line p-6 rounded-2xl shadow-card flex items-center gap-4">
                     <div className="bg-green-50 text-brand p-4 rounded-full">
                         <FaChartPie size={24} />
                     </div>
@@ -189,7 +189,7 @@ const OrdersScreen = () => {
                     </div>
                 </div>
 
-                <div className="bg-white border border-gray-150 p-6 rounded-2xl shadow-sm flex items-center gap-4">
+                <div className="bg-white border border-line p-6 rounded-2xl shadow-card flex items-center gap-4">
                     <div className="bg-blue-50 text-blue-600 p-4 rounded-full">
                         <FaClock size={24} />
                     </div>
@@ -199,7 +199,7 @@ const OrdersScreen = () => {
                     </div>
                 </div>
 
-                <div className="bg-white border border-gray-150 p-6 rounded-2xl shadow-sm flex items-center gap-4">
+                <div className="bg-white border border-line p-6 rounded-2xl shadow-card flex items-center gap-4">
                     <div className="bg-emerald-50 text-emerald-600 p-4 rounded-full">
                         <FaCheckCircle size={24} />
                     </div>
@@ -211,7 +211,7 @@ const OrdersScreen = () => {
             </div>
 
             {/* Filtering and Search Controls */}
-            <div className="bg-white border border-gray-150 rounded-2xl p-4 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="bg-white border border-line rounded-2xl p-4 shadow-card flex flex-col md:flex-row justify-between items-center gap-4">
                 {/* Tabs */}
                 <div className="flex gap-2 w-full md:w-auto overflow-x-auto">
                     {[
@@ -255,7 +255,7 @@ const OrdersScreen = () => {
                     </div>
                 ) : (
                     filteredOrders.map((order) => (
-                        <div key={order.id} className="bg-white border border-gray-150 rounded-2xl shadow-sm overflow-hidden p-5 space-y-6 hover:shadow-md transition-shadow">
+                        <div key={order.id} className="bg-white border border-line rounded-2xl shadow-card overflow-hidden p-5 space-y-6 hover:shadow-md transition-shadow">
                             
                             {/* Order general header */}
                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-gray-100 pb-4 gap-4">
